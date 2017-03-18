@@ -1,144 +1,153 @@
 <?xml version="1.0"?>
 <projectProfile type="default" version="1.12.6">
-    <projectDirectory>
-        <projectProfileFile filesystemName=".zfproject.xml"/>
-        <applicationDirectory classNamePrefix="Application_">
-            <configsDirectory>
-                <applicationConfigFile type="ini"/>
-            </configsDirectory>
-            <controllersDirectory>
-                <controllerFile controllerName="Index">
-                    <actionMethod actionName="index"/>
-                    <actionMethod actionName="admin"/>
-                </controllerFile>
-                <controllerFile controllerName="Error"/>
-                <controllerFile controllerName="Admin">
-                    <actionMethod actionName="index"/>
-                    <actionMethod actionName="admin"/>
-                    <actionMethod actionName="addCategory"/>
-                    <actionMethod actionName="deleteCategory"/>
-                    <actionMethod actionName="editCategory"/>
-                    <actionMethod actionName="createCoupon"/>
-                </controllerFile>
-                <controllerFile controllerName="Wishlist">
-                    <actionMethod actionName="index"/>
-                </controllerFile>
-            </controllersDirectory>
-            <formsDirectory>
-                <formFile formName="AddCat"/>
-                <formFile formName="CreateCoupon"/>
-            </formsDirectory>
-            <layoutsDirectory>
-                <layoutScriptsDirectory>
-                    <layoutScriptFile layoutName="layout"/>
-                </layoutScriptsDirectory>
-            </layoutsDirectory>
-            <modelsDirectory>
-                <modelFile modelName="Admin"/>
-                <modelFile modelName="User"/>
-                <modelFile modelName="Category"/>
-                <modelFile modelName="Coupon"/>
-                <modelFile modelName="Wishlist"/>
-                <modelFile modelName="Product"/>
-            </modelsDirectory>
-            <modulesDirectory enabled="false"/>
-            <servicesDirectory enabled="false"/>
-            <viewsDirectory>
-                <viewScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Index">
-                        <viewScriptFile forActionName="index"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Error">
-                        <viewScriptFile forActionName="error"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="User">
-                        <viewScriptFile forActionName="index"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="User">
-                        <viewScriptFile forActionName="signup"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="User">
-                        <viewScriptFile forActionName="logout"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="User">
-                        <viewScriptFile forActionName="home"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Index">
-                        <viewScriptFile forActionName="admin"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Wishlist">
-                        <viewScriptFile forActionName="index"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Admin">
-                        <viewScriptFile forActionName="index"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Admin">
-                        <viewScriptFile forActionName="admin"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Admin">
-                        <viewScriptFile forActionName="addCategory"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Admin">
-                        <viewScriptFile forActionName="editCategory"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Admin">
-                        <viewScriptFile forActionName="createCoupon"/>
-                    </viewControllerScriptsDirectory>
-                </viewScriptsDirectory>
-                <viewHelpersDirectory/>
-                <viewFiltersDirectory enabled="false"/>
-            </viewsDirectory>
-            <bootstrapFile filesystemName="Bootstrap.php"/>
-        </applicationDirectory>
-        <dataDirectory enabled="false">
-            <cacheDirectory enabled="false"/>
-            <searchIndexesDirectory enabled="false"/>
-            <localesDirectory enabled="false"/>
-            <logsDirectory enabled="false"/>
-            <sessionsDirectory enabled="false"/>
-            <uploadsDirectory enabled="false"/>
-        </dataDirectory>
-        <docsDirectory>
-            <file filesystemName="README.txt"/>
-        </docsDirectory>
-        <libraryDirectory>
-            <zfStandardLibraryDirectory enabled="false"/>
-        </libraryDirectory>
-        <publicDirectory>
-            <publicStylesheetsDirectory enabled="false"/>
-            <publicScriptsDirectory enabled="false"/>
-            <publicImagesDirectory enabled="false"/>
-            <publicIndexFile filesystemName="index.php"/>
-            <htaccessFile filesystemName=".htaccess"/>
-        </publicDirectory>
-        <projectProvidersDirectory enabled="false"/>
-        <temporaryDirectory enabled="false"/>
-        <testsDirectory>
-            <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
-            <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
-            <testApplicationDirectory>
-                <testApplicationControllerDirectory>
-                    <testApplicationControllerFile forControllerName="Index">
-                        <testApplicationActionMethod forActionName="index"/>
-                        <testApplicationActionMethod forActionName="admin"/>
-                    </testApplicationControllerFile>
-                    <testApplicationControllerFile forControllerName="Admin">
-                        <testApplicationActionMethod forActionName="addCategory"/>
-                            <testApplicationActionMethod forActionName="deleteCategory"/>
-                            <testApplicationActionMethod forActionName="editCategory"/>
-                            <testApplicationActionMethod forActionName="createCoupon"/>
-                    </testApplicationControllerFile>
-                        <testApplicationControllerFile forControllerName="User">
-                            <testApplicationActionMethod forActionName="index"/>
-                            <testApplicationActionMethod forActionName="admin"/>
-                            
-                        </testApplicationControllerFile>
-                        <testApplicationControllerFile forControllerName="Wishlist">
-                            <testApplicationActionMethod forActionName="index"/>
-                        </testApplicationControllerFile>
-                </testApplicationControllerDirectory>
-            </testApplicationDirectory>
-            <testLibraryDirectory/>
-        </testsDirectory>
-    </projectDirectory>
+  <projectDirectory>
+    <projectProfileFile filesystemName=".zfproject.xml"/>
+    <applicationDirectory classNamePrefix="Application_">
+      <configsDirectory>
+        <applicationConfigFile type="ini"/>
+      </configsDirectory>
+      <controllersDirectory>
+        <controllerFile controllerName="Index">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="admin"/>
+        </controllerFile>
+        <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="admin"/>
+          <actionMethod actionName="addCategory"/>
+          <actionMethod actionName="deleteCategory"/>
+          <actionMethod actionName="editCategory"/>
+          <actionMethod actionName="createCoupon"/>
+        </controllerFile>
+        <controllerFile controllerName="Wishlist">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="addToWish"/>
+          <actionMethod actionName="deleteItem"/>
+        </controllerFile>
+      </controllersDirectory>
+      <formsDirectory>
+        <formFile formName="AddCat"/>
+        <formFile formName="CreateCoupon"/>
+      </formsDirectory>
+      <layoutsDirectory>
+        <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
+        </layoutScriptsDirectory>
+      </layoutsDirectory>
+      <modelsDirectory>
+        <modelFile modelName="Admin"/>
+        <modelFile modelName="User"/>
+        <modelFile modelName="Category"/>
+        <modelFile modelName="Coupon"/>
+        <modelFile modelName="Wishlist"/>
+        <modelFile modelName="Product"/>
+      </modelsDirectory>
+      <modulesDirectory enabled="false"/>
+      <servicesDirectory enabled="false"/>
+      <viewsDirectory>
+        <viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Error">
+            <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="signup"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="home"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="admin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="admin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addCategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editCategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="createCoupon"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="addToWish"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="deleteItem"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
+      </viewsDirectory>
+      <bootstrapFile filesystemName="Bootstrap.php"/>
+    </applicationDirectory>
+    <dataDirectory enabled="false">
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
+    </dataDirectory>
+    <docsDirectory>
+      <file filesystemName="README.txt"/>
+    </docsDirectory>
+    <libraryDirectory>
+      <zfStandardLibraryDirectory enabled="false"/>
+    </libraryDirectory>
+    <publicDirectory>
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
+    </publicDirectory>
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
+    <testsDirectory>
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+      <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
+      <testApplicationDirectory>
+        <testApplicationControllerDirectory>
+          <testApplicationControllerFile forControllerName="Index">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="admin"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Admin">
+            <testApplicationActionMethod forActionName="addCategory"/>
+            <testApplicationActionMethod forActionName="deleteCategory"/>
+            <testApplicationActionMethod forActionName="editCategory"/>
+            <testApplicationActionMethod forActionName="createCoupon"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="admin"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Wishlist">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="addToWish"/>
+            <testApplicationActionMethod forActionName="deleteItem"/>
+          </testApplicationControllerFile>
+        </testApplicationControllerDirectory>
+      </testApplicationDirectory>
+      <testLibraryDirectory/>
+    </testsDirectory>
+  </projectDirectory>
 </projectProfile>
