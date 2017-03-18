@@ -123,13 +123,15 @@
                         <testApplicationActionMethod forActionName="admin"/>
                     </testApplicationControllerFile>
                     <testApplicationControllerFile forControllerName="Admin">
-                        <testApplicationControllerFile forControllerName="User">
-                            <testApplicationActionMethod forActionName="index"/>
-                            <testApplicationActionMethod forActionName="admin"/>
-                            <testApplicationActionMethod forActionName="addCategory"/>
+                        <testApplicationActionMethod forActionName="addCategory"/>
                             <testApplicationActionMethod forActionName="deleteCategory"/>
                             <testApplicationActionMethod forActionName="editCategory"/>
                             <testApplicationActionMethod forActionName="createCoupon"/>
+                    </testApplicationControllerFile>
+                        <testApplicationControllerFile forControllerName="User">
+                            <testApplicationActionMethod forActionName="index"/>
+                            <testApplicationActionMethod forActionName="admin"/>
+                            
                         </testApplicationControllerFile>
                         <testApplicationControllerFile forControllerName="Wishlist">
                             <testApplicationActionMethod forActionName="index"/>
