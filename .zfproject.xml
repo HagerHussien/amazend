@@ -9,21 +9,21 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
-        </controllerFile>
-        <controllerFile controllerName="user">
-          <actionMethod actionName="index"/>
+          <actionMethod actionName="admin"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
-        <controllerFile controllerName="User">
+        <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
-          <actionMethod actionName="signup"/>
-          <actionMethod actionName="logout"/>
-          <actionMethod actionName="home"/>
+          <actionMethod actionName="admin"/>
+          <actionMethod actionName="addCategory"/>
+          <actionMethod actionName="deleteCategory"/>
+          <actionMethod actionName="editCategory"/>
+          <actionMethod actionName="createCoupon"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
-        <formFile formName="LoginForm"/>
-        <formFile formName="RegistrationForm"/>
+        <formFile formName="AddCat"/>
+        <formFile formName="CreateCoupon"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -31,7 +31,9 @@
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
-        <modelFile modelName="User"/>
+        <modelFile modelName="Admin"/>
+        <modelFile modelName="Category"/>
+        <modelFile modelName="Coupon"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -54,6 +56,24 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="home"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="admin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="admin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addCategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="editCategory"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="createCoupon"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -91,12 +111,15 @@
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="admin"/>
           </testApplicationControllerFile>
-          <testApplicationControllerFile forControllerName="User">
+          <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="index"/>
-            <testApplicationActionMethod forActionName="signup"/>
-            <testApplicationActionMethod forActionName="logout"/>
-            <testApplicationActionMethod forActionName="home"/>
+            <testApplicationActionMethod forActionName="admin"/>
+            <testApplicationActionMethod forActionName="addCategory"/>
+            <testApplicationActionMethod forActionName="deleteCategory"/>
+            <testApplicationActionMethod forActionName="editCategory"/>
+            <testApplicationActionMethod forActionName="createCoupon"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

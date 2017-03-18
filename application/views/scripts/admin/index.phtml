@@ -1,0 +1,46 @@
+<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><center>
+    	Index Page
+    </center></h1>
+  </div>
+  <div class="panel-body">
+
+<table class="table">
+<tr>
+ <th>ID</th>
+  <th>En Name</th>  <th>Ar Name</th>  <th colspan="2">actions</th>
+</tr>
+
+
+<?php
+$cat = new Application_Model_Category();
+
+
+foreach($cat->listCat() as $key => $value)
+{
+echo "<tr>".
+"<td>" . $value['categoryID']. "</td>" .
+"<td>" . $value['EnName'] . "</td>" .
+"<td>" . $value['ArName'] . "</td>" .
+"<td  > <a class='btn btn-danger' href='admin/delete-category/cid/".$value['categoryID']."'> Delete </a> </td>"
+ .
+"<td  > <a class='btn btn-success' href='admin/edit-category/cid/".$value['categoryID']."'> Edit </a> </td>"
+.
+
+"</tr>";
+
+}
+
+?>
+
+</table>
+
+<p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
+'action'=>'add-category'));?>">Add new category</a></p>
+<p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
+'action'=>'create-coupon'));?>">Create Coupon</a></p>
+</div>
+</div>
+</div>
