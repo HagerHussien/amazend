@@ -17,13 +17,12 @@ class WishlistController extends Zend_Controller_Action
         $prod_array=array();
         
         foreach ($user_wishlist as $key => $value) {
-            if ($key == 'productID') {
-                $prod_array[]=$prod_model->productDetails($value);
-            }
+//            $push=$prod_model->productDetails($value["productID"]);
+//            array_push($prod_array,$push);
+                $prod_array[]=$prod_model->productDetails($value['productID']);
         }
-        
+      
         $this->view->prodcut_array=$prod_array;
-        
         $this->view->user_wishlist=$user_wishlist;
         
     }
