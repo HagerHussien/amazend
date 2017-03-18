@@ -20,6 +20,9 @@
           <actionMethod actionName="editCategory"/>
           <actionMethod actionName="createCoupon"/>
         </controllerFile>
+        <controllerFile controllerName="Wishlist">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="AddCat"/>
@@ -32,8 +35,11 @@
       </layoutsDirectory>
       <modelsDirectory>
         <modelFile modelName="Admin"/>
+        <modelFile modelName="User"/>
         <modelFile modelName="Category"/>
         <modelFile modelName="Coupon"/>
+        <modelFile modelName="Wishlist"/>
+        <modelFile modelName="Product"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -59,6 +65,8 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="admin"/>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="index"/>
@@ -114,12 +122,16 @@
             <testApplicationActionMethod forActionName="admin"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
+          <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="admin"/>
             <testApplicationActionMethod forActionName="addCategory"/>
             <testApplicationActionMethod forActionName="deleteCategory"/>
             <testApplicationActionMethod forActionName="editCategory"/>
             <testApplicationActionMethod forActionName="createCoupon"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Wishlist">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
