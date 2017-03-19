@@ -122,8 +122,8 @@ class AdminController extends Zend_Controller_Action
                      array('auth' => 'login',
                         'port' => 587,
                         'ssl' => 'tls',
-                             'username' => 'hager.hussien.osman@gmail.com',
-                             'password' => '5459258hagerosman'));
+                             'username' => 'amazend.zendphp@gmail.com',
+                             'password' => 'amazendzendphp'));
         Zend_Mail::setDefaultTransport($tr);
 
         $mail = new Zend_Mail();

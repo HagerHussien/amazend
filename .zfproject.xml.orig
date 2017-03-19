@@ -19,14 +19,24 @@
           <actionMethod actionName="deleteCategory"/>
           <actionMethod actionName="editCategory"/>
           <actionMethod actionName="createCoupon"/>
+          <actionMethod actionName="sendcoupon"/>
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="addToWish"/>
+          <actionMethod actionName="deleteItem"/>
+        </controllerFile>
+        <controllerFile controllerName="Customer">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="add"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="AddCat"/>
         <formFile formName="CreateCoupon"/>
+        <formFile formName="CustomerSignup"/>
+        <formFile formName="CustomerLogin"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -34,15 +44,13 @@
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
-<<<<<<< HEAD
         <modelFile modelName="Admin"/>
+        <modelFile modelName="User"/>
         <modelFile modelName="Category"/>
         <modelFile modelName="Coupon"/>
-=======
-        <modelFile modelName="User"/>
         <modelFile modelName="Wishlist"/>
         <modelFile modelName="Product"/>
->>>>>>> 506bb42d443efe06e31c8bb9bcc0cc920cb278e0
+        <modelFile modelName="Customer"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -66,9 +74,11 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="home"/>
           </viewControllerScriptsDirectory>
-<<<<<<< HEAD
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="admin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="index"/>
@@ -85,11 +95,26 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="createCoupon"/>
           </viewControllerScriptsDirectory>
-=======
-          <viewControllerScriptsDirectory forControllerName="Wishlist">
+<<<<<<< HEAD
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="sendcoupon"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
->>>>>>> 506bb42d443efe06e31c8bb9bcc0cc920cb278e0
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="add"/>
+=======
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="addToWish"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="deleteItem"/>
+>>>>>>> 6942a1e69300774dd4454c9613aa8280b996068d
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -129,15 +154,29 @@
             <testApplicationActionMethod forActionName="admin"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
-            <testApplicationActionMethod forActionName="index"/>
-            <testApplicationActionMethod forActionName="admin"/>
             <testApplicationActionMethod forActionName="addCategory"/>
             <testApplicationActionMethod forActionName="deleteCategory"/>
             <testApplicationActionMethod forActionName="editCategory"/>
             <testApplicationActionMethod forActionName="createCoupon"/>
+            <testApplicationActionMethod forActionName="sendcoupon"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="admin"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="admin"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Wishlist">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="addToWish"/>
+            <testApplicationActionMethod forActionName="deleteItem"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Customer">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="login"/>
+            <testApplicationActionMethod forActionName="add"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
