@@ -23,6 +23,8 @@
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="addToWish"/>
+          <actionMethod actionName="deleteItem"/>
         </controllerFile>
         <controllerFile controllerName="Customer">
           <actionMethod actionName="index"/>
@@ -95,9 +97,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
+             </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="addToWish"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="index"/>
+             </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="deleteItem"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="login"/>
@@ -156,6 +164,8 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Wishlist">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="addToWish"/>
+            <testApplicationActionMethod forActionName="deleteItem"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Customer">
             <testApplicationActionMethod forActionName="index"/>
