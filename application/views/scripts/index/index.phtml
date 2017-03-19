@@ -1,43 +1,187 @@
-<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+<head>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+</head>
+<style media="screen">
+div.stars {
+width: 270px;
+display: inline-block;
+}
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
+input.star { display: none; }
 
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
+label.star {
+float: right;
+padding: 10px;
+font-size: 36px;
+color: #444;
+transition: all .2s;
+}
 
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
+input.star:checked ~ label.star:before {
+content: '\f005';
+color: #FD4;
+transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+color: #FE7;
+text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+content: '\f006';
+font-family: FontAwesome;
+}
 </style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
 
-    <h3>This is your project's main page</h3>
+<?php
+if(isset($_POST['star'])){
+	header('Location: /Home/addRate');
+}
 
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
-    </div>
+ ?>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+ <script type="text/javascript">
+ $(document).ready(function(){
+ //  Check Radio-box
+     $(".star input:radio").attr("selected", false);
+     $('.star input').click(function () {
+         $(".star span").removeClass('selected');
+         $(this).parent().addClass('selected');
+				 var userRating = $this.value;
+         alert(userRating);
+     });
+
+    //  $('input:radio').change(
+    //  function(){
+    //      var userRating = this.value;
+    //      alert(userRating);
+    //  });
+ });
+
+//  $('.star').click(function() {
+//    $('.star').removeClass('selected'); // Removes the selected class from all of them
+//    $(this).addClass('selected'); // Adds the selected class to just the one you clicked
+//
+//    var rating = $(this).data('star'); // Get the rating from the selected star
+// 	 alert(rating);
+//    //$('#star').val(rating); // Set the value of the hidden rating form element
+// });
+
+
+
+// $('star').each(function() {
+//     var rating = $(this).find('.star').length;
+//     // Do something...
+//     alert(rating);
+//
+// });
+
+// $(document).ready(function(){
+// //  Check Radio-box
+//     $(".star input:radio").attr("selected", true);
+//     $('.star input').click(function () {
+//         $(".star span").removeClass('selected');
+//         $(this).parent().addClass('selected');
+//     });
+//
+//     $('input:radio').change(
+//     function(){
+//         var userRating =  $(this).find('.star star-1').length;
+//         alert(userRating);
+//     });
+// });
+
+// var rates = document.getElementById('stars').value;
+// if (rates->document.getElementById('star-5').checked) {
+//   var rate_value = document.getElementById('star-5').value;
+// 	alert(rate_value);
+// }
+ </script>
+
+<div class="stars">
+  <!-- <form method="POST" action="list.phtml"> -->
+    <input class="star star-5" id="star-5" type="radio" name="star"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" name="star"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" name="star"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" name="star"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" name="star"/>
+    <label class="star star-1" for="star-1"></label>
+
+  <!-- </form> -->
 </div>
+
+
+<html>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="<?=$this->baseUrl('images/img1.gif')?>"alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="/images/dress.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    ...
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!--********************** display products *************************  -->
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+	<?php
+		$products = $this->products;
+		foreach ($products as  $product) {
+		//print_r($product);
+		?>
+		<div class="thumbnail">
+      <img src="/images/img1.gif">
+			<img src="https://www.google.com.eg/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiVldna297SAhXDWBQKHbAZDaUQjRwIBQ&url=https%3A%2F%2Fwww.w3schools.com%2Fcss%2Fcss3_images.asp&psig=AFQjCNGUo0SDJQCyuFI2MQ9A5MLwpkw2tQ&ust=1489880554053362">
+			<div class="caption">
+				<h3><?= $product['EnName']?></h3>
+				<p>...</p>
+				<p><a href='' class="btn btn-primary" role="button">Add Cart</a>
+					 <a href='' class="btn btn-default" role="button">Add Wish List</a></p>
+			</div>
+		</div>
+<?php
+	}
+	//print_r($this->comments) ;
+
+	?>
+
+  </div>
+</div>
+
+</html>
