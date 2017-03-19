@@ -1,7 +1,17 @@
 <?php
 
+
+ require_once 'Zend/Mail.php';
+ 
+// Create transport
+require_once 'Zend/Mail/Transport/Smtp.php';
+
 class AdminController extends Zend_Controller_Action
 {
+
+    //use Zend\Mail;
+
+
 
     public function init()
     {
@@ -105,8 +115,43 @@ class AdminController extends Zend_Controller_Action
 
     }
 
+    public function sendCouponAction()
+    {
 
+        $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com',
+                     array('auth' => 'login',
+                        'port' => 587,
+                        'ssl' => 'tls',
+                             'username' => 'hager.hussien.osman@gmail.com',
+                             'password' => '5459258hagerosman'));
+        Zend_Mail::setDefaultTransport($tr);
+
+        $mail = new Zend_Mail();
+        $mail->setFrom('hager.hussien.osman@gmail.com');
+        $mail->setBodyHtml('some message - it may be html formatted text');
+        $mail->addTo('baghdadinoo@gmail.com', 'recipient');
+        $mail->setSubject('subject');
+        $mail->send($tr);
+
+
+/*
+$transport = new Zend_Mail_Transport_Smtp('localhost');
+
+ 
+// Sending out multiple mails at once
+for ($i = 0; $i > 5; $i++) {
+    $mail = new Zend_Mail();
+    $mail->addTo('hager.hussien.osman@gmail.com', 'Test');
+    $mail->setFrom('studio@peptolab.com', 'Test');
+    $mail->setSubject('Demonstration - Sending Multiple Mails per SMTP Connection');
+    $mail->setBodyText('...Your message here...');
+    $mail->send($transport); //Using the SMTP transport for sending the mail
+    
+}*/
+
+   }
 }
+
 
 
 

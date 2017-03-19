@@ -23,7 +23,12 @@ resources.frontController.params.displayExceptions = 1
 resources.db.adapter = "PDO_MYSQL"
 resources.db.params.dbname = "amazend"
 resources.db.params.host = "localhost"
+<<<<<<< HEAD
 resources.db.params.username = "root"
 resources.db.params.password = "hager"
-resources.db.params.charset = "utf8"
+
+=======
+resources.db.params.username = "mohamed"
+resources.db.params.password = "123456"
+>>>>>>> 506bb42d443efe06e31c8bb9bcc0cc920cb278e0
 

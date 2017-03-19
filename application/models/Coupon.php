@@ -15,6 +15,11 @@ function getCoupon($id)
 		return $row->toArray();
 	}
 
+function listCoupon()
+	{
+		return $this->fetchAll()->toArray();
+	}
+
 
 
 	function CreateCoupon($couponID,$name,$percent)

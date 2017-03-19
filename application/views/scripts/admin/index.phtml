@@ -39,8 +39,36 @@ echo "<tr>".
 
 <p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
 'action'=>'add-category'));?>">Add new category</a></p>
+
+<hr>
+
+<table class="table">
+<tr>
+ <th>ID</th>
+  <th> Name</th>  <th>percent</th> 
+</tr>
+
+
+<?php
+$cat = new Application_Model_Coupon ();
+
+
+foreach($cat->listCoupon() as $key => $value)
+{
+echo "<tr>".
+"<td>" . $value['couponID']. "</td>" .
+"<td>" . $value['name'] . "</td>" .
+"<td>" . $value['percent'] . "</td>" ."</tr>";
+
+}
+
+?>
+</table>
 <p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
 'action'=>'create-coupon'));?>">Create Coupon</a></p>
+
+<p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
+'action'=>'send-coupon'));?>">Send Coupon</a></p>
 </div>
 </div>
 </div>
