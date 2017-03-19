@@ -13,6 +13,8 @@ function listCat()
 function deleteCat($id)
 {
 	$this->delete("categoryID=$id");
+	
+
 }
 function detailCat($id)
 {

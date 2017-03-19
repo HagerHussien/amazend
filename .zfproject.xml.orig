@@ -95,23 +95,25 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="createCoupon"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendcoupon"/>
-             </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Wishlist">
-            <viewScriptFile forActionName="addToWish"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="index"/>
-             </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Wishlist">
-            <viewScriptFile forActionName="deleteItem"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="add"/>
+=======
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="addToWish"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wishlist">
+            <viewScriptFile forActionName="deleteItem"/>
+>>>>>>> 6942a1e69300774dd4454c9613aa8280b996068d
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -157,6 +159,10 @@
             <testApplicationActionMethod forActionName="editCategory"/>
             <testApplicationActionMethod forActionName="createCoupon"/>
             <testApplicationActionMethod forActionName="sendcoupon"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="User">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="admin"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>
