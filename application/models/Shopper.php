@@ -19,10 +19,10 @@ class Application_Model_Shopper extends Zend_Db_Table_Abstract
 	function addNewShopper($userData)
 	{
 		$row = $this->createRow();
-		$row->$EnName = $userData['EnName'];
-		$row->$ArName = $userData['ArName'];
-		$row->$email = $userData['email'];
-		$row->$password = $userData['password'];
+		$row->EnName = $userData['EnName'];
+		$row->ArName = $userData['ArName'];
+		$row->email = $userData['email'];
+		$row->password = $userData['password'];
 		
 		$row->save();
 	}
