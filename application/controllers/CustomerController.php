@@ -87,7 +87,7 @@ class CustomerController extends Zend_Controller_Action
                 
             }
         }
-         $this->view->form = $form;
+        $this->view->form = $form; 
     }
 
     public function addToWishAction()

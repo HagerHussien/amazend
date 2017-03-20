@@ -19,11 +19,11 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
 	function addNewCustomer($userData)
 	{
 		$row = $this->createRow();
-		$row->$EnName = $userData['EnName'];
-		$row->$ArName = $userData['ArName'];
-		$row->$email = $userData['email'];
-		$row->$password = $userData['password'];
-		//$row->$wishlist_id = $userData['wishlist_id'];
+		$row->EnName = $userData['EnName'];
+		$row->ArName = $userData['ArName'];
+		$row->email = $userData['email'];
+		$row->password = $userData['password'];
+		//$row->wishlist_id = $userData['wishlist_id'];
 		$row->save();
 	}
 
