@@ -10,10 +10,9 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
-
-
-
+        // display all products at home page
+        $product_model = new Application_Model_Product();
+        $this->view->products = $product_model->listProducts();
 
     }
 
@@ -27,6 +26,5 @@ class IndexController extends Zend_Controller_Action
 
 
 }
-
 
 
