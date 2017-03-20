@@ -3,7 +3,7 @@
 class Application_Model_Shopper extends Zend_Db_Table_Abstract
 {
 	protected $_name = 'shopper';
-	
+
 	function listShoppers()
 	{
 		return $this->fetchAll()->toArray();
@@ -23,9 +23,8 @@ class Application_Model_Shopper extends Zend_Db_Table_Abstract
 		$row->$ArName = $userData['ArName'];
 		$row->$email = $userData['email'];
 		$row->$password = $userData['password'];
-		
+
 		$row->save();
 	}
 
 }
-
