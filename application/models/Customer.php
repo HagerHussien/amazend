@@ -14,7 +14,7 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
 	}
 	function customerDetails($id)
 	{
-		return $this->find($id)->toArray();
+		return $this->find($id)->toArray()[0];
 	}
 	function addNewCustomer($userData)
 	{
@@ -26,6 +26,17 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
 		//$row->wishlist_id = $userData['wishlist_id'];
 		$row->save();
 	}
+
+	public function updateCustomer($catID,$status)
+	{
+		$data = array(
+		'customerID' => $catID,
+		'status' => $status,
+		
+		);
+		$this->update($data, 'customerID = '. (int)$catID);
+	}
+
 
 
 

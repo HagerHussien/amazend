@@ -1,0 +1,39 @@
+<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><center>
+    	email Page
+    </center></h1>
+  </div>
+  <div class="panel-body">
+
+<table class="table">
+<tr>
+ <th>ID</th>
+  <th>En Name</th>  <th>Ar Name</th><th>Email</th > <th>send discount email </th></tr>
+
+
+<?php
+$cat = new Application_Model_Customer();
+
+foreach($cat->listCustomers() as $key => $value)
+{
+echo "<tr>".
+"<td>" . $value['customerID']. "</td>" .
+"<td>" . $value['EnName'] . "</td>" .
+"<td>" . $value['ArName'] . "</td>" .
+"<td>" . $value['email'] . "</td>" .
+/*"<td> <input type=".'checkbox'." name=".'checkboxUser'." value=".$value['customerID']."></td>" .*/
+ "<td><a class='btn btn-warning' href='/admin/send-email/email/".$value['email']."/name/".$value['EnName']."/cid/".$this->coupon."'>send email</a></td> ".
+"</tr>";
+
+}
+
+?>
+
+</table>
+
+
+</div>
+</div>
+</div>

@@ -1,17 +1,13 @@
 <?php
 
 
- require_once 'Zend/Mail.php';
+// require_once 'Zend/Mail.php';
  
 // Create transport
-require_once 'Zend/Mail/Transport/Smtp.php';
+//require_once 'Zend/Mail/Transport/Smtp.php';
 
 class AdminController extends Zend_Controller_Action
 {
-
-    //use Zend\Mail;
-
-
 
     public function init()
     {
@@ -38,8 +34,8 @@ class AdminController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $catID = $form->getValue('categoryID');
-                $EnName = $form->getValue('EnName');
-                $ArName = $form->getValue('ArName');
+                $EnName = $form->getValue('cat_EnName');
+                $ArName = $form->getValue('cat_ArName');
                 $adminID = $form->getValue('adminID');
                 $row = new Application_Model_Category();
                 $row->addCat($catID,$EnName,$ArName,$adminID);
@@ -70,8 +66,8 @@ class AdminController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $catID = $form->getValue('categoryID');
-                $EnName = $form->getValue('EnName');
-                $ArName = $form->getValue('ArName');
+                $EnName = $form->getValue('cat_EnName');
+                $ArName = $form->getValue('cat_ArName');
                 $adminID = $form->getValue('adminID');
                 $edit = new Application_Model_Category();
                 $edit->updateCat($catID,$EnName,$ArName,$adminID);
@@ -118,6 +114,25 @@ class AdminController extends Zend_Controller_Action
     public function sendCouponAction()
     {
 
+        $coupon_model = new Application_Model_Coupon();
+       $coupon_user = new  Application_Model_Customer ();
+        $coupon_id = $this->_request->getParam("id");
+        $this->view->coupon=$coupon_id;
+    
+
+    }
+
+    public function sendEmailAction()
+    {
+        // action body
+
+        $coupon_model = new Application_Model_Coupon();
+        $coupon_user = new  Application_Model_Customer ();
+        $user_email = $this->_request->getParam("email");
+        $user_name = $this->_request->getParam("name");
+        $coupon_id = $this->_request->getParam("cid");        
+       $coupon=$coupon_model->getCoupon($coupon_id);
+
         $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com',
                      array('auth' => 'login',
                         'port' => 587,
@@ -127,30 +142,52 @@ class AdminController extends Zend_Controller_Action
         Zend_Mail::setDefaultTransport($tr);
 
         $mail = new Zend_Mail();
-        $mail->setFrom('hager.hussien.osman@gmail.com');
-        $mail->setBodyHtml('some message - it may be html formatted text');
-        $mail->addTo('baghdadinoo@gmail.com', 'recipient');
-        $mail->setSubject('subject');
+        $mail->setFrom('amazend.zendphp@gmail.com');
+        $mail->setBodyHtml('<p>Hello  '. $user_name .' </p>
+<p>We have made a discount for you with amount of '. $coupon['percent'] .' % for the upcoming purchase Order.</p>
+<p> write this in discount field when purchasing next time </p>
+'.$coupon['name'].'');
+        $mail->addTo($user_email , 'recipient');
+        $mail->setSubject('Discount coupon');
         $mail->send($tr);
 
+  $this->redirect('admin/send-coupon/id/'.$coupon_id);
 
-/*
-$transport = new Zend_Mail_Transport_Smtp('localhost');
+    }
 
- 
-// Sending out multiple mails at once
-for ($i = 0; $i > 5; $i++) {
-    $mail = new Zend_Mail();
-    $mail->addTo('hager.hussien.osman@gmail.com', 'Test');
-    $mail->setFrom('studio@peptolab.com', 'Test');
-    $mail->setSubject('Demonstration - Sending Multiple Mails per SMTP Connection');
-    $mail->setBodyText('...Your message here...');
-    $mail->send($transport); //Using the SMTP transport for sending the mail
+    public function blockAction()
+    {
+        // action body
+
+        $cast_model = new Application_Model_Customer();
+        $cast_id = $this->_request->getParam("id");
+        $user=$cast_model->customerDetails($cast_id);
+
+       
+        if($user['status'] ==='unblocked'){
+        $status='blocked';
+        $cast_model->updateCustomer($cast_id,$status);
+         $this->_helper->redirector('index');
+       
+          }else{
+       
+        $status='unblocked';
+        $cast_model->updateCustomer($cast_id,$status);
+         $this->_helper->redirector('index');
+    }
+       
     
-}*/
+ 
+         
 
-   }
+    }
+
+
 }
+
+
+
+
 
 
 

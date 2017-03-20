@@ -20,6 +20,8 @@
           <actionMethod actionName="editCategory"/>
           <actionMethod actionName="createCoupon"/>
           <actionMethod actionName="sendcoupon"/>
+          <actionMethod actionName="sendEmail"/>
+          <actionMethod actionName="block"/>
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
@@ -142,6 +144,12 @@
           <viewControllerScriptsDirectory forControllerName="Shopper">
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="sendEmail"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="block"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -186,6 +194,8 @@
             <testApplicationActionMethod forActionName="editCategory"/>
             <testApplicationActionMethod forActionName="createCoupon"/>
             <testApplicationActionMethod forActionName="sendcoupon"/>
+            <testApplicationActionMethod forActionName="sendEmail"/>
+            <testApplicationActionMethod forActionName="block"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>
