@@ -23,7 +23,6 @@
           <actionMethod actionName="sendcoupon"/>
           <actionMethod actionName="sendEmail"/>
           <actionMethod actionName="block"/>
-          <actionMethod actionName="deletecoupon"/>
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
@@ -146,17 +145,16 @@
           <viewControllerScriptsDirectory forControllerName="Shopper">
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendEmail"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="product"/>
-          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="block"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Admin">
-            <viewScriptFile forActionName="deletecoupon"/>
+=======
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="product"/>
+>>>>>>> 31f4339ea175eaecd27caa2e998526e40be19e18
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -205,7 +203,6 @@
             <testApplicationActionMethod forActionName="sendcoupon"/>
             <testApplicationActionMethod forActionName="sendEmail"/>
             <testApplicationActionMethod forActionName="block"/>
-            <testApplicationActionMethod forActionName="deletecoupon"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>

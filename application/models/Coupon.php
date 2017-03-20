@@ -34,6 +34,10 @@ function listCoupon()
 		$this->insert($data);
 	}
 
-
+function deleteCoupon($id)
+{
+	$this->delete("couponID=$id");
+	
+}
 }
 
