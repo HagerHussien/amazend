@@ -7,7 +7,7 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract
     function userWishlist($customer_id) {
         // rerurn all items in user wishlist
         return $this->fetchAll("customerID=$customer_id")->toArray();
-    }zz
+    }
 
     function deleteItem($customer_id,$prod_id) {
         //check for item existenxe before deletion
