@@ -1,0 +1,79 @@
+<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1><center>
+    	Index Page
+    </center></h1>
+  </div>
+  <div class="panel-body">
+<table class="table">
+<tr>
+ <th>ID</th>
+  <th>En Name</th>  <th>Ar Name</th>  <th colspan="2">actions</th>
+</tr>
+<?php
+$cat = new Application_Model_Category();
+foreach($cat->listCat() as $key => $value)
+{
+echo "<tr>".
+"<td>" . $value['categoryID']. "</td>" .
+"<td>" . $value['cat_EnName'] . "</td>" .
+"<td>" . $value['cat_ArName'] . "</td>" .
+"<td  > <a class='btn btn-danger' href='/admin/delete-category/cid/".$value['categoryID']."'> Delete </a> " .
+" <a class='btn btn-success' href='/admin/edit-category/cid/".$value['categoryID']."'> Edit </a> </td>"."</tr>";
+}
+?>
+</table>
+<p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
+'action'=>'add-category'));?>">Add new category</a></p>
+<hr>
+<table class="table">
+<tr>
+ <th>ID</th>
+  <th> Name</th>  <th>percent</th>  <th>actions</th> 
+</tr>
+<?php
+$cat = new Application_Model_Coupon ();
+foreach($cat->listCoupon() as $key => $value)
+{
+echo "<tr>".
+"<td>" . $value['couponID']. "</td>" .
+"<td>" . $value['name'] . "</td>" .
+"<td>" . $value['percent'] . "</td>" .
+"<td  > <a class='btn btn-danger' href='/admin/deletecoupon/id/".$value['couponID']."'> Delete </a> " .
+
+"<a class='btn btn-success' href="."admin/send-coupon/id/".$value['couponID'].">Send Coupon</a></td>"
+."</tr>";
+}
+?>
+</table>
+<p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'admin',
+'action'=>'create-coupon'));?>">Create Coupon</a></p>
+<hr>
+<table class="table">
+<tr>
+ <th>ID</th>
+  <th>En Name</th>  <th>Ar Name</th><th>Email</th > <th>block </th></tr>
+<?php
+$cat = new Application_Model_Customer();
+foreach($cat->listCustomers() as $key => $value)
+{
+echo "<tr>".
+"<td>" . $value['customerID']. "</td>" .
+"<td>" . $value['EnName'] . "</td>" .
+"<td>" . $value['ArName'] . "</td>" .
+"<td>" . $value['email'] . "</td>" ;
+if($value['status'] ==='unblocked'){
+echo "<td  > <a class='btn btn-danger' href='/admin/block/id/".$value['customerID']."'> block </a> </td>";
+}
+else
+{
+echo "<td  > <a class='btn btn-primary' href='/admin/block/id/".$value['customerID']."'> unblock </a> </td>";	
+}
+echo"</tr>";
+}
+?>
+</table> 
+</div>
+</div>
+</div>

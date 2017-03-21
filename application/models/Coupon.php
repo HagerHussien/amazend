@@ -27,6 +27,10 @@ class Application_Model_Coupon extends Zend_Db_Table_Abstract {
         $this->insert($data);
     }
 
+    function deleteCoupon($id) {
+        $this->delete("couponID=$id");
+    }
+
     function getCouponValue($coupon_name) {
         $row = $this->fetchRow("name=\"$coupon_name\"");
         if (!$row) {

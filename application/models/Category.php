@@ -36,19 +36,19 @@ function getCat($id)
 	{
 		$data = array(
 		'categoryID' => $catID,
-		'EnName' => $EnName,
-		'ArName' => $ArName,
+		'cat_EnName' => $EnName,
+		'cat_ArName' => $ArName,
 		'adminID' => $adminID,
 		);
 		$this->update($data, 'categoryID = '. (int)$catID);
 	}
 
-	function addCat($catID,$EnName,$ArName,$adminID)
+	function addCat($catID,$cat_EnName,$cat_ArName,$adminID)
 	{
 		$data = array(
 		'categoryID' => $catID,
-		'EnName' => $EnName,
-		'ArName' => $ArName,
+		'cat_EnName' => $cat_EnName,
+		'cat_ArName' => $cat_ArName,
 		'adminID' => $adminID,
 			);
 

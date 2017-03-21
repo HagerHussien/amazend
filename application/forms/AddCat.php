@@ -12,20 +12,20 @@ class Application_Form_AddCat extends Zend_Form
 		$categoryID = new Zend_Form_Element_Hidden('categoryID');
 		$categoryID->addFilter('Int');
 
-		$EnName  = new Zend_Form_Element_Text('EnName');
-		$EnName ->setLabel('Category Name in English')
+		$cat_EnName  = new Zend_Form_Element_Text('cat_EnName');
+		$cat_EnName ->setLabel('Category Name in English')
 		->setRequired(true)
 		->addValidator('NotEmpty')
 		->addFilter('StringTrim');
-		$EnName ->setAttribs(array('class' =>'form-control' ,
+		$cat_EnName ->setAttribs(array('class' =>'form-control' ,
 				'placeholder' => 'Please Enter Category Name in English'));
 
-		$ArName  = new Zend_Form_Element_Text('ArName');
-		$ArName ->setLabel('Category Name in Arabic')
+		$cat_ArName  = new Zend_Form_Element_Text('cat_ArName');
+		$cat_ArName ->setLabel('Category Name in Arabic')
 		->setRequired(true)
 		->addValidator('NotEmpty')
 		->addFilter('StringTrim');
-		$ArName ->setAttribs(array('class' =>'form-control' ,
+		$cat_ArName ->setAttribs(array('class' =>'form-control' ,
 				'placeholder' => 'Please Enter Category Name in Arabic'));
 		$admin_obj = new Application_Model_Admin();
 		$allAdmins = $admin_obj->getAllAdmins();
@@ -43,7 +43,7 @@ class Application_Form_AddCat extends Zend_Form
 		$submit->setAttribs(array('class' => 'btn btn-success'));
 		$reset = new Zend_Form_Element_Submit('reset');
 		$reset->setAttribs(array('class' => 'btn btn-danger'));
-		$this->addElements(array($categoryID,$EnName,$ArName,$AdminID ,$submit ,$reset));
+		$this->addElements(array($categoryID,$cat_EnName,$cat_ArName,$AdminID ,$submit ,$reset));
     
 }
 

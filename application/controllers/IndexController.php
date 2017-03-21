@@ -7,7 +7,7 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        // display all products at home page
+// display all products at home page
         $product_model = new Application_Model_Product();
         $this->view->products = $product_model->listProducts();
     }
@@ -15,7 +15,7 @@ class IndexController extends Zend_Controller_Action {
     public function productAction() {
         $product_model = new Application_Model_Product();
         $prod_id = $this->_request->getParam("pid");
-        if ($prod_id == NULL){
+        if ($prod_id == NULL) {
             return $this->redirect('index');
         }
         $product = $product_model->productDetails($prod_id);
@@ -27,10 +27,55 @@ class IndexController extends Zend_Controller_Action {
         $select->from('product') //the array specifies which columns I want returned in my result set
                 ->joinInner('category', 'product.categoryID = category.categoryID') //by specifying an empty array, I am saying that I don't care about the columns from this table
 //                        'category', 'groups.id = category.categoryID', array()) //by specifying an empty array, I am saying that I don't care about the columns from this table
-                        
                 ->where("productID = $prod_id");
         $resultSet = $db->fetchAll($select);
-        $this->view->pr=$resultSet;
+        $this->view->pr = $resultSet;
+
+
+// comment part
+        $comment_form = new Application_Form_CommentForm();
+        $comment_model = new Application_Model_Comment();
+
+        $this->view->comment_form = $comment_form;
+        $comment_customerID = 1;
+        $comment_productID = 1;
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($comment_form->isValid($request->getPost())) {
+                $commentdata['comment_body'] = $comment_form->getValue('comment_body');
+                $commentdata['comment_date'] = '2017-03-15 00:00:00'; //new Zend_Date();//new Zend_Date::now(); "2017-03-14";
+                $commentdata['comment_productID'] = $comment_productID;
+                $commentdata['comment_customerID'] = $comment_customerID;
+                $comment_model->addNewComment($commentdata);
+//$this->redirect('/home/listcomments');
+            }
+        }
+//$comment_model = new Application_Model_Comment();
+        $this->view->comments = $comment_model->listComments();
+    }
+
+    public function displayCommentAction() {
+        $comment_form = new Application_Form_CommentForm();
+        $comment_model = new Application_Model_Comment();
+
+        $this->view->comment_form = $comment_form;
+        $comment_customerID = 1;
+        $comment_productID = 1;
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($comment_form->isValid($request->getPost())) {
+                $commentdata['comment_body'] = $comment_form->getValue('comment_body');
+                $commentdata['comment_date'] = '2017-03-15 00:00:00'; //new Zend_Date();//new Zend_Date::now(); "2017-03-14";
+                $commentdata['comment_productID'] = $comment_productID;
+                $commentdata['comment_customerID'] = $comment_customerID;
+                $comment_model->addNewComment($commentdata);
+//$this->redirect('/home/listcomments');
+            }
+        }
+//$comment_model = new Application_Model_Comment();
+        $this->view->comments = $comment_model->listComments();
     }
 
 }
