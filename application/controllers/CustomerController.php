@@ -20,7 +20,7 @@ class CustomerController extends Zend_Controller_Action
     public function loginAction()
     {
         //authentiation to be done
-        
+
         $form = new Application_Form_CustomerLogin();
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -67,14 +67,14 @@ class CustomerController extends Zend_Controller_Action
         }
 
             $this->view->form = $form;
-        
+
     }
 
     public function addAction()
     {
         $form = new Application_Form_CustomerSignup();
         //$this->view->customerSignup=$form;
-        
+
         $request = $this->getRequest();
         if($request->isPost())
         {
@@ -84,10 +84,10 @@ class CustomerController extends Zend_Controller_Action
                 $customerModel->addNewCustomer($request->getPost());
                 //to be changed
                 $this->redirect('/index');
-                
+
             }
         }
-        $this->view->form = $form; 
+        $this->view->form = $form;
     }
 
     public function addToWishAction()
@@ -138,16 +138,44 @@ class CustomerController extends Zend_Controller_Action
 //        $this->view->user_wishlist = $user_wishlist;
     }
 
+    public function addToCartAction()
+    {
+      $customer_id = 1;
+      $cart_model = new Application_Model_Cart();
+      $cart_product_model = new Application_Model_CartProduct();
+      $product_id = $this->_request->getParam('pid');
+      $check_result = $cart_model->checkExistence($customer_id);
+
+      if($check_result){  // this customer already have cart
+          $cart_id = $cart_model->getCartID($customer_id);
+
+          if($cart_product_model->checkExistence($customer_id)){
+              echo "already added";
+              $this->redirect("/Index/product/pid/$product_id");
+          }else{
+              $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
+              $this->redirect("/Index/product/pid/$product_id");
+          }
+      }else{
+          $cart_model->newCart($customer_id);
+          $cart_id = $cart_model->getCartID($customer_id);
+
+          if($cart_product_model->checkExistence($customer_id)){
+              echo "already added";
+              $this->redirect("/Index/product/pid/$product_id");
+          }else{
+              $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
+              $this->redirect("/Index/product/pid/$product_id");
+          }
+
+      }
+
+    }
+
+    public function addPtoductToCartAction()
+    {
+      echo "hassssssssssssan";
+    }
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
