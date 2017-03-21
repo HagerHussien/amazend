@@ -48,6 +48,10 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="add"/>
         </controllerFile>
+                <controllerFile controllerName="Checkout">
+                    <actionMethod actionName="index"/>
+                    <actionMethod actionName="cart"/>
+                </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="AddCat"/>
@@ -161,12 +165,21 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="product"/>
           </viewControllerScriptsDirectory>
+                    <viewControllerScriptsDirectory forControllerName="Index">
+                        <viewScriptFile forActionName="displayComment"/>
+                    </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="block"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletecoupon"/>
           </viewControllerScriptsDirectory>
+                    <viewControllerScriptsDirectory forControllerName="Checkout">
+                        <viewScriptFile forActionName="index"/>
+                    </viewControllerScriptsDirectory>
+                    <viewControllerScriptsDirectory forControllerName="Checkout">
+                        <viewScriptFile forActionName="cart"/>      
+                    </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addToCart"/>
           </viewControllerScriptsDirectory>

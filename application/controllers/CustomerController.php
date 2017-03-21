@@ -5,16 +5,16 @@ class CustomerController extends Zend_Controller_Action
 
     public function init()
     {
-        // $auth = Zend_Auth::getInstance();
-        // $requestActionName = $this->getRequest()->getActionName();
-        // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
-        // {
-        //     $this->redirect("customer/login");
-        // }
-        // if ($auth->hasIdentity() && $requestActionName= 'login' )
-        // {
-        //     $this->redirect("/index");
-        // }
+        $auth = Zend_Auth::getInstance();
+        $requestActionName = $this->getRequest()->getActionName();
+        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        {
+            $this->redirect("customer/login");
+        }
+        if ($auth->hasIdentity() && $requestActionName= 'login' )
+        {
+            $this->redirect("/index");
+        }
     }
 
     public function indexAction()

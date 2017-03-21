@@ -34,11 +34,11 @@ class AdminController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $catID = $form->getValue('categoryID');
-                $EnName = $form->getValue('cat_EnName');
-                $ArName = $form->getValue('cat_ArName');
+                $cat_EnName = $form->getValue('cat_EnName');
+                $cat_ArName = $form->getValue('cat_ArName');
                 $adminID = $form->getValue('adminID');
                 $row = new Application_Model_Category();
-                $row->addCat($catID,$EnName,$ArName,$adminID);
+                $row->addCat($catID,$cat_EnName,$cat_ArName,$adminID);
                 $this->_helper->redirector('index');
             }
             else {
