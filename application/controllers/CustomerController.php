@@ -177,5 +177,12 @@ class CustomerController extends Zend_Controller_Action
       echo "hassssssssssssan";
     }
 
+    public function addcartAction()
+    {
+        // action body
+    }
+
 
 }
+
+
