@@ -28,27 +28,20 @@
   <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<a href="#top">
 <div class="wrapper">
 
   <header class="main-header">
 
     <!-- Logo -->
     <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <!-- mini logo for sidebar mini 50x50 pixels
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Admin</b>Dashbord</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      
-    </nav>
+   
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -70,24 +63,24 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="/admin/index">
+          <a href="#dashbord">
             <i class="fa fa-th"></i> <span>Dashbord</span>
           </a>
         </li>
         <li>
-          <a href="/admin/admin">
+          <a href="#categories">
             <i class="fa fa-th"></i> <span>Categories</span>
           </a>
         </li>
         
         <li>
-          <a href="#">
+          <a href="#users">
             <i class="fa fa-th"></i> <span>Users</span>
           </a>
         </li>
         
         <li>
-          <a href="#">
+          <a href="#coupons">
             <i class="fa fa-th"></i> <span>Coupons</span>
           </a>
         </li>
@@ -99,7 +92,9 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper">   
+  <a name="dashbord"></a>
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -109,6 +104,7 @@
 
     <!-- Main content -->
     <section class="content">
+
       <!-- Info boxes -->
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
@@ -333,8 +329,18 @@
           </div>
           <!-- /.box -->
         </div>
+   <a name="categories"></a>
+    <div class="box box-primary">
+       <div class="box-header with-border">
+              <h3 class="box-title">Categories</h3>
 
-         <div class="box box-primary">
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+     
 			<table class="table">
 			<tr>
 			 <th>ID</th>
@@ -357,9 +363,17 @@
 			'action'=>'add-category'));?>">Add new category</a></p>
 			</div>
 
-
+   <a name="coupons"></a>
   <div class="box box-primary">
+ <div class="box-header with-border">
+              <h3 class="box-title">Coupons</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
 			<table class="table">
 			<tr>
 			 <th>ID</th>
@@ -384,10 +398,18 @@
 			'action'=>'create-coupon'));?>">Create Coupon</a></p>
 			</div>
 
-
+   <a name="users"></a>
 
   <div class="box box-primary">
+ <div class="box-header with-border">
+              <h3 class="box-title">Users</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
 			<table class="table">
 <tr>
  <th>ID</th>
@@ -428,6 +450,7 @@ echo"</tr>";
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
+        <a name="top"><button>top</button></a>
       <b>Version</b> 1.0.0
     </div>
     <strong>Copyright &copy; 2017-2017 <a href="#">amazend.com</a>.</strong> All rights
