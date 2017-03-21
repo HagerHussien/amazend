@@ -1,9 +1,9 @@
 <?php
 
 class Application_Model_Customer extends Zend_Db_Table_Abstract
-{	
+{
 	protected $_name = 'customer';
-	
+
 	function listCustomers()
 	{
 		return $this->fetchAll()->toArray();
@@ -32,11 +32,10 @@ class Application_Model_Customer extends Zend_Db_Table_Abstract
 		$data = array(
 		'customerID' => $catID,
 		'status' => $status,
-		
+
 		);
 		$this->update($data, 'customerID = '. (int)$catID);
 	}
-
 
 
 

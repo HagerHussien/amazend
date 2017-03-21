@@ -11,6 +11,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="admin"/>
           <actionMethod actionName="product"/>
+          <actionMethod actionName="displayComment"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Admin">
@@ -37,6 +38,8 @@
           <actionMethod actionName="addToWish"/>
           <actionMethod actionName="deleteItem"/>
           <actionMethod actionName="myWishList"/>
+          <actionMethod actionName="addToCart"/>
+          <actionMethod actionName="addPtoductToCart"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -51,6 +54,7 @@
         <formFile formName="CustomerLogin"/>
         <formFile formName="ShopperSignup"/>
         <formFile formName="ShopperLogin"/>
+        <formFile formName="CommentForm"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -66,6 +70,9 @@
         <modelFile modelName="Product"/>
         <modelFile modelName="Customer"/>
         <modelFile modelName="Shopper"/>
+        <modelFile modelName="Cart"/>
+        <modelFile modelName="CartProduct"/>
+        <modelFile modelName="Comment"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -158,6 +165,15 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletecoupon"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addToCart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addPtoductToCart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="displayComment"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -196,6 +212,7 @@
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="admin"/>
             <testApplicationActionMethod forActionName="product"/>
+            <testApplicationActionMethod forActionName="displayComment"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="addCategory"/>
@@ -223,6 +240,8 @@
             <testApplicationActionMethod forActionName="addToWish"/>
             <testApplicationActionMethod forActionName="deleteItem"/>
             <testApplicationActionMethod forActionName="myWishList"/>
+            <testApplicationActionMethod forActionName="addToCart"/>
+            <testApplicationActionMethod forActionName="addPtoductToCart"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
