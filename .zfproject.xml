@@ -41,6 +41,7 @@
           <actionMethod actionName="addToCart"/>
           <actionMethod actionName="addPtoductToCart"/>
           <actionMethod actionName="addcart"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -178,6 +179,9 @@
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addcart"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -247,6 +251,7 @@
             <testApplicationActionMethod forActionName="addToCart"/>
             <testApplicationActionMethod forActionName="addPtoductToCart"/>
             <testApplicationActionMethod forActionName="addcart"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
