@@ -1,39 +1,38 @@
 <?php
 
-class Application_Model_Coupon extends Zend_Db_Table_Abstract
-{
+class Application_Model_Coupon extends Zend_Db_Table_Abstract {
 
-protected $_name = 'coupon';
+    protected $_name = 'coupon';
 
-function getCoupon($id)
-	{
-		$id = (int)$id;
-		$row = $this->fetchRow('couponID = ' . $id);
-		if (!$row) {
-		throw new Exception("Could not find row $id");
-		}
-		return $row->toArray();
-	}
+    function getCoupon($id) {
+        $id = (int) $id;
+        $row = $this->fetchRow('couponID = ' . $id);
+        if (!$row) {
+            throw new Exception("Could not find row $id");
+        }
+        return $row->toArray();
+    }
 
-function listCoupon()
-	{
-		return $this->fetchAll()->toArray();
-	}
+    function listCoupon() {
+        return $this->fetchAll()->toArray();
+    }
 
+    function CreateCoupon($couponID, $name, $percent) {
+        $data = array(
+            'couponID' => $couponID,
+            'name' => $name,
+            'percent' => $percent,
+        );
 
+        $this->insert($data);
+    }
 
-	function CreateCoupon($couponID,$name,$percent)
-	{
-		$data = array(
-		'couponID' => $couponID,
-		'name' => $name,
-		'percent' => $percent,
-		
-			);
-
-		$this->insert($data);
-	}
-
+    function getCouponValue($coupon_name) {
+        $row = $this->fetchRow("name=\"$coupon_name\"");
+        if (!$row) {
+            return NULL;
+        }
+        return $row->toArray()['percent'];
+    }
 
 }
-

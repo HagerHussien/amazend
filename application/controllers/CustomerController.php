@@ -98,7 +98,6 @@ class CustomerController extends Zend_Controller_Action
         if ($wish_model->checkExistence($customer_id, $prod_id)) {
             echo "already added";
         } else {
-            echo "add function";
             $row = $wish_model->createRow();
             $row->customerID = $customer_id;
             $row->productID = $prod_id;

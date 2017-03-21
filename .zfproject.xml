@@ -42,6 +42,10 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="add"/>
         </controllerFile>
+        <controllerFile controllerName="Checkout">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="cart"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="AddCat"/>
@@ -65,6 +69,7 @@
         <modelFile modelName="Product"/>
         <modelFile modelName="Customer"/>
         <modelFile modelName="Shopper"/>
+        <modelFile modelName="Cart"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -147,12 +152,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="sendEmail"/>
-             </viewControllerScriptsDirectory>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="product"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="block"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="cart"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -218,6 +229,10 @@
             <testApplicationActionMethod forActionName="addToWish"/>
             <testApplicationActionMethod forActionName="deleteItem"/>
             <testApplicationActionMethod forActionName="myWishList"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Checkout">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="cart"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
