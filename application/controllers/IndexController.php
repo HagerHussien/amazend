@@ -13,13 +13,13 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function productAction() {
-        $product_model = new Application_Model_Product();
+//        $product_model = new Application_Model_Product();
         $prod_id = $this->_request->getParam("pid");
         if ($prod_id == NULL) {
             return $this->redirect('index');
         }
-        $product = $product_model->productDetails($prod_id);
-        $this->view->product = $product;
+//        $product = $product_model->productDetails($prod_id);
+//        $this->view->product = $product;
 
         $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
         $select = new Zend_Db_Select($db);
@@ -29,7 +29,7 @@ class IndexController extends Zend_Controller_Action {
 //                        'category', 'groups.id = category.categoryID', array()) //by specifying an empty array, I am saying that I don't care about the columns from this table
                 ->where("productID = $prod_id");
         $resultSet = $db->fetchAll($select);
-        $this->view->pr = $resultSet;
+        $this->view->product = $resultSet[0];
 
 
 // comment part

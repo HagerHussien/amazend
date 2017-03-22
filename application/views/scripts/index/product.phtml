@@ -1,4 +1,3 @@
-<?php var_dump($this->pr) ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +12,7 @@
     <meta name="keywords" content="">
 
     <title>
-        Obaju : e-commerce template
+        Products
     </title>
 
     <meta name="keywords" content="">
@@ -127,7 +126,7 @@
             <div class="navbar-collapse collapse" id="navigation">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="index.html">Home</a>
+                    <li class="active"><a href="/index">Home</a>
                     </li>
                     <li class="dropdown yamm-fw">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Men <b class="caret"></b></a>
@@ -291,7 +290,7 @@
                                         <div class="col-sm-3">
                                             <h5>Shop</h5>
                                             <ul>
-                                                <li><a href="index.html">Homepage</a>
+                                                <li><a href="/index">Homepage</a>
                                                 </li>
                                                 <li><a href="category.html">Category - sidebar left</a>
                                                 </li>
@@ -411,7 +410,7 @@
                     <ul class="breadcrumb">
                         <li><a href="/index">Home</a>
                         </li>
-                        <li><a href="#"><?= $this->product["categoryID"] ?></a>
+                        <li><a href="#"><?= $this->product["cat_EnName"] ?></a>
                         </li>
                         <li><?= $this->product["EnName"] ?></li>
                     </ul>
