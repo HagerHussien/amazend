@@ -35,13 +35,14 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="add"/>
-          <actionMethod actionName="addToWish"/>
           <actionMethod actionName="deleteItem"/>
           <actionMethod actionName="myWishList"/>
           <actionMethod actionName="addToCart"/>
           <actionMethod actionName="addPtoductToCart"/>
           <actionMethod actionName="addcart"/>
           <actionMethod actionName="logout"/>
+          <actionMethod actionName="mai"/>
+          <actionMethod actionName="addwish"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -146,9 +147,6 @@
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
-            <viewScriptFile forActionName="addToWish"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="deleteItem"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
@@ -204,6 +202,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="mai"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addwish"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -268,13 +272,14 @@
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="add"/>
-            <testApplicationActionMethod forActionName="addToWish"/>
             <testApplicationActionMethod forActionName="deleteItem"/>
             <testApplicationActionMethod forActionName="myWishList"/>
             <testApplicationActionMethod forActionName="addToCart"/>
             <testApplicationActionMethod forActionName="addPtoductToCart"/>
             <testApplicationActionMethod forActionName="addcart"/>
             <testApplicationActionMethod forActionName="logout"/>
+            <testApplicationActionMethod forActionName="mai"/>
+            <testApplicationActionMethod forActionName="addwish"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Checkout">
             <testApplicationActionMethod forActionName="index"/>

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $userType = new Zend_Session_Namespace('userType');
+$personKey= $userType->type ;
+echo $personKey;
+ ?>
 <head>
 
     <meta charset="utf-8">
@@ -969,7 +972,7 @@
     <!-- /#all -->
 
 
-    
+
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->

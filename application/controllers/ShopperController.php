@@ -5,16 +5,16 @@ class ShopperController extends Zend_Controller_Action
 
     public function init()
     {
-        $auth = Zend_Auth::getInstance();
-        $requestActionName = $this->getRequest()->getActionName();
-        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
-        {
-            $this->redirect("customer/login");
-        }
-        if ($auth->hasIdentity() && $requestActionName= 'login' )
-        {
-            $this->redirect("/index");
-        }
+        // $auth = Zend_Auth::getInstance();
+        // $requestActionName = $this->getRequest()->getActionName();
+        // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        // {
+        //     $this->redirect("customer/login");
+        // }
+        // if ($auth->hasIdentity() && $requestActionName= 'login' )
+        // {
+        //     $this->redirect("/index");
+        // }
     }
 
     public function indexAction()
@@ -60,9 +60,9 @@ class ShopperController extends Zend_Controller_Action
             $storage = $auth->getStorage();
             // session step 3
             //write values to session (by default it’s written to Zend_Auth namespace)
-            $storage->write($authAdapter->getResultRowObject(array('email', 'id','EnName')));
+            $storage->write($authAdapter->getResultRowObject(array('shopperID', 'email','EnName')));
             // redirect to root index/index
-            return $this->redirect('/index');
+            return $this->redirect('/');
         }
         else {
             // if user is not valid send error message to view

@@ -25,4 +25,11 @@ class Application_Model_Wishlist extends Zend_Db_Table_Abstract
         }
         return FALSE;
     }
+
+    function addToWish($customer_id,$prod_id){
+        $row = $this->createRow();
+        $row->customerID = $customer_id;
+        $row->productID = $prod_id;
+        $row->save();
+    }
 }

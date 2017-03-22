@@ -22,9 +22,12 @@ crossorigin="anonymous"></script>
 $storage= $auth->getStorage();
 $userData=$storage->read();
 
-$person = (array)$userData;
-//either shopperID or customerID
-$personKey=key($person);
+// $person = (array)$userData;
+// //either shopperID or customerID
+// $personKey=key($person);
+// $userType = new Zend_Session_Namespace('userType');
+//  $userType->type = $personKey;
+//$userType->type =NULL;
 //var_dump ($personKey);
 //die();
 ?>
@@ -70,7 +73,7 @@ $personKey=key($person);
       </li>
   <?php } else{?>
 
-      <li><a href="/customer/logout">Logout</a></li>
+      <li><a href="/Customer/logout">Logout</a></li>
       <?php } ?>
 
   <li class="dropdown">

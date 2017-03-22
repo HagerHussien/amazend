@@ -5,16 +5,16 @@ class CustomerController extends Zend_Controller_Action
 
     public function init()
     {
-        $auth = Zend_Auth::getInstance();
-        $requestActionName = $this->getRequest()->getActionName();
-        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
-        {
-            $this->redirect("customer/login");
-        }
-        if ($auth->hasIdentity() && $requestActionName= 'login' )
-        {
-            $this->redirect("/index");
-        }
+        // $auth = Zend_Auth::getInstance();
+        // $requestActionName = $this->getRequest()->getActionName();
+        // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        // {
+        //     $this->redirect("customer/login");
+        // }
+        // if ($auth->hasIdentity() && $requestActionName= 'login' )
+        // {
+        //     $this->redirect("/index");
+        // }
     }
 
     public function indexAction()
@@ -93,22 +93,6 @@ class CustomerController extends Zend_Controller_Action
             }
         }
         $this->view->form = $form;
-    }
-
-    public function addToWishAction()
-    {
-       $wish_model = new Application_Model_Wishlist();
-        $customer_id = 1;
-        $prod_id = 2;
-        if ($wish_model->checkExistence($customer_id, $prod_id)) {
-            echo "already added";
-        } else {
-            echo "add function";
-            $row = $wish_model->createRow();
-            $row->customerID = $customer_id;
-            $row->productID = $prod_id;
-            $row->save();
-        }
     }
 
     public function deleteItemAction()
@@ -197,10 +181,33 @@ class CustomerController extends Zend_Controller_Action
 
     public function logoutAction()
     {
+
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
-        $this->redirect('/index');
+        // $userType->type = NULL;
+         Zend_Session::namespaceUnset('userType');
+         $this->redirect('/Customer/login');
 
+    }
+
+    public function maiAction()
+    {
+        // action body
+    }
+
+    public function addwishAction()
+    {
+        $wish_model = new Application_Model_Wishlist();
+        $customer_id = 1;
+        //$prod_id = 2;
+        $product_id = $this->_request->getParam('pid');
+        if ($wish_model->checkExistence($customer_id, $product_id)) {
+
+            $this->view->form = "added before";
+        } else {
+            $wish_model->addToWish($customer_id,$product_id);
+            $this->redirect("/Index/product/pid/$product_id");
+        }
     }
 
 

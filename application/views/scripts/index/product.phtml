@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php  //$userType = new Zend_Session_Namespace('userType');
+//$personKey= $userType->type ;
+$personKey = "adminID";
+?>
 <head>
 
     <meta charset="utf-8">
@@ -594,8 +597,8 @@
                                 <p class="price">$<?=$this->product["price"] ?></p>
 
                                 <p class="text-center buttons">
-                                    <a href="/customer/addcart/pid/<?= $this->product['productID'] ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart </a>
-                                    <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                    <a href="/Customer/addcart/pid/<?= $this->product['productID'] ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart </a>
+                                    <a href="/Customer/addwish/pid/<?= $this->product['productID'] ?>" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
                                 </p>
 
 
@@ -628,6 +631,9 @@
                       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
                         <li role="presentation"><a href="#comment" aria-controls="profile" role="tab" data-toggle="tab">Comments</a></li>
+                        <?php if($personKey == "adminID"){ ?>
+                        <li role="presentation"><a href="#statistic" aria-controls="profile" role="tab" data-toggle="tab">Statistics</a></li>
+                        <?php } ?>
                       </ul>
 
                       <!-- Tab panes -->
@@ -677,6 +683,16 @@
 
                           </div>
                         </div>
+                        <?php if($personKey == "adminID"){ ?>
+                        <div role="tabpanel" class="tab-pane" id="statistic">
+                          <div class="box" id="statistics">
+
+                          <!-- hager -->
+
+                          </div>
+                        </div>
+                  <?php    } ?>
+
                       </div>
 
                     </div>

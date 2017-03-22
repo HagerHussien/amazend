@@ -4,6 +4,15 @@ class IndexController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+       $storage= $auth->getStorage();
+       $userData=$storage->read();
+
+       $person = (array)$userData;
+       //either shopperID or customerID
+       $personKey=key($person);
+       $userType = new Zend_Session_Namespace('userType');
+        $userType->type = $personKey;
     }
 
     public function indexAction() {
