@@ -48,10 +48,14 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="add"/>
         </controllerFile>
-                <controllerFile controllerName="Checkout">
-                    <actionMethod actionName="index"/>
-                    <actionMethod actionName="cart"/>
-                </controllerFile>
+        <controllerFile controllerName="Checkout">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="cart"/>
+        </controllerFile>
+        <controllerFile controllerName="Product">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="AddCat"/>
@@ -165,35 +169,38 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="product"/>
           </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Index">
-                        <viewScriptFile forActionName="displayComment"/>
-                    </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="displayComment"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="block"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletecoupon"/>
           </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Checkout">
-                        <viewScriptFile forActionName="index"/>
-                    </viewControllerScriptsDirectory>
-                    <viewControllerScriptsDirectory forControllerName="Checkout">
-                        <viewScriptFile forActionName="cart"/>      
-                    </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="cart"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addToCart"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addPtoductToCart"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="displayComment"/>
-          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addcart"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -265,6 +272,14 @@
             <testApplicationActionMethod forActionName="addPtoductToCart"/>
             <testApplicationActionMethod forActionName="addcart"/>
             <testApplicationActionMethod forActionName="logout"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Checkout">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="cart"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Product">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="add"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
