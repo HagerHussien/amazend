@@ -5,11 +5,16 @@ class CustomerController extends Zend_Controller_Action
 
     public function init()
     {
-        /*$auth = Zend_Auth::getInstance();
+        $auth = Zend_Auth::getInstance();
         $requestActionName = $this->getRequest()->getActionName();
-        if (!$auth->hasIdentity() && $requestActionName!= 'login' &&
-        $requestActionName!= 'add') {
-        $this->redirect("customer/login"); }*/
+        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        {
+            $this->redirect("customer/login");
+        }
+        if ($auth->hasIdentity() && $requestActionName= 'login' )
+        {
+            $this->redirect("/index");
+        }
     }
 
     public function indexAction()
@@ -39,7 +44,7 @@ class CustomerController extends Zend_Controller_Action
         //step 3
         //set the identity column value and credential column value
         $authAdapter->setIdentity($email);
-        $authAdapter->setCredential(md5($password));
+        $authAdapter->setCredential($password);
         //step 4
         //perform authentication
         $result = $authAdapter->authenticate( );
@@ -55,9 +60,9 @@ class CustomerController extends Zend_Controller_Action
             $storage = $auth->getStorage();
             // session step 3
             //write values to session (by default it’s written to Zend_Auth namespace)
-            $storage->write($authAdapter->getResultRowObject(array('email', 'id','EnName')));
+            $storage->write($authAdapter->getResultRowObject(array('customerID', 'email','EnName')));
             // redirect to root index/index
-            return $this->redirect('customer');
+            return $this->redirect('/index');
         }
         else {
             // if user is not valid send error message to view
@@ -83,7 +88,7 @@ class CustomerController extends Zend_Controller_Action
                 $customerModel = new Application_Model_Customer();
                 $customerModel->addNewCustomer($request->getPost());
                 //to be changed
-                $this->redirect('/index');
+                $this->redirect('/customer/login');
 
             }
         }
@@ -98,6 +103,7 @@ class CustomerController extends Zend_Controller_Action
         if ($wish_model->checkExistence($customer_id, $prod_id)) {
             echo "already added";
         } else {
+            echo "add function";
             $row = $wish_model->createRow();
             $row->customerID = $customer_id;
             $row->productID = $prod_id;
@@ -139,36 +145,6 @@ class CustomerController extends Zend_Controller_Action
 
     public function addToCartAction()
     {
-      $customer_id = 1;
-      $cart_model = new Application_Model_Cart();
-      $cart_product_model = new Application_Model_CartProduct();
-      $product_id = $this->_request->getParam('pid');
-      $check_result = $cart_model->checkExistence($customer_id);
-
-      if($check_result){  // this customer already have cart
-          $cart_id = $cart_model->getCartID($customer_id);
-
-          if($cart_product_model->checkExistence($customer_id)){
-              echo "already added";
-              $this->redirect("/Index/product/pid/$product_id");
-          }else{
-              $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
-              $this->redirect("/Index/product/pid/$product_id");
-          }
-      }else{
-          $cart_model->newCart($customer_id);
-          $cart_id = $cart_model->getCartID($customer_id);
-
-          if($cart_product_model->checkExistence($customer_id)){
-              echo "already added";
-              $this->redirect("/Index/product/pid/$product_id");
-          }else{
-              $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
-              $this->redirect("/Index/product/pid/$product_id");
-          }
-
-      }
-
     }
 
     public function addPtoductToCartAction()
@@ -178,10 +154,54 @@ class CustomerController extends Zend_Controller_Action
 
     public function addcartAction()
     {
-        // action body
+        $customer_id = 1;
+        $cart_model = new Application_Model_Cart();
+        $cart_product_model = new Application_Model_CartProduct();
+        //$product_id = $this->_request->getParam('pid');
+        $product_id= 1;
+        $check_result = $cart_model->checkExistence(1);
+        echo $check_result;
+        if($check_result){  // this customer already have cart
+          echo "this customer already have cart";
+            $cart_id = $cart_model->getCartID($customer_id);
+
+            $cart_id = $cart_model->getCartID($customer_id);
+            if($cart_product_model->checkExistence($product_id)){
+                //echo "already added";
+                //alert('laaaaaaaaaaa');
+                //$this->entityManager->flush();
+              $this->redirect("/Index/product/pid/$product_id");
+            }else{
+                $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
+                $this->redirect("/Index/product/pid/$product_id");
+            }
+        }else{
+          echo "this customer already have no  cart";
+          echo $check_result;
+
+
+            $cart_model->newCart($customer_id);
+            $cart_id = $cart_model->getCartID($customer_id);
+            if($cart_product_model->checkExistence($product_id)){
+                //echo "already added";
+
+                $this->redirect("/Index/product/pid/$product_id");
+            }else{
+                $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
+                $this->redirect("/Index/product/pid/$product_id");
+            }
+
+        }
+
+    }
+
+    public function logoutAction()
+    {
+        $auth=Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->redirect('/index');
+
     }
 
 
 }
-
-

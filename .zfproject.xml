@@ -52,6 +52,10 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="cart"/>
         </controllerFile>
+        <controllerFile controllerName="Product">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="add"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="AddCat"/>
@@ -195,6 +199,12 @@
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -266,8 +276,13 @@
             <testApplicationActionMethod forActionName="addcart"/>
             <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
-          <testApplicationControllerFile forControllerName="Hello">
+          <testApplicationControllerFile forControllerName="Checkout">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="cart"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Product">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="add"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

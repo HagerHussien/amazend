@@ -5,7 +5,16 @@ class ShopperController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+        $requestActionName = $this->getRequest()->getActionName();
+        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        {
+            $this->redirect("customer/login");
+        }
+        if ($auth->hasIdentity() && $requestActionName= 'login' )
+        {
+            $this->redirect("/index");
+        }
     }
 
     public function indexAction()
@@ -16,7 +25,7 @@ class ShopperController extends Zend_Controller_Action
     public function loginAction()
     {
         //authentiation to be done
-        
+
         $form = new Application_Form_ShopperLogin();
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -35,7 +44,7 @@ class ShopperController extends Zend_Controller_Action
         //step 3
         //set the identity column value and credential column value
         $authAdapter->setIdentity($email);
-        $authAdapter->setCredential(md5($password));
+        $authAdapter->setCredential($password);
         //step 4
         //perform authentication
         $result = $authAdapter->authenticate( );
@@ -53,7 +62,7 @@ class ShopperController extends Zend_Controller_Action
             //write values to session (by default it’s written to Zend_Auth namespace)
             $storage->write($authAdapter->getResultRowObject(array('email', 'id','EnName')));
             // redirect to root index/index
-            return $this->redirect('shopper');
+            return $this->redirect('/index');
         }
         else {
             // if user is not valid send error message to view
@@ -63,14 +72,14 @@ class ShopperController extends Zend_Controller_Action
         }
 
             $this->view->form = $form;
-        
+
     }
 
     public function addAction()
     {
         $form = new Application_Form_ShopperSignup();
         //$this->view->shopperSignup=$form;
-        
+
         $request = $this->getRequest();
         if($request->isPost())
         {
@@ -79,17 +88,17 @@ class ShopperController extends Zend_Controller_Action
                 $shopperModel = new Application_Model_Shopper();
                 $shopperModel->addNewShopper($request->getPost());
                 //to be changed
-                $this->redirect('/index');
-                
+                $this->redirect('/shopper/login');
+
             }
         }
          $this->view->form = $form;
     }
 
+    public function logoutAction()
+    {
+        // action body
+    }
+
 
 }
-
-
-
-
-

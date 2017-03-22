@@ -5,7 +5,7 @@ class Application_Model_CartProduct extends Zend_Db_Table_Abstract
     protected $_name = 'cart_product';
 
     function checkExistence($product_id) {
-        $check = $this->find($product_id)->toArray();
+        $check= $this->fetchAll("productID=$product_id")->toArray();
          if (!empty($check)) {
             return TRUE;
         }
@@ -14,7 +14,7 @@ class Application_Model_CartProduct extends Zend_Db_Table_Abstract
 
     function addNewItemToCart($cart_id,$product_id,$quantity){
         $data = array(
-              'customerID' => $cart_id ,
+              'cartID' => $cart_id ,
               'productID'  => $product_id,
               'quantity'   => $quantity
             );

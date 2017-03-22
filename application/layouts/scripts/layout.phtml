@@ -18,7 +18,17 @@ crossorigin="anonymous"></script>
 <!-- nav header -->
 <?php
 
-  echo <<<EOL
+ $auth = Zend_Auth::getInstance();
+$storage= $auth->getStorage();
+$userData=$storage->read();
+
+$person = (array)$userData;
+//either shopperID or customerID
+$personKey=key($person);
+//var_dump ($personKey);
+//die();
+?>
+
   <nav class="navbar-inverse" style='margin-bottom: 0'>
 <div class="container-fluid">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,6 +49,30 @@ crossorigin="anonymous"></script>
   <li><a href="/Index/index"> Home </a></li>
   <li><a href=""> any thing</a></li>
   <li><a href=""> About </a></li>
+
+  <?php if(empty($userData)){ ?>
+
+  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login as <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/shopper/login">Shopper</a></li>
+          <li><a href="/customer/login">Customer</a></li>
+        </ul>
+      </li>
+  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign-up as <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/shopper/add">Shopper</a></li>
+          <li><a href="/customer/add">Customer</a></li>
+
+          <li></li>
+        </ul>
+      </li>
+  <?php } else{?>
+
+      <li><a href="/customer/logout">Logout</a></li>
+      <?php } ?>
+
   <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">language <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -51,7 +85,5 @@ crossorigin="anonymous"></script>
   </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
-EOL;
-  ?>
 
 <?php echo $this->layout()->content; ?>
