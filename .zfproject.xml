@@ -12,6 +12,7 @@
           <actionMethod actionName="admin"/>
           <actionMethod actionName="product"/>
           <actionMethod actionName="displayComment"/>
+          <actionMethod actionName="category"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Admin">
@@ -209,6 +210,9 @@
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addwish"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="category"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -248,6 +252,7 @@
             <testApplicationActionMethod forActionName="admin"/>
             <testApplicationActionMethod forActionName="product"/>
             <testApplicationActionMethod forActionName="displayComment"/>
+            <testApplicationActionMethod forActionName="category"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="addCategory"/>
