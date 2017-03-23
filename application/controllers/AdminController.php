@@ -131,7 +131,7 @@ class AdminController extends Zend_Controller_Action
         $user_email = $this->_request->getParam("email");
         $user_name = $this->_request->getParam("name");
         $coupon_id = $this->_request->getParam("cid");        
-       $coupon=$coupon_model->getCoupon($coupon_id);
+        $coupon=$coupon_model->getCoupon($coupon_id);
 
         $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com',
                      array('auth' => 'login',
@@ -143,10 +143,12 @@ class AdminController extends Zend_Controller_Action
 
         $mail = new Zend_Mail();
         $mail->setFrom('amazend.zendphp@gmail.com');
+        
         $mail->setBodyHtml('<p>Hello  '. $user_name .' </p>
 <p>We have made a discount for you with amount of '. $coupon['percent'] .' % for the upcoming purchase Order.</p>
 <p> write this in discount field when purchasing next time </p>
 '.$coupon['name'].'');
+
         $mail->addTo($user_email , 'recipient');
         $mail->setSubject('Discount coupon');
         $mail->send($tr);
@@ -186,8 +188,7 @@ class AdminController extends Zend_Controller_Action
         $coupon_model->deleteCoupon($coupon_id);
         $this->_helper->redirector('index');
     }
-
-
+    
 }
 
 

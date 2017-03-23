@@ -110,7 +110,6 @@ class IndexController extends Zend_Controller_Action
 //$comment_model = new Application_Model_Comment();
         $this->view->comments = $comment_model->listComments();
     }
-
     public function categoryAction()
     {
         $category_model = new Application_Model_Category();
@@ -118,6 +117,21 @@ class IndexController extends Zend_Controller_Action
         $this->view->cat_details = $category_model->detailCat($category_id);
 
     }
+    public function searchAction()
+    {
+        // action body
 
+        $category_model = new Application_Model_Product();
+        $category_id = $this->_request->getParam('name');
+        $search_details = $category_model->productSearch($category_id);
+         //$this->view->search_details = $category_model->productSearch($category_id);
+        $h=$search_details[0]['productID'];
+       return $this->redirect("/index/product/pid/$h"); 
 
+       // $this->view->form = $form;
+        
+       
+    }
 }
+
+

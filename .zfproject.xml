@@ -13,6 +13,7 @@
           <actionMethod actionName="product"/>
           <actionMethod actionName="displayComment"/>
           <actionMethod actionName="category"/>
+          <actionMethod actionName="search"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Admin">
@@ -67,6 +68,7 @@
         <formFile formName="ShopperSignup"/>
         <formFile formName="ShopperLogin"/>
         <formFile formName="CommentForm"/>
+        <formFile formName="Search"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -213,6 +215,9 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="category"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="search"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -253,6 +258,7 @@
             <testApplicationActionMethod forActionName="product"/>
             <testApplicationActionMethod forActionName="displayComment"/>
             <testApplicationActionMethod forActionName="category"/>
+            <testApplicationActionMethod forActionName="search"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="addCategory"/>
