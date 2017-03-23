@@ -218,7 +218,7 @@ class CustomerController extends Zend_Controller_Action
             $this->view->form = "added before";
         } else {
             $wish_model->addToWish($customer_id,$product_id);
-            $this->redirect("/Index/product/pid/$product_id");
+            $this->redirect("/index/product/pid/$product_id");
         }
     }
 
