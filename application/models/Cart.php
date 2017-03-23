@@ -5,7 +5,7 @@ class Application_Model_Cart extends Zend_Db_Table_Abstract {
     protected $_name = 'cart';
 
     function functionName($param) {
-        
+
     }
 
     function cartDetails($cart_id) {

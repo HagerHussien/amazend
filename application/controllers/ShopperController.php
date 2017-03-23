@@ -2,9 +2,23 @@
 
 class ShopperController extends Zend_Controller_Action
 {
-
+    public $language;
     public function init()
     {
+      $request= $this->getRequest()->getParam('ln');
+      //echo $request;
+      if(empty($request)){
+          $lan = new Zend_Session_Namespace('language');
+          // echo $lan->type;
+          $this->language->type = $lan->type ;
+          // echo $this->language->type;
+      }
+      else{
+          $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = $request ;
+          // echo $this->language->type;
+      }
+        //echo $this->language->type;
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')

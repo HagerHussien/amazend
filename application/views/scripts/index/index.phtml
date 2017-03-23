@@ -542,7 +542,12 @@ echo $personKey;
                                     <img src="img/product2.jpg" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html"><?=$product['EnName'] ?></a></h3>
+                                    <?php if($this->language == "En"){ ?>
+                                        <h3><a href="detail.html"><?=$product['EnName'] ?></a></h3>
+                                  <?php }else if($this->language == "Ar"){?>
+                                        <h3><a href="detail.html"><?=$product['ArName'] ?></a></h3>
+                                  <?php }?>
+
                                     <p class="price"><del>$280</del> $143.00</p>
                                 </div>
                                 <!-- /.text -->

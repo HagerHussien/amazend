@@ -2,8 +2,21 @@
 
 class IndexController extends Zend_Controller_Action {
 
+    public $language;
     public function init() {
-        /* Initialize action controller here */
+      $request= $this->getRequest()->getParam('ln');
+      //echo $request;
+      if(empty($request)){
+          $lan = new Zend_Session_Namespace('language');
+          $this->language->type = $lan->type ;
+          // echo $this->language->type;
+      }
+      else{
+          $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = $request ;
+          // echo $this->language->type;
+      }
+
         $auth = Zend_Auth::getInstance();
        $storage= $auth->getStorage();
        $userData=$storage->read();
@@ -19,6 +32,7 @@ class IndexController extends Zend_Controller_Action {
 // display all products at home page
         $product_model = new Application_Model_Product();
         $this->view->products = $product_model->listProducts();
+        $this->view->language = $this->language->type;
     }
 
     public function productAction() {
@@ -39,6 +53,7 @@ class IndexController extends Zend_Controller_Action {
                 ->where("productID = $prod_id");
         $resultSet = $db->fetchAll($select);
         $this->view->product = $resultSet[0];
+        $this->view->language = $this->language->type;
 
 
 // comment part

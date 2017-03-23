@@ -629,10 +629,22 @@ $personKey = "adminID";
 
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
-                        <li role="presentation"><a href="#comment" aria-controls="profile" role="tab" data-toggle="tab">Comments</a></li>
+                        <?php if($this->language == "En"){ ?>
+                          <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
+                        <?php }else if($this->language == "Ar"){?>
+                          <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">التفاصيل </a></li>
+                        <?php }?>
+                        <?php if($this->language == "En"){ ?>
+                          <li role="presentation"><a href="#comment" aria-controls="profile" role="tab" data-toggle="tab">Comments</a></li>
+                        <?php }else if($this->language == "Ar"){?>
+                          <li role="presentation"><a href="#comment" aria-controls="profile" role="tab" data-toggle="tab"> التعليقات </a></li>
+                        <?php }?>
                         <?php if($personKey == "adminID"){ ?>
-                        <li role="presentation"><a href="#statistic" aria-controls="profile" role="tab" data-toggle="tab">Statistics</a></li>
+                            <?php if($this->language == "En"){ ?>
+                              <li role="presentation"><a href="#statistic" aria-controls="profile" role="tab" data-toggle="tab">Statistics</a></li>
+                            <?php }else if($this->language == "Ar"){?>
+                              <li role="presentation"><a href="#statistic" aria-controls="profile" role="tab" data-toggle="tab">الاحصائيات</a></li>
+                            <?php }?>
                         <?php } ?>
                       </ul>
 
@@ -641,8 +653,13 @@ $personKey = "adminID";
                         <div role="tabpanel" class="tab-pane active" id="detail">
                           <div class="box" id="details">
                               <p>
-                                  <h4>Product details</h4>
-                                  <p><?= $this->product["EnDescription"] ?></p>
+                                  <?php if($this->language == "En"){ ?>
+                                    <h4>Product details</h4>
+                                    <p><?= $this->product["EnDescription"] ?></p>
+                                  <?php }else if($this->language == "Ar"){?>
+                                    <h4>تفاصيل المنتج </h4>
+                                    <p><?= $this->product["ArDescription"] ?></p>
+                                  <?php }?>
                                   <h4>Material & care</h4>
                                   <ul>
                                       <li>Polyester</li>
