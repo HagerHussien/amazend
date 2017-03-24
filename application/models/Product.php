@@ -14,6 +14,6 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
 
 	function productSearch($prod_name) {
 
-        return $this->fetchAll("EnName=\"$prod_name\"")->toArray();
+        return $this->fetchAll("EnName like \"$prod_name%\"")->toArray();
     }
 }
