@@ -8,10 +8,8 @@ class ShopperController extends Zend_Controller_Action
       $request= $this->getRequest()->getParam('ln');
       //echo $request;
       if(empty($request)){
-          $lan = new Zend_Session_Namespace('language');
-          // echo $lan->type;
-          $this->language->type = $lan->type ;
-          // echo $this->language->type;
+           $this->language = new Zend_Session_Namespace('language');
+           $this->language->type= isset($this->language->type)?$this->language->type:"En";
       }
       else{
           $this->language= new Zend_Session_Namespace('language');
