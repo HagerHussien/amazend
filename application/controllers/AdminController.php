@@ -1,25 +1,29 @@
 <?php
 
-class AdminController extends Zend_Controller_Action
-{
 
-    public function init()
-    {
+// require_once 'Zend/Mail.php';
+ 
+// Create transport
+//require_once 'Zend/Mail/Transport/Smtp.php';
+
+class AdminController extends Zend_Controller_Action {
+
+    public function init() {
         /* Initialize action controller here */
          $layout = $this->_helper->layout();
         $layout->setLayout('admlayout');
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         // action body
     }
+
     public function adminAction()
     {
         // action body
     }
-    public function addCategoryAction()
-    {
+
+    public function addCategoryAction() {
         // action body
         $form = new Application_Form_AddCat();
         $form->submit->setLabel('Add');
@@ -32,22 +36,22 @@ class AdminController extends Zend_Controller_Action
                 $cat_ArName = $form->getValue('cat_ArName');
                 $adminID = $form->getValue('adminID');
                 $row = new Application_Model_Category();
-                $row->addCat($catID,$cat_EnName,$cat_ArName,$adminID);
+                $row->addCat($catID, $cat_EnName, $cat_ArName, $adminID);
                 $this->_helper->redirector('index');
-            }
-            else {
+            } else {
                 $form->populate($formData);
             }
         }
     }
-    public function deleteCategoryAction()
-    {
+
+    public function deleteCategoryAction() {
         // action body
         $cat_model = new Application_Model_Category();
         $cat_id = $this->_request->getParam("cid");
         $cat_model->deleteCat($cat_id);
         $this->_helper->redirector('index');
     }
+
     public function editCategoryAction()
     {
         // action body
@@ -62,25 +66,22 @@ class AdminController extends Zend_Controller_Action
                 $ArName = $form->getValue('cat_ArName');
                 $adminID = $form->getValue('adminID');
                 $edit = new Application_Model_Category();
-                $edit->updateCat($catID,$EnName,$ArName,$adminID);
+                $edit->updateCat($catID, $EnName, $ArName, $adminID);
                 $this->_helper->redirector('index');
                }
             else {
                 $form->populate($formData);
-                }
-         }
-        else {
+            }
+        } else {
             $catID = $this->_getParam('cid', 0);
             if ($catID > 0) {
-            $cat = new  Application_Model_Category();
-            $form->populate($cat->getCat($catID));
+                $cat = new Application_Model_Category();
+                $form->populate($cat->getCat($catID));
             }
-         }
-
+        }
     }
 
-    public function createCouponAction()
-    {
+    public function createCouponAction() {
         // action body
 
         $form = new Application_Form_CreateCoupon();
@@ -93,7 +94,7 @@ class AdminController extends Zend_Controller_Action
                 $name = $form->getValue('name');
                 $percent = $form->getValue('percent');
                 $row = new Application_Model_Coupon();
-                $row->CreateCoupon($couponID,$name,$percent);
+                $row->CreateCoupon($couponID, $name, $percent);
                 $this->_helper->redirector('index');
             }
             else {
@@ -103,29 +104,29 @@ class AdminController extends Zend_Controller_Action
 
     }
 
-    public function sendCouponAction()
-    {
+    public function sendCouponAction() {
+
         $coupon_model = new Application_Model_Coupon();
-       $coupon_user = new  Application_Model_Customer ();
+        $coupon_user = new Application_Model_Customer ();
         $coupon_id = $this->_request->getParam("id");
-        $this->view->coupon=$coupon_id;
+        $this->view->coupon = $coupon_id;
     }
-    public function sendEmailAction()
-    {
+
+    public function sendEmailAction() {
         // action body
+
         $coupon_model = new Application_Model_Coupon();
         $coupon_user = new  Application_Model_Customer ();
         $user_email = $this->_request->getParam("email");
         $user_name = $this->_request->getParam("name");
-        $coupon_id = $this->_request->getParam("cid");        
-        $coupon=$coupon_model->getCoupon($coupon_id);
+        $coupon_id = $this->_request->getParam("cid");
+        $coupon = $coupon_model->getCoupon($coupon_id);
 
-        $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com',
-                     array('auth' => 'login',
-                        'port' => 587,
-                        'ssl' => 'tls',
-                             'username' => 'amazend.zendphp@gmail.com',
-                             'password' => 'amazendzendphp'));
+        $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com', array('auth' => 'login',
+            'port' => 587,
+            'ssl' => 'tls',
+            'username' => 'amazend.zendphp@gmail.com',
+            'password' => 'amazendzendphp'));
         Zend_Mail::setDefaultTransport($tr);
 
         $mail = new Zend_Mail();
@@ -134,42 +135,61 @@ class AdminController extends Zend_Controller_Action
         $mail->setBodyHtml('<p>Hello  '. $user_name .' </p>
 <p>We have made a discount for you with amount of '. $coupon['percent'] .' % for the upcoming purchase Order.</p>
 <p> write this in discount field when purchasing next time </p>
-'.$coupon['name'].'');
+' . $coupon['name'] . '');
 
-        $mail->addTo($user_email , 'recipient');
+        $mail->addTo($user_email, 'recipient');
         $mail->setSubject('Discount coupon');
         $mail->send($tr);
 
-  $this->redirect('admin/send-coupon/id/'.$coupon_id);
-
+        $this->redirect('admin/send-coupon/id/' . $coupon_id);
     }
 
-    public function blockAction()
-    {
+    public function blockAction() {
         // action body
 
         $cast_model = new Application_Model_Customer();
         $cast_id = $this->_request->getParam("id");
-        $user=$cast_model->customerDetails($cast_id);
+        $user = $cast_model->customerDetails($cast_id);
 
-        if($user['status'] ==='unblocked'){
-        $status='blocked';
-        $cast_model->updateCustomer($cast_id,$status);
-         $this->_helper->redirector('index');
-          }else{  
-        $status='unblocked';
-        $cast_model->updateCustomer($cast_id,$status);
-         $this->_helper->redirector('index');
+
+        if ($user['status'] === 'unblocked') {
+            $status = 'blocked';
+            $cast_model->updateCustomer($cast_id, $status);
+            $this->_helper->redirector('index');
+        } else {
+
+            $status = 'unblocked';
+            $cast_model->updateCustomer($cast_id, $status);
+            $this->_helper->redirector('index');
+        }
+
     }
 
-    }
-
-    public function deletecouponAction()
-    {
+    public function deletecouponAction() {
         // action body
+
         $coupon_model = new Application_Model_Coupon();
         $coupon_id = $this->_request->getParam("id");
         $coupon_model->deleteCoupon($coupon_id);
         $this->_helper->redirector('index');
     }   
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -37,6 +37,7 @@ class IndexController extends Zend_Controller_Action
         $category_model = new Application_Model_Category();
         $categories = new Zend_Session_Namespace('category');
         $categories->cat = $category_model->listCat();
+        $this->view->slider_products = $product_model->maxPurchased();
         $this->view->products = $product_model->listProducts();
         $this->view->language = $this->language->type;
     }
@@ -128,5 +129,3 @@ class IndexController extends Zend_Controller_Action
        return $this->redirect("/index/product/pid/$page");  
     }
 }
-
-
