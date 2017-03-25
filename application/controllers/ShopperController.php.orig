@@ -5,9 +5,12 @@ class ShopperController extends Zend_Controller_Action
     public $language;
     public function init()
     {
+<<<<<<< HEAD
         //Session to be opened
             $loginSession = new Zend_Session_Namespace('user');
-$auth = Zend_Auth::getInstance();
+
+    
+        $auth = Zend_Auth::getInstance();
         $requestActionName = $this->getRequest()->getActionName();
         if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         {
@@ -16,7 +19,8 @@ $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity() && $requestActionName= 'login' )
         {
             $this->redirect("/index");
-    
+        }
+=======
       $request= $this->getRequest()->getParam('ln');
       //echo $request;
       if(empty($request)){
@@ -39,6 +43,7 @@ $auth = Zend_Auth::getInstance();
         // {
         //     $this->redirect("/index");
         // }
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
     }
 
     public function indexAction()
@@ -84,15 +89,19 @@ $auth = Zend_Auth::getInstance();
             $storage = $auth->getStorage();
             // session step 3
             //write values to session (by default it’s written to Zend_Auth namespace)
-            $storage->write($authAdapter->getResultRowObject(array('shopperID', 'email','EnName')));
+<<<<<<< HEAD
+            $storage->write($authAdapter->getResultRowObject(array('shopperID','email','EnName')));
 
             // //Session to be opened
             // $loginSession = new Zend_Session_Namespace('user');
 
             $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
 
+=======
+            $storage->write($authAdapter->getResultRowObject(array('shopperID', 'email','EnName')));
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
             // redirect to root index/index
-            return $this->redirect('/index');
+            return $this->redirect('/');
         }
         else {
             // if user is not valid send error message to view

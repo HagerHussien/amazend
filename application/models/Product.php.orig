@@ -12,10 +12,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         return $this->fetchAll()->toArray();
     }
 
-	function productSearch($prod_name) {
-
-        return $this->fetchAll("EnName like \"$prod_name%\"")->toArray();
-    }
+<<<<<<< HEAD
     function addNewProduct($userData){
         $row = $this->createRow();
 		$row->EnName = $userData['EnName'];
@@ -41,6 +38,12 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         
 		
 		//return $this->$row->productID;
+    }
+=======
+	function productSearch($prod_name) {
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
+
+        return $this->fetchAll("EnName like \"$prod_name%\"")->toArray();
     }
 
   function maxPurchased(){

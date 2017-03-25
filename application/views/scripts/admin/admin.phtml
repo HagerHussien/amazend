@@ -1,0 +1,18 @@
+<table class="table">
+			<tr>
+			 <th>Product Name</th>  <th>number of users who purchased</th> 
+			 <th>The amount of money gained </th>
+			</tr>
+			<?php
+			$pro = new Application_Model_Product();
+			foreach($pro->listProducts() as $key => $value)
+			{
+			echo "<tr>".
+			"<td>" . $value['productID']. "</td>" .
+			"<td>" . $value['no_purchase'] . "</td>" .
+			"<td>" . $value['no_purchase']*$value['price'] . "</td>" ."</tr>";
+			}
+			?>
+			</table>
+			
+

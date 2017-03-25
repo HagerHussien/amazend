@@ -8,11 +8,17 @@
 
 class AdminController extends Zend_Controller_Action {
 
-    public function init() {
+<<<<<<< HEAD
+    public function init()
+    {
         // //Session to be opened
         $loginSession = new Zend_Session_Namespace('user');
+=======
+    public function init() {
+        /* Initialize action controller here */
          $layout = $this->_helper->layout();
         $layout->setLayout('admlayout');
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
     }
 
     public function indexAction() {
@@ -173,7 +179,8 @@ class AdminController extends Zend_Controller_Action {
         $coupon_id = $this->_request->getParam("id");
         $coupon_model->deleteCoupon($coupon_id);
         $this->_helper->redirector('index');
-    }   
+<<<<<<< HEAD
+    }
 
     public function addAction()
     {
@@ -253,6 +260,9 @@ class AdminController extends Zend_Controller_Action {
             $this->view->form = $form;
     }
 
+=======
+    }   
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
 
 }
 
