@@ -49,9 +49,9 @@ class IndexController extends Zend_Controller_Action
         if ($prod_id == NULL) {
             return $this->redirect('index');
         }
-//        $product = $product_model->productDetails($prod_id);
-//        $this->view->product = $product;
-
+        $product_model = new Application_Model_Product();
+        $rate = $product_model->getRate($prod_id);
+        echo $rate;
         $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
         $select = new Zend_Db_Select($db);
 //        $select->from('product', array('id', 'title')) //the array specifies which columns I want returned in my result set
@@ -126,6 +126,6 @@ class IndexController extends Zend_Controller_Action
         $product_name= $this->_request->getParam('name');
         $search_details = $product_model->productSearch($product_name);
         $page=$search_details[0]['productID'];
-       return $this->redirect("/index/product/pid/$page");  
+       return $this->redirect("/index/product/pid/$page");
     }
 }

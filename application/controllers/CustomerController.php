@@ -2,16 +2,18 @@
 
 class CustomerController extends Zend_Controller_Action
 {
-  public $language;
-  public function init()
-  {
+
+    public $language = null;
+
+    public function init()
+    {
        //Session to be opened
             $loginSession = new Zend_Session_Namespace('user');
-            
+
         //facebook session
 
         $fpsession = new Zend_Session_Namespace('facebook');
-        
+
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
@@ -36,7 +38,7 @@ class CustomerController extends Zend_Controller_Action
           $this->language->type = $request ;
           // echo $this->language->type;
       }
- 
+
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
@@ -217,7 +219,7 @@ class CustomerController extends Zend_Controller_Action
         $auth->clearIdentity();
         $this->redirect('/index');
         // $userType->type = NULL;
-         
+
          // $this->redirect('/Customer/login');
 
     }
@@ -346,14 +348,18 @@ class CustomerController extends Zend_Controller_Action
             $this->view->facebook_url = $loginUrl;
             // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
             $this->view->facebookUrl =  '<a href="' . htmlspecialchars( $loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
-        
+
+    }
+
+    public function addrateAction()
+    {
+        header('Access-Control-Allow-Origin: *');
+        explode($_POST);
+        $product_model = new Application_Model_Product();
+        $product_model->addRate($product_id,$rate);
+        // var_dump($r[0]['rate']);
+        // die();
     }
 
 
 }
-
-
-
-
-
-

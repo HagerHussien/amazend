@@ -74,7 +74,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract {
 public function topProduct($catID)
   {
     $db = Zend_Db_Table::getDefaultAdapter();
-    
+
     $select = new Zend_Db_Select($db);
 
     $select ->from('product')
@@ -83,7 +83,31 @@ public function topProduct($catID)
       ->limit(1);
     return $resultSet = $db->fetchAll($select);
 
+  }
 
+  function addRate($product_id,$rate){
+      $select =  $this->select()
+      ->from('product',array('rate','no_rate'))
+      ->where('product.productID=?',$product_id);
+      $stmt = $select->query();
+      $res= $stmt->fetchAll();
+      $old_rate= $res[0]['rate'];
+      $old_no_rate = $res[0]['no_rate'];
+      $product['rate'] = $old_rate + $rate;
+      $product['no_rate'] = $old_no_rate + 1 ;
+      $this->update($product,"productID=$product_id");
 
+  }
+
+  function getRate($product_id){
+      $select =  $this->select()
+      ->from('product',array('rate','no_rate'))
+      ->where('product.productID=?',$product_id);
+      $stmt = $select->query();
+      $res= $stmt->fetchAll();
+      $res_rate= $res[0]['rate'];
+      $res_no_rate = $res[0]['no_rate'];
+      $rate = (int)($res_rate / $res_no_rate);
+      return $rate;
   }
 }
