@@ -31,11 +31,21 @@ class Application_Model_Product extends Zend_Db_Table_Abstract
         //$cat = $catobj->getCat($userData['categoryID']);
         //$row->categoryID = $cat['categoryID'];
         
+        
         $row->categoryID = $userData['categoryID'];
-		
+		    
         //from session
         //$row->shopperID = $userData['shopperID'];
-		
+        // $person = (array)$userData;
+		    $auth = Zend_Auth::getInstance();
+        $storage = $auth->getStorage();
+        $userData = $storage->read();
+        
+        $person=$storage->read()->shopperID;
+        $row->shopperID = $person;
+        // var_dump($person);
+        // die();
+
 		return $row->save();
 
         

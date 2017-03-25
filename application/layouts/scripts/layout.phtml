@@ -28,9 +28,9 @@ $storage = $auth->getStorage();
 $userData = $storage->read();
 $categories = new Zend_Session_Namespace('category');
 // var_dump($categories->cat);
-// $person = (array)$userData;
+$person = (array)$userData;
 // //either shopperID or customerID
-// $personKey=key($person);
+$personKey=key($person);
 // $userType = new Zend_Session_Namespace('userType');
 //  $userType->type = $personKey;
 //$userType->type =NULL;
@@ -244,7 +244,7 @@ _________________________________________________________ -->
                 </li>
 
                <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-                <?php if (empty($userData)) : ?>
+                <?php if (empty($userData)) { ?>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Login as <span class="caret"></span></a>
@@ -262,10 +262,10 @@ _________________________________________________________ -->
                             <li></li>
                         </ul>
                     </li>
-                <?php else: ?>
+                <?php } else { ?>
 
                     <li><a href="/customer/logout">Logout</a></li>
-                <?php endif; ?>
+                <?php } ?>
                     <!-- Language -->
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Language <span class="caret"></span></a>

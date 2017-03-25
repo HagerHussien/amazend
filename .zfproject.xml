@@ -96,6 +96,7 @@
         <modelFile modelName="CartProduct"/>
         <modelFile modelName="Comment"/>
         <modelFile modelName="Offer"/>
+        <modelFile modelName="UserAcl"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
