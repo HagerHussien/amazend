@@ -114,23 +114,18 @@ class IndexController extends Zend_Controller_Action
     {
         $product_model = new Application_Model_Product();
         $category_id = $this->_request->getParam('cid');
-        $a =  $product_model->category_products($category_id);
+        $this->view->cat_top = $category_model->topProduct($category_id);
         $this->view->cat_details = $product_model->category_products($category_id);
+
 
     }
     public function searchAction()
     {
         // action body
-
-        $category_model = new Application_Model_Product();
-        $category_id = $this->_request->getParam('name');
-        $search_details = $category_model->productSearch($category_id);
-         //$this->view->search_details = $category_model->productSearch($category_id);
-        $h=$search_details[0]['productID'];
-       return $this->redirect("/index/product/pid/$h");
-
-       // $this->view->form = $form;
-
-
+        $product_model = new Application_Model_Product();
+        $product_name= $this->_request->getParam('name');
+        $search_details = $product_model->productSearch($product_name);
+        $page=$search_details[0]['productID'];
+       return $this->redirect("/index/product/pid/$page");  
     }
 }

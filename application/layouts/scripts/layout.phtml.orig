@@ -1,0 +1,427 @@
+<head>
+<<<<<<< HEAD
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.
+min.css" integrity="sha384-
+1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-
+theme.min.css" integrity="sha384-
+fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+crossorigin="anonymous"></script>
+=======
+    <!-- Latest compiled and minified CSS -->
+   
+    <!-- jQuery library -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/modified.css" rel="stylesheet">
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
+
+</head>
+<!-- nav header -->
+<?php
+<<<<<<< HEAD
+//set first one as customerID & retrieve it Facebook is for customers only
+
+$fbsession = new Zend_Session_Namespace('facebook');
+
+$auth = Zend_Auth::getInstance();
+$storage= $auth->getStorage();
+$userData=$storage->read();
+
+$person = (array)$userData;
+//either shopperID or customerID
+$personKey=key($person);
+// //var_dump ($personKey);
+// //die();
+?>
+
+
+  <nav class="navbar-inverse" style='margin-bottom: 0'>
+<div class="container-fluid">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href='index.php'> Amazend </a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+
+  <li><a href="/index/index"> Home </a></li>
+  <li><a href=""> any thing</a></li>
+  <li><a href=""> About </a></li>
+
+  <?php if(empty($userData) && !isset($fbsession->first_name) && empty (isset($fbsession->first_name)) ){ ?>
+
+  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login as <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/shopper/login">Shopper</a></li>
+          <li><a href="/customer/login">Customer</a></li>
+        </ul>
+      </li>
+  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign-up as <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/shopper/add">Shopper</a></li>
+          <li><a href="/customer/add">Customer</a></li>
+
+          <li></li>
+        </ul>
+      </li>
+  <?php } else{?>
+
+      <li><a href="/customer/logout">Logout</a></li>
+      <?php } ?>
+
+  <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">language <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">En</a></li>
+          <li><a href="#">Ar</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+=======
+//Getting category list
+$cat_model = new Application_Model_Category();
+$cats = $cat_model->fetchAll()->toArray();
+
+//Getting cart items
+$cartitems_model = new Application_Model_CartProduct();
+$cart_items = $cartitems_model->fetchAll('cartID=1')->toArray();
+
+$auth = Zend_Auth::getInstance();
+$storage = $auth->getStorage();
+$userData = $storage->read();
+$categories = new Zend_Session_Namespace('category');
+// var_dump($categories->cat);
+// $person = (array)$userData;
+// //either shopperID or customerID
+// $personKey=key($person);
+// $userType = new Zend_Session_Namespace('userType');
+//  $userType->type = $personKey;
+//$userType->type =NULL;
+//var_dump ($personKey);
+//die();
+?>
+
+<!-- *************************************************************************************************** -->
+<!-- *** TOPBAR ***
+_________________________________________________________ -->
+<div id="top">
+    <div class="container">
+        <div class="col-md-6 offer" data-animate="fadeInDown">
+            <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+        </div>
+        <div class="col-md-6" data-animate="fadeInDown">
+            <ul class="menu">
+                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                </li>
+                <li><a href="register.html">Register</a>
+                </li>
+                <li><a href="contact.html">Contact</a>
+                </li>
+                <li><a href="#">Recently viewed</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="Login">Customer login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="customer-orders.html" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email-modal" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password-modal" placeholder="password">
+                        </div>
+
+                        <p class="text-center">
+                            <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                        </p>
+
+                    </form>
+
+                    <p class="text-center text-muted">Not registered yet?</p>
+                    <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- *** TOP BAR END *** -->
+
+<!-- *** NAVBAR ***
+_________________________________________________________ -->
+
+<div class="navbar navbar-default yamm" role="navigation" id="navbar">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand home" href="/index" data-animate-hover="bounce">
+                <img src="/img/logo.png" alt="Obaju logo" class="hidden-xs">
+                <img src="/img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+            </a>
+            <div class="navbar-buttons">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-align-justify"></i>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+                <a class="btn btn-default navbar-toggle" href="basket.html">
+                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"><?= count($cart_items); ?> items in cart</span>
+                </a>
+            </div>
+        </div>
+        <!--/.navbar-header -->
+
+        <div class="navbar-collapse collapse" id="navigation">
+
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active"><a href="index.html">Home</a>
+                </li>
+                <li class="dropdown yamm-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Departments <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="yamm-content">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h5>All Categories (<?= count($cats) ?>)</h5>
+                                        <ul>
+                                            <!--<?php foreach ($categories->cat as $category): ?>
+                                                        <li><a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
+                                                        </li>
+                                            <?php endforeach; ?>-->
+                                            <?php foreach ($cats as $category): ?>
+                                                <li>
+                                                    <a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                    <!-- <div class="col-sm-3">
+                                        <h5>Shoes</h5>
+                                        <ul>
+                                            <li><a href="category.html">Trainers</a>
+                                            </li>
+                                            <li><a href="category.html">Sandals</a>
+                                            </li>
+                                            <li><a href="category.html">Hiking shoes</a>
+                                            </li>
+                                            <li><a href="category.html">Casual</a>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+
+
+                                </div>
+                            </div>
+                            <!-- /.yamm-content -->
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown yamm-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Ladies <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="yamm-content">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h5>Clothing</h5>
+                                        <ul>
+                                            <li><a href="category.html">T-shirts</a>
+                                            </li>
+                                            <li><a href="category.html">Shirts</a>
+                                            </li>
+                                            <li><a href="category.html">Pants</a>
+                                            </li>
+                                            <li><a href="category.html">Accessories</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>Shoes</h5>
+                                        <ul>
+                                            <li><a href="category.html">Trainers</a>
+                                            </li>
+                                            <li><a href="category.html">Sandals</a>
+                                            </li>
+                                            <li><a href="category.html">Hiking shoes</a>
+                                            </li>
+                                            <li><a href="category.html">Casual</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>Accessories</h5>
+                                        <ul>
+                                            <li><a href="category.html">Trainers</a>
+                                            </li>
+                                            <li><a href="category.html">Sandals</a>
+                                            </li>
+                                            <li><a href="category.html">Hiking shoes</a>
+                                            </li>
+                                            <li><a href="category.html">Casual</a>
+                                            </li>
+                                            <li><a href="category.html">Hiking shoes</a>
+                                            </li>
+                                            <li><a href="category.html">Casual</a>
+                                            </li>
+                                        </ul>
+                                        <h5>Looks and trends</h5>
+                                        <ul>
+                                            <li><a href="category.html">Trainers</a>
+                                            </li>
+                                            <li><a href="category.html">Sandals</a>
+                                            </li>
+                                            <li><a href="category.html">Hiking shoes</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="banner">
+                                            <a href="#">
+                                                <img src="/img/banner.jpg" class="/img img-responsive" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="banner">
+                                            <a href="#">
+                                                <img src="/img/banner2.jpg" class="/img img-responsive" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.yamm-content -->
+                        </li>
+                    </ul>
+                </li>
+
+               <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                <?php if (empty($userData)) : ?>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Login as <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="modified"><a href="/shopper/login">Shopper</a></li>
+                            <li class="modified"><a href="/customer/login">Customer</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Sign-up as <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="modified"><a href="/shopper/add">Shopper</a></li>
+                            <li class="modified"><a href="/customer/add">Customer</a></li>
+
+                            <li></li>
+                        </ul>
+                    </li>
+                <?php else: ?>
+
+                    <li><a href="/Customer/logout">Logout</a></li>
+                <?php endif; ?>
+                    <!-- Language -->
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Language <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="modified"><a href="?ln=En">En</a></li>
+                        <li class="modified"><a href="?ln=Ar">Ar</a></li>
+                    </ul>
+                </li>
+                <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+
+        <div class="navbar-buttons">
+
+            <div class="navbar-collapse collapse right" id="basket-overview">
+                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm"><?= count($cart_items); ?> items in cart</span></a>
+            </div>
+            <!--/.nav-collapse -->
+
+            <div class="navbar-collapse collapse right" id="search-not-mobile">
+                <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="collapse clearfix" id="search">
+
+            <form class="navbar-form" role="search" action="/index/search" method="GET" >
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="name">
+                    <span class="input-group-btn">
+
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                    </span>
+                </div>
+            </form>
+
+        </div>
+        <!--/.nav-collapse -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#navbar -->
+
+
+<!-- *** NAVBAR END *** -->
+>>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
+
+<?php echo $this->layout()->content; ?>
+
+<!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/waypoints.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/bootstrap-hover-dropdown.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/front.js"></script>
