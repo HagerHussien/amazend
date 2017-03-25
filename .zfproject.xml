@@ -27,6 +27,8 @@
           <actionMethod actionName="sendEmail"/>
           <actionMethod actionName="block"/>
           <actionMethod actionName="deletecoupon"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="login"/>
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
@@ -45,6 +47,9 @@
           <actionMethod actionName="logout"/>
           <actionMethod actionName="mai"/>
           <actionMethod actionName="addwish"/>
+          <actionMethod actionName="fpAuthAction"/>
+          <actionMethod actionName="fblogoutAction"/>
+          <actionMethod actionName="fblogin"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -72,6 +77,9 @@
         <formFile formName="ShopperLogin"/>
         <formFile formName="CommentForm"/>
         <formFile formName="Search"/>
+        <formFile formName="Product"/>
+        <formFile formName="Admin"/>
+        <formFile formName="AdminLogin"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -91,6 +99,7 @@
         <modelFile modelName="CartProduct"/>
         <modelFile modelName="Comment"/>
         <modelFile modelName="Orderhistory"/>
+        <modelFile modelName="Offer"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -154,6 +163,9 @@
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addToWish"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="deleteItem"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
@@ -209,6 +221,21 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="fpAuthAction"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="fblogoutAction"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="fblogin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="mai"/>
@@ -296,6 +323,7 @@
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="addToWish"/>
             <testApplicationActionMethod forActionName="deleteItem"/>
             <testApplicationActionMethod forActionName="myWishList"/>
             <testApplicationActionMethod forActionName="addToCart"/>

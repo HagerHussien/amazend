@@ -5,6 +5,26 @@ class CustomerController extends Zend_Controller_Action
   public $language;
   public function init()
   {
+       //Session to be opened
+            $loginSession = new Zend_Session_Namespace('user');
+            
+        //facebook session
+
+        $fpsession = new Zend_Session_Namespace('facebook');
+        
+        // $auth = Zend_Auth::getInstance();
+        // $requestActionName = $this->getRequest()->getActionName();
+        // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        // {
+        //     $this->redirect("customer/login");
+        // }
+
+        // if ($auth->hasIdentity() && $requestActionName= 'login' )
+        // {
+        //     $this->redirect("/index");
+        // }
+
+
       $request= $this->getRequest()->getParam('ln');
       //echo $request;
       if(empty($request)){
@@ -16,7 +36,7 @@ class CustomerController extends Zend_Controller_Action
           $this->language->type = $request ;
           // echo $this->language->type;
       }
-
+ 
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
@@ -40,6 +60,7 @@ class CustomerController extends Zend_Controller_Action
 
         $form = new Application_Form_CustomerLogin();
         $request = $this->getRequest();
+
         if ($request->isPost()) {
         if ($form->isValid($request->getPost( ))) {
             // after check for validation get email and password to start auth
@@ -73,6 +94,11 @@ class CustomerController extends Zend_Controller_Action
             // session step 3
             //write values to session (by default it’s written to Zend_Auth namespace)
             $storage->write($authAdapter->getResultRowObject(array('customerID', 'email','EnName')));
+
+            // //Session to be opened
+            // $loginSession = new Zend_Session_Namespace('user');
+            $loginSession ->user = $authAdapter->getResultRowObject(array('customerID', 'email','EnName'));
+
             // redirect to root index/index
             return $this->redirect('/index');
         }
@@ -84,6 +110,17 @@ class CustomerController extends Zend_Controller_Action
         }
 
             $this->view->form = $form;
+
+            //Facebook button
+            $fb = new Facebook\Facebook([
+            'app_id' => '1769107093406339', // Replace {app-id} with your app id
+            'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
+            'default_graph_version' => 'v2.2',
+            ]);
+            $helper = $fb->getRedirectLoginHelper();
+            $loginUrl = $helper->getLoginUrl($this->view->serverUrl().
+            '/customer/fp-auth-action');
+            $this->view->facebook_url = $loginUrl;
 
     }
 
@@ -194,12 +231,15 @@ class CustomerController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-
+        Zend_Session::namespaceUnset('user');
+        Zend_Session::namespaceUnset('facebook');
+        Zend_Session::namespaceUnset('userType');
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
+        $this->redirect('/index');
         // $userType->type = NULL;
-         Zend_Session::namespaceUnset('userType');
-         $this->redirect('/Customer/login');
+         
+         // $this->redirect('/Customer/login');
 
     }
 
@@ -223,5 +263,118 @@ class CustomerController extends Zend_Controller_Action
         }
     }
 
+    public function fpAuthActionAction()
+    {
+        // define
+        //instance from facebook
+        $fb = new Facebook\Facebook ([
+        'app_id' => '1769107093406339', // Replace {app-id} with your app id
+        'app_secret ' => '39eba50bb7e6bbcc985a87f47656e7d4',
+        'default_graph_version ' => 'v2.2',
+        ]);
+        // use helper method of facebook for login
+        $helper = $fb->getRedirectLoginHelper();
+        try {
+        $accessToken = $helper->getAccessToken();
+        }
+        catch (Facebook\Exceptions\FacebookResponseException $e) {
+        // When Graph returns an error (headers link)
+        echo 'Graph returned an error: ' . $e->getMessage();
+        Exit;
+        }
+        catch (Facebook\Exceptions\FacebookSDKException $e) {
+        // When validation fails or other local issues
+        echo 'Facebook SDK returned an error: ' . $e->getMessage();
+        Exit;
+        }
+        // handle access token & print full error message
+        if (!isset($accessToken)) {
+        if ($helper->getError()) {
+        header('HTTP/1.0 401 Unauthorized');
+        echo "Error: " . $helper->getError() . "\n";
+        echo "Error Code: " . $helper->getErrorCode() . "\n";
+        echo "Error Reason: " . $helper->getErrorReason() . "\n";
+        echo "Error Description: " . $helper->getErrorDescription() .
+        "\n";
+        }
+        else {
+        header('HTTP/1.0 400 Bad Request');
+        echo 'Bad request';
+        }
+        Exit;
+        }
+        // Logged in
+        // The OAuth 2.0 client handler helps us manage access tokens
+        $oAuth2Client = $fb-> getOAuth2Client ();
+        //check if access token expired
+        if (!$accessToken-> isLongLived ()) {
+        // Exchanges a short-lived access token for a long-lived one
+        try {
+        // try to get another access token
+        $accessToken = $oAuth2Client-> getLongLivedAccessToken ($accessToken);
+        }
+        catch (Facebook\Exceptions\FacebookSDKException $e) {
+        echo "<p>Error getting long-lived access token: " .
+        $helper->getMessage () . "</p>\n\n";
+        Exit;
+        }
+        }
+        //Sets the default fallback access token so we don't have to pass it to each request
+        $fb->setDefaultAccessToken($accessToken);
+        try {
+        $response = $fb->get('/me');
+        $userNode = $response->getGraphUser();
+        }
+        catch (Facebook\Exceptions\FacebookResponseException $e) {
+        // When Graph returns an error
+        echo 'Graph returned an error: ' . $e->getMessage();
+        Exit;
+        }
+        catch (Facebook\Exceptions\FacebookSDKException $e) {
+        // When validation fails or other local issues
+        echo 'Facebook SDK returned an error: ' . $e->getMessage();
+        Exit;
+        }
+
+        // //facebook session
+
+        // $fpsession = new Zend_Session_Namespace('facebook');
+        // write in session email & id & first_name
+        $fpsession->first_name = $userNode->getName();
+
+
+
+        $this->redirect('/index');
+    }
+
+    public function fblogoutActionAction()
+    {
+        Zend_Session::namespaceUnset('facebook');
+        $this->redirect("/index");
+    }
+
+    public function fbloginAction()
+    {
+        //Facebook button
+            $fb = new Facebook\Facebook([
+            'app_id' => '1769107093406339', // Replace {app-id} with your app id
+            'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
+            'default_graph_version' => 'v2.2',
+            ]);
+            $helper = $fb->getRedirectLoginHelper();
+            $loginUrl = $helper->getLoginUrl($this->view->serverUrl().
+            '/customer/fp-auth-action');
+            $this->view->facebook_url = $loginUrl;
+            // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+            $this->view->facebookUrl =  '<a href="' . htmlspecialchars( $loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
+        
+    }
+
 
 }
+
+
+
+
+
+

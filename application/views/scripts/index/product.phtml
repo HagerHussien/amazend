@@ -2,6 +2,7 @@
 <html lang="en">
     <?php
     //$userType = new Zend_Session_Namespace('userType');
+<?php  //$userType = new Zend_Session_Namespace('userType');
 //$personKey= $userType->type ;
     $personKey = "adminID";
     ?>
@@ -354,17 +355,19 @@
                                             <!-- hager -->
                                             <table class="table">
                                                 <tr>
-                                                    <th>Product Name</th>  <th>number of users who purchased</th> 
-                                                    <th>The amount of money gained </th>
-                                                </tr>
-                                                <?php
-                                                // $pro = new Application_Model_Product();
-
+             <th>number of users who purchased</th> 
+             <th>The amount of money gained </th>
+            </tr>
+            <?php
+           // $pro = new Application_Model_Product();
+          
                                                 echo "<tr>" .
                                                 "<td>" . $this->product["EnName"] . "</td>" .
-                                                "<td>" . $this->product['no_purchase'] . "</td>" .
-                                                "<td>" . $this->product['no_purchase'] * $this->product['price'] . "</td>" . "</tr>";
-                                                ?>
+            "<td>" . $this->product['no_purchase'] . "</td>" .
+            "<td>" . $this->product['no_purchase']*$this->product['price'] . "</td>" ."</tr>";
+            
+            ?>
+            
                                             </table>
 
 

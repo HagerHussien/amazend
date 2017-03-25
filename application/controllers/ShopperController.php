@@ -5,7 +5,23 @@ class ShopperController extends Zend_Controller_Action
     public $language;
     public function init()
     {
+        //Session to be opened
+            $loginSession = new Zend_Session_Namespace('user');
+$auth = Zend_Auth::getInstance();
+$requestActionName = $this->getRequest()->getActionName();
+if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        {
+            $this->redirect("shopper/login");
+        }
+        if ($auth->hasIdentity() && $requestActionName= 'login' )
+        {
+            $this->redirect("/index");
+
+        }
+
+            
       $request= $this->getRequest()->getParam('ln');
+
       //echo $request;
       if(empty($request)){
            $this->language = new Zend_Session_Namespace('language');
@@ -73,8 +89,14 @@ class ShopperController extends Zend_Controller_Action
             // session step 3
             //write values to session (by default it’s written to Zend_Auth namespace)
             $storage->write($authAdapter->getResultRowObject(array('shopperID', 'email','EnName')));
+
+            // //Session to be opened
+            // $loginSession = new Zend_Session_Namespace('user');
+
+            $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
+
             // redirect to root index/index
-            return $this->redirect('/');
+            return $this->redirect('/index');
         }
         else {
             // if user is not valid send error message to view
@@ -109,7 +131,11 @@ class ShopperController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-        // action body
+        Zend_Session::namespaceUnset('user');
+        Zend_Session::namespaceUnset('facebook');
+        $auth=Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->redirect('/index');
     }
 
 

@@ -3,6 +3,9 @@
 
     <!-- jQuery library -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
 
@@ -39,8 +42,6 @@ $categories = new Zend_Session_Namespace('category');
 // $userType = new Zend_Session_Namespace('userType');
 //  $userType->type = $personKey;
 //$userType->type =NULL;
-//var_dump ($personKey);
-//die();
 ?>
 
 <!-- *************************************************************************************************** -->
@@ -271,7 +272,7 @@ _________________________________________________________ -->
                     </li>
                 <?php else: ?>
 
-                    <li><a href="/Customer/logout">Logout</a></li>
+                    <li><a href="/customer/logout">Logout</a></li>
                 <?php endif; ?>
                 <!-- Language -->
                 <li class="dropdown">

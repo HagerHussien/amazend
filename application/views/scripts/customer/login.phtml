@@ -11,7 +11,10 @@
 /*$this->title = "login";
 $this->headTitle($this->title);*/
 echo $this->form ;
+echo $this->facebookUrl;
 ?>
+<!-- <a href=""><img src="img/fblogin-btn.png"></a> -->
+<?php echo '<a href="' . htmlspecialchars( $this->facebook_url) . '"> <img src="/img/fblogin-btn.png"></img></a>';?>
 
 </table>
 </div>

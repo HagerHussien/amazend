@@ -52,18 +52,21 @@ echo $personKey;
             <div class="container">
                 <div class="col-md-12">
                     <div id="main-slider">
-                        <div class="item">
-                            <img src="/img/main-slider1.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" src="/img/main-slider2.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" src="/img/main-slider3.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" src="/img/main-slider4.jpg" alt="">
-                        </div>
+                      <?php $count = 0 ?>
+                      <?php foreach ($this->slider_products as $slider_product) { ?>
+                          <?php if($count == 0){ ?>
+                              <div class="item">
+                                  <img src="<?= $slider_product['photo'] ?>" alt="" class="img-responsive">
+                              </div>
+                          <?php } else{ ?>
+                              <div class="item">
+                                  <img class="img-responsive" src="<?= $slider_product['photo'] ?>" alt="">
+                              </div>
+                          <?php }
+                          $count++;
+                        }
+                           ?>
+
                     </div>
                     <!-- /#main-slider -->
                 </div>
@@ -163,7 +166,7 @@ echo $personKey;
                     <?php
 		$products = $this->products;
 		foreach ($products as  $product):?>
-                        
+
                         <div class="col-md-3">
                         <div class="item">
                             <div class="product">
