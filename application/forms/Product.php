@@ -110,6 +110,7 @@ class Application_Form_Product extends Zend_Form
             ->setAttribs(Array('placeholder' => 'Example: 30', 'class' => 'form-control'));
         
         $submit= new Zend_Form_Element_Submit('create');
+        $submit->setLabel('Save');
         $submit->setAttribs(array('class'=>'btn btn-success'));
         
         $this->addElements(array(

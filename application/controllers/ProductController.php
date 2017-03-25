@@ -50,7 +50,6 @@ class ProductController extends Zend_Controller_Action
     {
          // action body
          $form = new Application_Form_Product();
-        $form->submit->setLabel('Save');
 
         $this->view->form = $form;
 
