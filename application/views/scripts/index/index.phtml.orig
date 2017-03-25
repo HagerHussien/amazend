@@ -57,11 +57,12 @@
                             <?php foreach ($this->slider_products as $slider_product) { ?>
                                     <?php if ($count == 0) { ?>
                                     <div class="item">
-                                        <img src="/img/<?=$slider_product['photo'] ?>" alt="" class="img-responsive">
+        <?php var_dump($slider_product['photo']); ?>
+                                        <img src="data:image/jpg;base64, <?= base64_encode($slider_product['photo']) ?>" alt="" class="img-responsive">
                                     </div>
     <?php } else { ?>
                                     <div class="item">
-                                        <img class="img-responsive" src="/img/<?= $slider_product['photo'] ?>" alt="">
+                                        <img class="img-responsive" src="<?= $slider_product['photo'] ?>" alt="">
                                     </div>
                                 <?php
                                 }
@@ -240,6 +241,7 @@
             </div>
             <!-- /#all -->
 
+<<<<<<< HEAD
             <!-- *** SCRIPTS TO INCLUDE ***
          _________________________________________________________ -->
             <script src="/js/jquery.cookie.js"></script>
@@ -247,6 +249,16 @@
             <script src="/js/modernizr.js"></script>
             <script src="/js/owl.carousel.min.js"></script>
             <script src="/js/front.js"></script>
+=======
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/modernizr.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/front.js"></script>
+>>>>>>> 768453f62bae3502f3327ec3bfddec91c113409a
 
 
     </body>
