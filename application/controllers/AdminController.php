@@ -1,29 +1,23 @@
 <?php
 
-
-// require_once 'Zend/Mail.php';
- 
-// Create transport
-//require_once 'Zend/Mail/Transport/Smtp.php';
-
 class AdminController extends Zend_Controller_Action
 {
 
     public function init()
     {
         /* Initialize action controller here */
+         $layout = $this->_helper->layout();
+        $layout->setLayout('admlayout');
     }
 
     public function indexAction()
     {
         // action body
     }
-
     public function adminAction()
     {
         // action body
     }
-
     public function addCategoryAction()
     {
         // action body
@@ -46,7 +40,6 @@ class AdminController extends Zend_Controller_Action
             }
         }
     }
-
     public function deleteCategoryAction()
     {
         // action body
@@ -55,7 +48,6 @@ class AdminController extends Zend_Controller_Action
         $cat_model->deleteCat($cat_id);
         $this->_helper->redirector('index');
     }
-
     public function editCategoryAction()
     {
         // action body
@@ -113,19 +105,14 @@ class AdminController extends Zend_Controller_Action
 
     public function sendCouponAction()
     {
-
         $coupon_model = new Application_Model_Coupon();
        $coupon_user = new  Application_Model_Customer ();
         $coupon_id = $this->_request->getParam("id");
         $this->view->coupon=$coupon_id;
-    
-
     }
-
     public function sendEmailAction()
     {
         // action body
-
         $coupon_model = new Application_Model_Coupon();
         $coupon_user = new  Application_Model_Customer ();
         $user_email = $this->_request->getParam("email");
@@ -165,46 +152,24 @@ class AdminController extends Zend_Controller_Action
         $cast_id = $this->_request->getParam("id");
         $user=$cast_model->customerDetails($cast_id);
 
-       
         if($user['status'] ==='unblocked'){
         $status='blocked';
         $cast_model->updateCustomer($cast_id,$status);
          $this->_helper->redirector('index');
-       
-          }else{
-       
+          }else{  
         $status='unblocked';
         $cast_model->updateCustomer($cast_id,$status);
          $this->_helper->redirector('index');
     }
+
     }
 
     public function deletecouponAction()
     {
         // action body
-
         $coupon_model = new Application_Model_Coupon();
         $coupon_id = $this->_request->getParam("id");
         $coupon_model->deleteCoupon($coupon_id);
         $this->_helper->redirector('index');
-    }
-    
+    }   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
