@@ -71,8 +71,8 @@ $(document).ready(function(){
 });
 });
 
-$(document).ready(function(e){
-    $('.star-5').click(function(){
+$(document).ready(function(){
+    $('.star-5').click(function(e){
         rate = 5 ;
         productID = e.target.id;
         $.ajax({
