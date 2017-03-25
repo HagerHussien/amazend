@@ -2,7 +2,11 @@
 <html lang="en">
 <?php 
     //$userType = new Zend_Session_Namespace('userType');
+<<<<<<< HEAD
  //$userType = new Zend_Session_Namespace('userType');
+=======
+//<?php  //$userType = new Zend_Session_Namespace('userType');
+>>>>>>> 68cde6a54b1cb5648bf73d47e8751eae60e69e25
 //$personKey= $userType->type ;
     $personKey = "adminID";
     ?>
