@@ -8,16 +8,20 @@ class ShopperController extends Zend_Controller_Action
         //Session to be opened
             $loginSession = new Zend_Session_Namespace('user');
 $auth = Zend_Auth::getInstance();
-        $requestActionName = $this->getRequest()->getActionName();
-        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+$requestActionName = $this->getRequest()->getActionName();
+if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         {
             $this->redirect("shopper/login");
         }
         if ($auth->hasIdentity() && $requestActionName= 'login' )
         {
             $this->redirect("/index");
-    
+
+        }
+
+            
       $request= $this->getRequest()->getParam('ln');
+
       //echo $request;
       if(empty($request)){
            $this->language = new Zend_Session_Namespace('language');

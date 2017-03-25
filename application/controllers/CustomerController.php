@@ -5,10 +5,25 @@ class CustomerController extends Zend_Controller_Action
   public $language;
   public function init()
   {
-        //Session to be opened
+       //Session to be opened
             $loginSession = new Zend_Session_Namespace('user');
             
         //facebook session
+
+        $fpsession = new Zend_Session_Namespace('facebook');
+        
+        // $auth = Zend_Auth::getInstance();
+        // $requestActionName = $this->getRequest()->getActionName();
+        // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        // {
+        //     $this->redirect("customer/login");
+        // }
+
+        // if ($auth->hasIdentity() && $requestActionName= 'login' )
+        // {
+        //     $this->redirect("/index");
+        // }
+
 
       $request= $this->getRequest()->getParam('ln');
       //echo $request;
@@ -21,24 +36,7 @@ class CustomerController extends Zend_Controller_Action
           $this->language->type = $request ;
           // echo $this->language->type;
       }
- //Session to be opened
-            $loginSession = new Zend_Session_Namespace('user');
-            
-        //facebook session
-
-        $fpsession = new Zend_Session_Namespace('facebook');
-        
-        $auth = Zend_Auth::getInstance();
-        $requestActionName = $this->getRequest()->getActionName();
-        if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
-        {
-            $this->redirect("customer/login");
-        }
-
-        if ($auth->hasIdentity() && $requestActionName= 'login' )
-        {
-            $this->redirect("/index");
-        }
+ 
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
@@ -234,12 +232,13 @@ class CustomerController extends Zend_Controller_Action
     {
         Zend_Session::namespaceUnset('user');
         Zend_Session::namespaceUnset('facebook');
+        Zend_Session::namespaceUnset('userType');
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->redirect('/index');
         // $userType->type = NULL;
-         Zend_Session::namespaceUnset('userType');
-         $this->redirect('/Customer/login');
+         
+         // $this->redirect('/Customer/login');
 
     }
 

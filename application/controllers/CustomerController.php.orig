@@ -2,7 +2,8 @@
 
 class CustomerController extends Zend_Controller_Action
 {
-<<<<<<< HEAD
+
+    public $language;
 
     public function init()
     {
@@ -25,10 +26,9 @@ class CustomerController extends Zend_Controller_Action
             $this->redirect("/index");
         }
 
-=======
-  public $language;
-  public function init()
-  {
+
+  
+  
       $request= $this->getRequest()->getParam('ln');
       //echo $request;
       if(empty($request)){
@@ -51,7 +51,7 @@ class CustomerController extends Zend_Controller_Action
         // {
         //     $this->redirect("/index");
         // }
->>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
+
     }
 
     public function indexAction()
@@ -235,12 +235,8 @@ class CustomerController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-<<<<<<< HEAD
         Zend_Session::namespaceUnset('user');
         Zend_Session::namespaceUnset('facebook');
-=======
-
->>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         // $userType->type = NULL;
@@ -249,7 +245,7 @@ class CustomerController extends Zend_Controller_Action
 
     }
 
-<<<<<<< HEAD
+
     public function fpAuthActionAction()
     {
         // define
@@ -355,7 +351,7 @@ class CustomerController extends Zend_Controller_Action
             // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
             $this->view->facebookUrl =  '<a href="' . htmlspecialchars( $loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
         
-=======
+
     public function maiAction()
     {
         // action body
@@ -374,7 +370,7 @@ class CustomerController extends Zend_Controller_Action
             $wish_model->addToWish($customer_id,$product_id);
             $this->redirect("/index/product/pid/$product_id");
         }
->>>>>>> a20b3f6aaaa18ee3366ba2fa2fe714e9910a8cb0
+
     }
 
 
