@@ -54,21 +54,7 @@ function getCat($id)
 
 		$this->insert($data);
 	}
-	public function topProduct($catID)
-	{
-		$db = Zend_Db_Table::getDefaultAdapter();
-		
-		$select = new Zend_Db_Select($db);
-
-		$select ->from('product')
-			->where( 'product.categoryID='.(int)$catID)
-			->order('product.no_purchase DESC')
-			->limit(1);
-		return $resultSet = $db->fetchAll($select);
-
-
-
-	}
+	
 
 
 
