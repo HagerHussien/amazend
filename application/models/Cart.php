@@ -28,8 +28,14 @@ class Application_Model_Cart extends Zend_Db_Table_Abstract {
 
     function getCartID($customer_id) {
 
-        $result = $this->fetchAll("customerID=$customer_id")->toArray()[0];
-        return $result['cartID'];
+        $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
+        $select = new Zend_Db_Select($db);
+
+        $select->from('cart',array('cartID'))
+                ->joinLeft('order_history', 'cart.cartID = order_history.order_id',array())
+                ->where("order_history.order_status_id IS NULL AND cart.customerID = $customer_id ");
+        $result = $db->fetchAll($select);
+        return $result;
     }
 
 }

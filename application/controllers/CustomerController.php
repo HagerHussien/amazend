@@ -153,42 +153,21 @@ class CustomerController extends Zend_Controller_Action
         $customer_id = 1;
         $cart_model = new Application_Model_Cart();
         $cart_product_model = new Application_Model_CartProduct();
-        //$product_id = $this->_request->getParam('pid');
-        $product_id= 1;
-        $check_result = $cart_model->checkExistence(1);
-        echo $check_result;
-        if($check_result){  // this customer already have cart
-          echo "this customer already have cart";
-            $cart_id = $cart_model->getCartID($customer_id);
+        $product_model = new Application_Model_Product();
 
-            $cart_id = $cart_model->getCartID($customer_id);
-            if($cart_product_model->checkExistence($product_id)){
-                //echo "already added";
-                //alert('laaaaaaaaaaa');
-                //$this->entityManager->flush();
-              $this->redirect("/Index/product/pid/$product_id");
-            }else{
-                $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
-                $this->redirect("/Index/product/pid/$product_id");
-            }
-        }else{
-          echo "this customer already have no  cart";
-          echo $check_result;
-
-
+        $product_id = $this->_request->getParam('pid');
+        $cart_id = $cart_model->getCartID($customer_id);
+        $cartID = $cart_id[0]['cartID'];
+        if(empty($cartID)){
             $cart_model->newCart($customer_id);
-            $cart_id = $cart_model->getCartID($customer_id);
-            if($cart_product_model->checkExistence($product_id)){
-                //echo "already added";
-
-                $this->redirect("/Index/product/pid/$product_id");
-            }else{
-                $cart_product_model->addNewItemToCart($cart_id,$product_id,1);
-                $this->redirect("/Index/product/pid/$product_id");
-            }
-
         }
-
+        $check = $cart_product_model->checkExistence($cartID,$product_id);
+        if($check){
+            $product_price = $product_model->prouduct_price($product_id);
+            $product_price = $product_price[0]['price'];
+            $cart_product_model->addNewItemToCart($cartID,$product_id,1,$product_price,$product_price);
+        }
+        $this->redirect("/Index/product/pid/$product_id");
     }
 
     public function logoutAction()
