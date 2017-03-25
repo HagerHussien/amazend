@@ -66,6 +66,8 @@
         <controllerFile controllerName="Product">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -258,6 +260,12 @@
           <viewControllerScriptsDirectory forControllerName="Checkout">
             <viewScriptFile forActionName="removeitem"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -343,6 +351,8 @@
           <testApplicationControllerFile forControllerName="Product">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="delete"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
