@@ -2,7 +2,6 @@
 <html lang="en">
     <?php
     //$userType = new Zend_Session_Namespace('userType');
-//<?php  //$userType = new Zend_Session_Namespace('userType');
 //$personKey= $userType->type ;
     $personKey = "adminID";
     ?>
@@ -355,19 +354,17 @@
                                             <!-- hager -->
                                             <table class="table">
                                                 <tr>
-             <th>number of users who purchased</th> 
-             <th>The amount of money gained </th>
-            </tr>
-            <?php
-           // $pro = new Application_Model_Product();
-          
+                                                    <th>Product Name</th>  <th>number of users who purchased</th> 
+                                                    <th>The amount of money gained </th>
+                                                </tr>
+                                                <?php
+                                                // $pro = new Application_Model_Product();
+
                                                 echo "<tr>" .
                                                 "<td>" . $this->product["EnName"] . "</td>" .
-            "<td>" . $this->product['no_purchase'] . "</td>" .
-            "<td>" . $this->product['no_purchase']*$this->product['price'] . "</td>" ."</tr>";
-            
-            ?>
-            
+                                                "<td>" . $this->product['no_purchase'] . "</td>" .
+                                                "<td>" . $this->product['no_purchase'] * $this->product['price'] . "</td>" . "</tr>";
+                                                ?>
                                             </table>
 
 
@@ -378,6 +375,37 @@
                             </div>
 
                         </div>
+<<<<<<< HEAD
+=======
+                        <?php if($personKey == "adminID"){ ?>
+                        <div role="tabpanel" class="tab-pane" id="statistic">
+                          <div class="box" id="statistics">
+
+                          <!-- hager -->
+        <table class="table">
+            <tr>
+             <th>number of users who purchased</th> 
+             <th>The amount of money gained </th>
+            </tr>
+            <?php
+           // $pro = new Application_Model_Product();
+            echo "<tr>".
+            "<td>" . $this->product['no_purchase'] . "</td>" .
+            "<td>" . $this->product['no_purchase']*$this->product['price'] . "</td>" ."</tr>";
+            
+            ?>
+            
+            </table>
+                         
+
+                          </div>
+                        </div>
+                  <?php    } ?>
+
+                      </div>
+
+                    </div>
+>>>>>>> da5d7530b398acdde63ace163aafe0e5735289ab
 
 
                         <div class="row same-height-row">
@@ -739,12 +767,14 @@
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
-       <script src="/js/jquery.cookie.js"></script>
-    <script src="/js/waypoints.min.js"></script>
-    <script src="/js/modernizr.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/front.js"></script>
-
+        <script src="/js/jquery-1.11.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.cookie.js"></script>
+        <script src="/js/waypoints.min.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/bootstrap-hover-dropdown.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/front.js"></script>
 
 
 
