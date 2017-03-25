@@ -5,11 +5,15 @@ class ShopperController extends Zend_Controller_Action
 
     public function init()
     {
+        //Session to be opened
+            $loginSession = new Zend_Session_Namespace('user');
+
+    
         $auth = Zend_Auth::getInstance();
         $requestActionName = $this->getRequest()->getActionName();
         if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         {
-            $this->redirect("customer/login");
+            $this->redirect("shopper/login");
         }
         if ($auth->hasIdentity() && $requestActionName= 'login' )
         {
@@ -60,7 +64,13 @@ class ShopperController extends Zend_Controller_Action
             $storage = $auth->getStorage();
             // session step 3
             //write values to session (by default it’s written to Zend_Auth namespace)
-            $storage->write($authAdapter->getResultRowObject(array('email', 'id','EnName')));
+            $storage->write($authAdapter->getResultRowObject(array('shopperID','email','EnName')));
+
+            // //Session to be opened
+            // $loginSession = new Zend_Session_Namespace('user');
+
+            $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
+
             // redirect to root index/index
             return $this->redirect('/index');
         }
@@ -97,7 +107,11 @@ class ShopperController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-        // action body
+        Zend_Session::namespaceUnset('user');
+        Zend_Session::namespaceUnset('facebook');
+        $auth=Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->redirect('/index');
     }
 
 

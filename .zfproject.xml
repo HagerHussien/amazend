@@ -25,6 +25,8 @@
           <actionMethod actionName="sendEmail"/>
           <actionMethod actionName="block"/>
           <actionMethod actionName="deletecoupon"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="login"/>
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
@@ -42,6 +44,9 @@
           <actionMethod actionName="addPtoductToCart"/>
           <actionMethod actionName="addcart"/>
           <actionMethod actionName="logout"/>
+          <actionMethod actionName="fpAuthAction"/>
+          <actionMethod actionName="fblogoutAction"/>
+          <actionMethod actionName="fblogin"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -65,6 +70,9 @@
         <formFile formName="ShopperSignup"/>
         <formFile formName="ShopperLogin"/>
         <formFile formName="CommentForm"/>
+        <formFile formName="Product"/>
+        <formFile formName="Admin"/>
+        <formFile formName="AdminLogin"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -83,6 +91,7 @@
         <modelFile modelName="Cart"/>
         <modelFile modelName="CartProduct"/>
         <modelFile modelName="Comment"/>
+        <modelFile modelName="Offer"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -201,6 +210,21 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="fpAuthAction"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="fblogoutAction"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="fblogin"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

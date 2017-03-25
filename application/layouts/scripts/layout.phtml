@@ -5,6 +5,8 @@ min.css" integrity="sha384-
 1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-
 theme.min.css" integrity="sha384-
@@ -17,17 +19,21 @@ crossorigin="anonymous"></script>
 </head>
 <!-- nav header -->
 <?php
+//set first one as customerID & retrieve it Facebook is for customers only
 
- $auth = Zend_Auth::getInstance();
+$fbsession = new Zend_Session_Namespace('facebook');
+
+$auth = Zend_Auth::getInstance();
 $storage= $auth->getStorage();
 $userData=$storage->read();
 
 $person = (array)$userData;
 //either shopperID or customerID
 $personKey=key($person);
-//var_dump ($personKey);
-//die();
+// //var_dump ($personKey);
+// //die();
 ?>
+
 
   <nav class="navbar-inverse" style='margin-bottom: 0'>
 <div class="container-fluid">
@@ -46,11 +52,11 @@ $personKey=key($person);
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
 
-  <li><a href="/Index/index"> Home </a></li>
+  <li><a href="/index/index"> Home </a></li>
   <li><a href=""> any thing</a></li>
   <li><a href=""> About </a></li>
 
-  <?php if(empty($userData)){ ?>
+  <?php if(empty($userData) && !isset($fbsession->first_name) && empty (isset($fbsession->first_name)) ){ ?>
 
   <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login as <span class="caret"></span></a>

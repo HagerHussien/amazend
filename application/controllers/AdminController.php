@@ -11,7 +11,8 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        // //Session to be opened
+        $loginSession = new Zend_Session_Namespace('user');
     }
 
     public function indexAction()
@@ -187,8 +188,90 @@ class AdminController extends Zend_Controller_Action
         $this->_helper->redirector('index');
     }
 
+    public function addAction()
+    {
+        $form = new Application_Form_Admin();
+        //$this->view->admin=$form;
+
+        $request = $this->getRequest();
+        if($request->isPost())
+        {
+            if($form->isValid($request->getParams()))
+            {
+                $adminModel = new Application_Model_Admin();
+                $adminModel->addNewAdmin($request->getPost());
+                //to be changed
+                $this->redirect('/admin/login');
+
+            }
+        }
+         $this->view->form = $form;
+    }
+
+    public function loginAction()
+    {
+        //authentiation to be done
+
+        $form = new Application_Form_AdminLogin();
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+        if ($form->isValid($request->getPost( ))) {
+            // after check for validation get email and password to start auth
+        $email = $request->getParam('email');
+        $password = $request->getParam('password');
+        /********* Authentication Steps ******/
+        // step 1
+        //we get object of ZendDbAdapter to know which database we connect on
+        $db = Zend_Db_Table::getDefaultAdapter( );
+        //step 2
+        // define object of ZendAuthAdapter with paramters
+        // (ZendDbAdapter Object, table name , identity column , credential column)
+        $authAdapter = new Zend_Auth_Adapter_DbTable($db,'admin','email','password');
+        //step 3
+        //set the identity column value and credential column value
+        $authAdapter->setIdentity($email);
+        $authAdapter->setCredential($password);
+        //step 4
+        //perform authentication
+        $result = $authAdapter->authenticate( );
+        //step 5
+        // check if authentication is valid
+        if ($result->isValid( )) {
+                /********* Session Steps ******/
+            //session step 1
+            // get object from ZendAuth Class
+            $auth = Zend_Auth::getInstance();
+            //session step 2
+            // get storage to write session on it
+            $storage = $auth->getStorage();
+            // session step 3
+            //write values to session (by default it’s written to Zend_Auth namespace)
+            $storage->write($authAdapter->getResultRowObject(array('adminID','email','EnName')));
+
+            // //Session to be opened
+            // $loginSession = new Zend_Session_Namespace('user');
+
+            $loginSession ->user = $authAdapter->getResultRowObject(array('adminID', 'email','EnName'));
+
+            // redirect to root index/index
+            return $this->redirect('/index');
+        }
+        else {
+            // if user is not valid send error message to view
+            $this->view->error_message = "Invalid Email or Password!";
+        }
+        }
+        }
+
+            $this->view->form = $form;
+    }
+
 
 }
+
+
+
+
 
 
 
