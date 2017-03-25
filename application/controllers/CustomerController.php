@@ -115,6 +115,7 @@ class CustomerController extends Zend_Controller_Action
         $isDeleted=$wish_model->deleteItem($customer_id,$prod_id);
         if ($isDeleted) {
             $success_msg="Item removed successfully";
+            $this->redirect('/customer/my-wish-list');
         }
         else{
             $success_msg="Item already removed from your wishlist";

@@ -1,13 +1,14 @@
 <head>
     <!-- Latest compiled and minified CSS -->
-   
+
     <!-- jQuery library -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- <link href="/css/bootstrap-theme.min.css" rel="stylesheet"> -->
     <link href="/css/modified.css" rel="stylesheet">
+    <!-- <script src="js/respond.min.js"></script> -->
 
 </head>
 <!-- nav header -->
@@ -17,8 +18,15 @@ $cat_model = new Application_Model_Category();
 $cats = $cat_model->fetchAll()->toArray();
 
 //Getting cart items
-$cartitems_model = new Application_Model_CartProduct();
-$cart_items = $cartitems_model->fetchAll('cartID=1')->toArray();
+$db = Zend_Db_Table::getDefaultAdapter(); //set in config file
+$select = new Zend_Db_Select($db);
+$select->from('cart', array('cartID', 'customerID')) //the array specifies which columns I want returned in my result set
+        //by specifying an empty array, I am saying that I don't care about the columns from this table
+        ->joinInner('cart_product', 'cart.cartID = cart_product.cartID', array())
+        ->joinLeft('order_history', 'order_history.order_id=cart.cartID', array())
+        ->where("customerID = 2")
+        ->where('order_history.order_status_id IS NULL');
+$cart_items = $db->fetchAll($select);
 
 $auth = Zend_Auth::getInstance();
 $storage = $auth->getStorage();
@@ -111,7 +119,7 @@ _________________________________________________________ -->
                     <span class="sr-only">Toggle search</span>
                     <i class="fa fa-search"></i>
                 </button>
-                <a class="btn btn-default navbar-toggle" href="basket.html">
+                <a class="btn btn-default navbar-toggle" href="/checkout/cart">
                     <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"><?= count($cart_items); ?> items in cart</span>
                 </a>
             </div>
@@ -121,7 +129,7 @@ _________________________________________________________ -->
         <div class="navbar-collapse collapse" id="navigation">
 
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="index.html">Home</a>
+                <li class="active"><a href="/index">Home</a>
                 </li>
                 <li class="dropdown yamm-fw">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Departments <b class="caret"></b></a>
@@ -133,8 +141,8 @@ _________________________________________________________ -->
                                         <h5>All Categories (<?= count($cats) ?>)</h5>
                                         <ul>
                                             <!--<?php foreach ($categories->cat as $category): ?>
-                                                        <li><a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
-                                                        </li>
+                                                                <li><a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
+                                                                </li>
                                             <?php endforeach; ?>-->
                                             <?php foreach ($cats as $category): ?>
                                                 <li>
@@ -164,7 +172,7 @@ _________________________________________________________ -->
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="dropdown yamm-fw">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Ladies <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -242,7 +250,7 @@ _________________________________________________________ -->
                     </ul>
                 </li>
 
-               <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
                 <?php if (empty($userData)) : ?>
 
                     <li class="dropdown">
@@ -265,8 +273,8 @@ _________________________________________________________ -->
 
                     <li><a href="/Customer/logout">Logout</a></li>
                 <?php endif; ?>
-                    <!-- Language -->
-                  <li class="dropdown">
+                <!-- Language -->
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Language <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="modified"><a href="?ln=En">En</a></li>
@@ -282,7 +290,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm"><?= count($cart_items); ?> items in cart</span></a>
+                <a href="/checkout/cart" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm"><?= count($cart_items); ?> items in cart</span></a>
             </div>
             <!--/.nav-collapse -->
 
@@ -323,7 +331,7 @@ _________________________________________________________ -->
 
 <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
-<script src="/js/jquery-1.11.0.min.js"></script>
+<!-- <script src="/js/jquery-1.11.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.cookie.js"></script>
 <script src="/js/waypoints.min.js"></script>
@@ -331,3 +339,4 @@ _________________________________________________________ -->
 <script src="/js/bootstrap-hover-dropdown.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/front.js"></script>
+-->
