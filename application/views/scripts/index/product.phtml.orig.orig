@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php
+<?php 
     //$userType = new Zend_Session_Namespace('userType');
-    //$userType = new Zend_Session_Namespace('userType');
+<<<<<<< HEAD
+ //$userType = new Zend_Session_Namespace('userType');
+=======
+//<?php  //$userType = new Zend_Session_Namespace('userType');
+>>>>>>> 68cde6a54b1cb5648bf73d47e8751eae60e69e25
 //$personKey= $userType->type ;
     $personKey = "adminID";
     ?>
@@ -12,7 +16,7 @@
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Amazend">
+        <meta name="description" content="Obaju e-commerce template">
         <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
         <meta name="keywords" content="">
 
@@ -23,9 +27,21 @@
         <meta name="keywords" content="">
 
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
-        <link href="/css/style.css" rel="stylesheet" type="text/css">
-        <script src="/js/respond.min.js"></script>
 
+        <!-- styles -->
+        <link href="/css/font-awesome.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/animate.min.css" rel="stylesheet">
+        <link href="/css/owl.carousel.css" rel="stylesheet">
+        <link href="/css/owl.theme.css" rel="stylesheet">
+
+        <!-- theme stylesheet -->
+        <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+        <!-- your stylesheet with modifications -->
+        <link href="/css/custom.css" rel="stylesheet">
+
+        <script src="/js/respond.min.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
 
@@ -34,49 +50,7 @@
     </head>
 
     <body>
-<<<<<<< HEAD
-      <!-- **************************************************************** -->
 
-      <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script> -->
-
-      <form id="ratingsForm">
-      	<div class="stars">
-      		<input type="radio" name="star" class="star-1" id="<?= $this->product["productID"]?>" />
-      		<label class="star-1" for="star-1">1</label>
-      		<input type="radio" name="star" class="star-2" id="<?= $this->product["productID"]?>" />
-      		<label class="star-2" for="star-2">2</label>
-      		<input type="radio" name="star" class="star-3" id="<?= $this->product["productID"]?>" />
-      		<label class="star-3" for="star-3">3</label>
-      		<input type="radio" name="star" class="star-4" id="<?= $this->product["productID"]?>" />
-      		<label class="star-4" for="star-4">4</label>
-      		<input type="radio" name="star" class="star-5" id="<?= $this->product["productID"]?>" />
-      		<label class="star-5" for="star-5">5</label>
-      		<span></span>
-      	</div>
-
-      </form>
-      <!--  ****************************************************************************************-->
-=======
-        <!-- **************************************************************** -->
-
-        <form id="ratingsForm">
-            <div class="stars">
-                <input type="radio" name="star" class="star-1" id="star-1" />
-                <label class="star-1" for="star-1">1</label>
-                <input type="radio" name="star" class="star-2" id="star-2" />
-                <label class="star-2" for="star-2">2</label>
-                <input type="radio" name="star" class="star-3" id="star-3" />
-                <label class="star-3" for="star-3">3</label>
-                <input type="radio" name="star" class="star-4" id="star-4" />
-                <label class="star-4" for="star-4">4</label>
-                <input type="radio" name="star" class="star-5" id="star-5" />
-                <label class="star-5" for="star-5">5</label>
-                <span></span>
-            </div>
-
-        </form>
-        <!--  ****************************************************************************************-->
->>>>>>> 820c702ff59d632e7a82f3e75fa07e2145ebd995
         <div id="all">
 
             <div id="content">
@@ -149,6 +123,88 @@
                             </div>
                         </div>
 
+                        <div class="panel panel-default sidebar-menu">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Brands <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <form>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Armani (10)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Versace (12)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Carlo Bruni (15)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">Jack Honey (14)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Apply</button>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default sidebar-menu">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Colours <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <form>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <span class="colour white"></span> White (14)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <span class="colour blue"></span> Blue (10)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <span class="colour green"></span> Green (20)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <span class="colour yellow"></span> Yellow (13)
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> <span class="colour red"></span> Red (10)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Apply</button>
+
+                                </form>
+
+                            </div>
+                        </div>
 
                         <!-- *** MENUS AND FILTERS END *** -->
 
@@ -183,13 +239,11 @@
                             <div class="col-sm-6">
                                 <div class="box">
                                     <h1 class="text-center">
-                                        <?php
-                                        if ($this->language == "En") {
-                                            echo $this->product["EnName"];
-                                        } elseif ($this->language == "Ar") {
-                                            echo $this->product["ArName"];
-                                        }
-                                        ?></h1>
+<?php if ($this->language == "En") {
+    echo $this->product["EnName"];
+} elseif ($this->language == "Ar") {
+    echo $this->product["ArName"];
+} ?></h1>
                                     <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
                                     </p>
                                     <p class="price">$<?= $this->product["price"] ?></p>
@@ -240,7 +294,7 @@
                                 <?php if ($personKey == "adminID") { ?>
                                     <?php if ($this->language == "En") { ?>
                                         <li role="presentation"><a href="#statistic" aria-controls="profile" role="tab" data-toggle="tab">Statistics</a></li>
-                                    <?php } else if ($this->language == "Ar") { ?>
+    <?php } else if ($this->language == "Ar") { ?>
                                         <li role="presentation"><a href="#statistic" aria-controls="profile" role="tab" data-toggle="tab">الاحصائيات</a></li>
     <?php } ?>
 <?php } ?>
@@ -254,7 +308,7 @@
                                         <?php if ($this->language == "En") { ?>
                                             <h4>Product details</h4>
                                             <p><?= $this->product["EnDescription"] ?></p>
-                                        <?php } else if ($this->language == "Ar") { ?>
+<?php } else if ($this->language == "Ar") { ?>
                                             <h4>تفاصيل المنتج </h4>
                                             <p><?= $this->product["ArDescription"] ?></p>
 <?php } ?>
@@ -288,7 +342,7 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="comment">
                                     <div class="box" id="comments">
-                                            <?php foreach ($this->comments as $value) { ?>
+                                        <?php foreach ($this->comments as $value) { ?>
                                             <div class="well well-sm">
     <?php echo $value['comment_body']; ?>
                                                 <a href=""class="btn btn-danger">Delete</a>
@@ -305,17 +359,18 @@
                                             <!-- hager -->
                                             <table class="table">
                                                 <tr>
-                                                    <th>number of users who purchased</th>
-                                                    <th>The amount of money gained </th>
-                                                </tr>
-                                                <?php
-                                                // $pro = new Application_Model_Product();
+             <th>number of users who purchased</th>
+             <th>The amount of money gained </th>
+            </tr>
+            <?php
+           // $pro = new Application_Model_Product();
 
                                                 echo "<tr>" .
                                                 "<td>" . $this->product["EnName"] . "</td>" .
-                                                "<td>" . $this->product['no_purchase'] . "</td>" .
-                                                "<td>" . $this->product['no_purchase'] * $this->product['price'] . "</td>" . "</tr>";
-                                                ?>
+            "<td>" . $this->product['no_purchase'] . "</td>" .
+            "<td>" . $this->product['no_purchase']*$this->product['price'] . "</td>" ."</tr>";
+
+            ?>
 
                                             </table>
 
@@ -421,7 +476,98 @@
 
                         </div>
 
+                        <div class="row same-height-row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="box same-height">
+                                    <h3>Products viewed recently</h3>
+                                </div>
+                            </div>
 
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="product same-height">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="product.html">
+                                                    <img src="/img/product2.jpg" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="product.html">
+                                                    <img src="/img/product2_2.jpg" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="product.html" class="invisible">
+                                        <img src="/img/product2.jpg" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3>Fur coat</h3>
+                                        <p class="price">$143</p>
+                                    </div>
+                                </div>
+                                <!-- /.product -->
+                            </div>
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="product same-height">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="product.html">
+                                                    <img src="/img/product1.jpg" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="product.html">
+                                                    <img src="/img/product1_2.jpg" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="product.html" class="invisible">
+                                        <img src="/img/product1.jpg" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3>Fur coat</h3>
+                                        <p class="price">$143</p>
+                                    </div>
+                                </div>
+                                <!-- /.product -->
+                            </div>
+
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="product same-height">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="product.html">
+                                                    <img src="/img/product3.jpg" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="product.html">
+                                                    <img src="/img/product3_2.jpg" alt="" class="img-responsive">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="product.html" class="invisible">
+                                        <img src="/img/product3.jpg" alt="" class="img-responsive">
+                                    </a>
+                                    <div class="text">
+                                        <h3>Fur coat</h3>
+                                        <p class="price">$143</p>
+
+                                    </div>
+                                </div>
+                                <!-- /.product -->
+                            </div>
+
+                        </div>
 
                     </div>
                     <!-- /.col-md-9 -->
@@ -429,6 +575,163 @@
                 <!-- /.container -->
             </div>
             <!-- /#content -->
+
+
+            <!-- *** FOOTER ***
+     _________________________________________________________ -->
+            <div id="footer" data-animate="fadeInUp">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <h4>Pages</h4>
+
+                            <ul>
+                                <li><a href="text.html">About us</a>
+                                </li>
+                                <li><a href="text.html">Terms and conditions</a>
+                                </li>
+                                <li><a href="faq.html">FAQ</a>
+                                </li>
+                                <li><a href="contact.html">Contact us</a>
+                                </li>
+                            </ul>
+
+                            <hr>
+
+                            <h4>User section</h4>
+
+                            <ul>
+                                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                                </li>
+                                <li><a href="register.html">Regiter</a>
+                                </li>
+                            </ul>
+
+                            <hr class="hidden-md hidden-lg hidden-sm">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Top categories</h4>
+
+                            <h5>Men</h5>
+
+                            <ul>
+                                <li><a href="category.html">T-shirts</a>
+                                </li>
+                                <li><a href="category.html">Shirts</a>
+                                </li>
+                                <li><a href="category.html">Accessories</a>
+                                </li>
+                            </ul>
+
+                            <h5>Ladies</h5>
+                            <ul>
+                                <li><a href="category.html">T-shirts</a>
+                                </li>
+                                <li><a href="category.html">Skirts</a>
+                                </li>
+                                <li><a href="category.html">Pants</a>
+                                </li>
+                                <li><a href="category.html">Accessories</a>
+                                </li>
+                            </ul>
+
+                            <hr class="hidden-md hidden-lg">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Where to find us</h4>
+
+                            <p><strong>Obaju Ltd.</strong>
+                                <br>13/25 New Avenue
+                                <br>New Heaven
+                                <br>45Y 73J
+                                <br>England
+                                <br>
+                                <strong>Great Britain</strong>
+                            </p>
+
+                            <a href="contact.html">Go to contact page</a>
+
+                            <hr class="hidden-md hidden-lg">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+
+
+                        <div class="col-md-3 col-sm-6">
+
+                            <h4>Get the news</h4>
+
+                            <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                            <form>
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control">
+
+                                    <span class="input-group-btn">
+
+                                        <button class="btn btn-default" type="button">Subscribe!</button>
+
+                                    </span>
+
+                                </div>
+                                <!-- /input-group -->
+                            </form>
+
+                            <hr>
+
+                            <h4>Stay in touch</h4>
+
+                            <p class="social">
+                                <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                            </p>
+
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                    </div>
+                    <!-- /.row -->
+
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /#footer -->
+
+            <!-- *** FOOTER END *** -->
+
+
+
+
+            <!-- *** COPYRIGHT ***
+     _________________________________________________________ -->
+            <div id="copyright">
+                <div class="container">
+                    <div class="col-md-6">
+                        <p class="pull-left">© 2015 Your name goes here.</p>
+
+                    </div>
+                    <div class="col-md-6">
+                        <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
+                            <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- *** COPYRIGHT END *** -->
 
 
 
@@ -440,12 +743,11 @@
 
         <!-- *** SCRIPTS TO INCLUDE ***
      _________________________________________________________ -->
-        <script src="/js/star.js" ></script>
-        <script src="/js/jquery.cookie.js"></script>
-        <script src="/js/waypoints.min.js"></script>
-        <script src="/js/modernizr.js"></script>
-        <script src="/js/owl.carousel.min.js"></script>
-        <script src="/js/front.js"></script>
+       <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/modernizr.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/front.js"></script>
 
 
 

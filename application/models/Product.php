@@ -46,6 +46,27 @@ class Application_Model_Product extends Zend_Db_Table_Abstract {
         return $row->save();
     }
 
+
+
+function editProduct($userData) {
+        //$row = $this->createRow();
+        $row->productID = $userData['productID'];
+        $row->EnName = $userData['EnName'];
+        $row->ArName = $userData['ArName'];
+        $row->EnDescription = $userData['EnDescription'];
+        $row->ArDescription = $userData['ArDescription'];
+        $row->price = $userData['price'];
+        $row->photo = $userData['photo'];
+              $row->categoryID = $userData['categoryID'];
+        $auth = Zend_Auth::getInstance();
+        $storage = $auth->getStorage();
+        $userData = $storage->read();
+        $person = $storage->read()->shopperID;
+        $row->shopperID = $person;
+
+        return $row->save();
+    }
+
     function maxPurchased() {
         $select = $this->select()
                 ->from('product', array('ArName', 'EnName', 'photo'))
@@ -110,4 +131,36 @@ public function topProduct($catID)
       $rate = (int)($res_rate / $res_no_rate);
       return $rate;
   }
+
+
+function deleteProd($id)
+{
+  $this->delete("productID=$id");
+  
+}
+
+
+public function updateProd($catID,$EnName,$ArName,$adminID)
+  {
+    $data = array(
+    'productID' => $catID,
+    'EnName' => $EnName,
+    'ArName' => $ArName,
+    'adminID' => $adminID,
+    );
+    $this->update($data, 'productID = '. (int)$catID);
+  }
+
+
+
+  function getProd($id)
+  {
+  $id = (int)$id;
+    $row = $this->fetchRow('productID = ' . $id);
+    if (!$row) {
+    throw new Exception("Could not find Product $id");
+    }
+    return $row->toArray();
+  }
+
 }

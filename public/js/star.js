@@ -18,7 +18,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    $('.star-2').click(function(){
+    $('.star-2').click(function(e){
         rate = 2 ;
         productID = e.target.id;
         $.ajax({
@@ -36,7 +36,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    $('.star-3').click(function(){
+    $('.star-3').click(function(e){
         rate = 3 ;
         productID = e.target.id;
         $.ajax({
@@ -54,7 +54,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    $('.star-4').click(function(){
+    $('.star-4').click(function(e){
         rate = 4 ;
         productID = e.target.id;
         $.ajax({
@@ -71,7 +71,7 @@ $(document).ready(function(){
 });
 });
 
-$(document).ready(function(){
+$(document).ready(function(e){
     $('.star-5').click(function(){
         rate = 5 ;
         productID = e.target.id;
