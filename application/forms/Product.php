@@ -52,15 +52,16 @@ class Application_Form_Product extends Zend_Form
         //$photo = new Zend_Form_Element_Text('photo');
         $photo = new Zend_Form_Element_File('photo');
         $photo->setLabel('Product photo: ')
-                ->setDestination($uploadDir)
-                ->setValueDisabled(true)
+                ->setDestination("img")
+//                ->setValueDisabled(true)
                 ->addValidator('Count', false, 1)
                 ->addValidator('Size', false, 1024000)
-                ->addValidator('Extension', false, 'jpg,png,gif');
-        $photo->setAttribs(Array(
-        'placeholder'=>'Example: 1000',
-        'class'=>'form-control'
-        ));
+                ->addValidator('Extension', false, 'jpg,png,gif')
+                ->setAttrib('enctype', 'multipart/form-data');
+//        $photo->setAttribs(Array(
+//        'placeholder'=>'Example: 1000',
+//        'class'=>'form-control'
+//        ));
         
         $price = new Zend_Form_Element_Text('price');
         $price->setLabel('Price in $: ')
