@@ -1,0 +1,25 @@
+<head>
+    <title>Add new product</title>
+</head>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1><center>New Product</center></h1>
+        </div>
+        <div class="panel-body">
+            <?php
+            echo $this->form;
+            ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var currentDate = new Date();
+    $(".datepicker").datepicker({
+        showOn: 'focus',
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'yy-mm-dd',
+        minDate: currentDate
+    });
+</script>

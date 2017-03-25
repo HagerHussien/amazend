@@ -1,4 +1,21 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Product</b> and script/action name <b>index</b></p>
-</div>
+		<table class="table">
+			<tr>
+			 <th>ID</th>
+			  <th>En Name</th>  <th>Ar Name</th>  <th colspan="2">actions</th>
+			</tr>
+			<?php
+			$prod = new Application_Model_Product();
+			foreach($prod->listProducts() as $key => $value)
+			{
+			echo "<tr>".
+			"<td>" . $value['productID']. "</td>" .
+			"<td>" . $value['EnName'] . "</td>" .
+			"<td>" . $value['ArName'] . "</td>" .
+			"<td  > <a class='btn btn-danger' href='/product/delete/pid/".$value['productID']."'> Delete </a> " .
+			" <a class='btn btn-success' href='/product/edit/pid/".$value['productID']."'> Edit </a> </td>"."</tr>";
+			}
+			?>
+			</table>
+			<p><a class='btn btn-warning' href="<?php echo $this->url(array('controller'=>'product',
+			'action'=>'add'));?>">Add new product</a></p>
+			
