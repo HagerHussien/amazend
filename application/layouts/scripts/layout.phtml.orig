@@ -31,11 +31,26 @@
 </head>
 <!-- nav header -->
 <?php
+<<<<<<< HEAD
+=======
+//Getting authenticated user data
+$userData = Zend_Auth::getInstance()->getStorage()->read();
+$person = (array) $userData;
+$userType = new Zend_Session_Namespace('user');
+$personKey= $userType->type ;
+//var_dump($person);
+$categories = new Zend_Session_Namespace('category');
+
+>>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 //Getting category list
 $cat_model = new Application_Model_Category();
 $cats = $cat_model->fetchAll()->toArray();
 
 //Getting cart items
+<<<<<<< HEAD
+=======
+if($personKey=="customerID"){
+>>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
 $select = new Zend_Db_Select($db);
 $select->from('cart', array('cartID', 'customerID')) //the array specifies which columns I want returned in my result set
@@ -45,13 +60,28 @@ $select->from('cart', array('cartID', 'customerID')) //the array specifies which
         ->where("customerID = 2")
         ->where('order_history.order_status_id IS NULL');
 $cart_items = $db->fetchAll($select);
+<<<<<<< HEAD
 
+=======
+}
+ else {
+    $cart_items=array();
+}
+
+
+<<<<<<< HEAD
+=======
+>>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 $auth = Zend_Auth::getInstance();
 $storage = $auth->getStorage();
 $userData = $storage->read();
 $categories = new Zend_Session_Namespace('category');
 // var_dump($categories->cat);
 $person = (array)$userData;
+<<<<<<< HEAD
+=======
+>>>>>>> cd02d92068abdb82bbec1c5108bc9d9166150bba
+>>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 // //either shopperID or customerID
 $personKey=key($person);
 // $userType = new Zend_Session_Namespace('userType');
@@ -187,12 +217,17 @@ _________________________________________________________ -->
                 </li>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
                 <?php if (empty($userData)) { ?>
 =======
                 <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
                 <?php if (empty($userData)) : ?>
 >>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
+=======
+                <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                <?php if (empty($userData)) { ?>
+>>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Login as <span class="caret"></span></a>
@@ -214,6 +249,7 @@ _________________________________________________________ -->
 
                     <li><a href="/customer/logout">Logout</a></li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <?php } ?>
                     <!-- Language -->
                   <li class="dropdown">
@@ -222,6 +258,11 @@ _________________________________________________________ -->
                 <!-- Language -->
                 <li class="dropdown">
 >>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
+=======
+                <?php } ?>
+                <!-- Language -->
+                <li class="dropdown">
+>>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Language <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="modified"><a href="?ln=En">En</a></li>

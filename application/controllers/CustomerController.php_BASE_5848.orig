@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 class CustomerController extends Zend_Controller_Action
 {
 
@@ -10,46 +9,27 @@ class CustomerController extends Zend_Controller_Action
     {
        //Session to be opened
             $loginSession = new Zend_Session_Namespace('user');
-=======
-class CustomerController extends Zend_Controller_Action {
-
-    public $language;
-
-    public function init() {
-        //Session to be opened
-        $loginSession = new Zend_Session_Namespace('user');
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 
         //facebook session
 
         $fpsession = new Zend_Session_Namespace('facebook');
 <<<<<<< HEAD
-<<<<<<< HEAD
         
-=======
-
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         $auth = Zend_Auth::getInstance();
         $requestActionName = $this->getRequest()->getActionName();
 
         // var_dump($this->getRequest()->getActionName() );
         // die();
-<<<<<<< HEAD
 =======
 
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
 >>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
-=======
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         // {
         //     $this->redirect("customer/login");
         // }
-<<<<<<< HEAD
 
-=======
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         
         // if ($auth->hasIdentity() && $requestActionName= 'login' )
         // {
@@ -76,7 +56,6 @@ class CustomerController extends Zend_Controller_Action {
 
         
 
-<<<<<<< HEAD
       $request= $this->getRequest()->getParam('ln');
       //echo $request;
       if(empty($request)){
@@ -88,18 +67,6 @@ class CustomerController extends Zend_Controller_Action {
           $this->language->type = $request ;
           // echo $this->language->type;
       }
-=======
-        $request = $this->getRequest()->getParam('ln');
-        //echo $request;
-        if (empty($request)) {
-            $this->language = new Zend_Session_Namespace('language');
-            $this->language->type = isset($this->language->type) ? $this->language->type : "En";
-        } else {
-            $this->language = new Zend_Session_Namespace('language');
-            $this->language->type = $request;
-            // echo $this->language->type;
-        }
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
@@ -113,7 +80,6 @@ class CustomerController extends Zend_Controller_Action {
         // }
     }
 
-<<<<<<< HEAD
     public function indexAction()
     {
         // action body
@@ -121,14 +87,6 @@ class CustomerController extends Zend_Controller_Action {
 
     public function loginAction()
     {
-=======
-    public function indexAction() {
-        // action body
-        $this->redirect('/customer/my-wish-list');
-    }
-
-    public function loginAction() {
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         //authentiation to be done
         $auth=Zend_Auth::getInstance();
         $request=$this->getRequest();
@@ -147,7 +105,6 @@ class CustomerController extends Zend_Controller_Action {
         $request = $this->getRequest();
 
         if ($request->isPost()) {
-<<<<<<< HEAD
         if ($form->isValid($request->getPost( ))) {
             // after check for validation get email and password to start auth
         $email = $request->getParam('email');
@@ -212,96 +169,24 @@ class CustomerController extends Zend_Controller_Action {
 
     public function addAction()
     {
-=======
-            if ($form->isValid($request->getPost())) {
-                // after check for validation get email and password to start auth
-                $email = $request->getParam('email');
-                $password = $request->getParam('password');
-                /*                 * ******* Authentication Steps ***** */
-                // step 1
-                //we get object of ZendDbAdapter to know which database we connect on
-                $db = Zend_Db_Table::getDefaultAdapter();
-                //step 2
-                // define object of ZendAuthAdapter with paramters
-                // (ZendDbAdapter Object, table name , identity column , credential column)
-                $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'customer', 'email', 'password');
-                //step 3
-                //set the identity column value and credential column value
-                $authAdapter->setIdentity($email);
-                $authAdapter->setCredential($password);
-                //step 4
-                //perform authentication
-                $result = $authAdapter->authenticate();
-                //step 5
-                // check if authentication is valid
-                if ($result->isValid()) {
-                    /*                     * ******* Session Steps ***** */
-                    //session step 1
-                    // get object from ZendAuth Class
-                    $auth = Zend_Auth::getInstance();
-                    //session step 2
-                    // get storage to write session on it
-                    $storage = $auth->getStorage();
-                    // session step 3
-                    //write values to session (by default it’s written to Zend_Auth namespace)
-                    $storage->write($authAdapter->getResultRowObject(array('customerID', 'email', 'EnName')));
-
-                    // //Session to be opened
-                    // $loginSession = new Zend_Session_Namespace('user');
-                    $loginSession->user = $authAdapter->getResultRowObject(array('customerID', 'email', 'EnName'));
-
-                    // redirect to root index/index
-                    return $this->redirect('/index');
-                } else {
-                    // if user is not valid send error message to view
-                    $this->view->error_message = "Invalid Email or Password!";
-                }
-            }
-        }
-
-        $this->view->form = $form;
-
-        //Facebook button
-        $fb = new Facebook\Facebook([
-            'app_id' => '1769107093406339', // Replace {app-id} with your app id
-            'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
-            'default_graph_version' => 'v2.2',
-        ]);
-        $helper = $fb->getRedirectLoginHelper();
-        $loginUrl = $helper->getLoginUrl($this->view->serverUrl() .
-                '/customer/fp-auth-action');
-        $this->view->facebook_url = $loginUrl;
-    }
-
-    public function addAction() {
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         $form = new Application_Form_CustomerSignup();
         //$this->view->customerSignup=$form;
 
         $request = $this->getRequest();
-<<<<<<< HEAD
         if($request->isPost())
         {
             if($form->isValid($request->getParams()))
             {
-=======
-        if ($request->isPost()) {
-            if ($form->isValid($request->getParams())) {
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
                 $customerModel = new Application_Model_Customer();
                 $customerModel->addNewCustomer($request->getPost());
                 //to be changed
                 $this->redirect('/customer/login');
-<<<<<<< HEAD
 
-=======
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
             }
         }
         $this->view->form = $form;
     }
 
-<<<<<<< HEAD
     public function deleteItemAction()
     {
         $prod_id=$this->_request->getParam("pid");
@@ -321,28 +206,6 @@ class CustomerController extends Zend_Controller_Action {
     {
         $wish_model = new Application_Model_Wishlist();
         $id = 1;
-=======
-    public function deleteItemAction() {
-        $userData = Zend_Auth::getInstance()->getStorage()->read();
-        $person = (array) $userData;
-        $prod_id = $this->_request->getParam("pid");
-        $customer_id = $person['customerID'];
-        $wish_model = new Application_Model_Wishlist();
-        $isDeleted = $wish_model->deleteItem($customer_id, $prod_id);
-        if ($isDeleted) {
-            $success_msg = "Item removed successfully";
-            $this->redirect('/customer/my-wish-list');
-        } else {
-            $success_msg = "Item already removed from your wishlist";
-        }
-    }
-
-    public function myWishListAction() {
-        $userData = Zend_Auth::getInstance()->getStorage()->read();
-        $person = (array) $userData;
-        $wish_model = new Application_Model_Wishlist();
-        $id = $person['customerID'];
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         $user_wishlist = $wish_model->userWishlist($id);
         $prod_model = new Application_Model_Product();
         $prod_array = array();
@@ -357,7 +220,6 @@ class CustomerController extends Zend_Controller_Action {
 //        $this->view->user_wishlist = $user_wishlist;
     }
 
-<<<<<<< HEAD
     public function addToCartAction()
     {
     }
@@ -385,57 +247,18 @@ class CustomerController extends Zend_Controller_Action {
             $product_price = $product_model->prouduct_price($product_id);
             $product_price = $product_price[0]['price'];
             $cart_product_model->addNewItemToCart($cartID,$product_id,1,$product_price,$product_price);
-=======
-    public function addToCartAction() {
-        
-    }
-
-    public function addPtoductToCartAction() {
-        echo "hassssssssssssan";
-    }
-
-    public function addcartAction() {
-        $userData = Zend_Auth::getInstance()->getStorage()->read();
-        $person = (array) $userData;
-        $customer_id = $person['customerID'];
-        $customer_email = $person['email'];
-        $cart_model = new Application_Model_Cart();
-        $cart_product_model = new Application_Model_CartProduct();
-        $product_model = new Application_Model_Product();
-        if (null ==($this->_request->getParam('pid'))) {
-            $this->redirect('/checkout/cart');
-        } 
-     
-        $product_id = $this->_request->getParam('pid');
-        $cart_id = $cart_model->getCartID($customer_id);
-        if (empty($cart_id)) {
-            $cart_model->newCart($customer_id, $customer_email);
-            $cart_id = $cart_model->getCartID($customer_id);
-        }
-     $cartID = $cart_id[0]['cartID'];
-        $check = $cart_product_model->checkExistence($cartID, $product_id);
-        if ($check) {
-            $product_price = $product_model->prouduct_price($product_id);
-            $product_price = $product_price[0]['price'];
-            $cart_product_model->addNewItemToCart($cartID, $product_id, 1, $product_price, $product_price);
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         }
         $this->redirect("/Index/product/pid/$product_id");
     }
 
-<<<<<<< HEAD
     public function logoutAction()
     {
-=======
-    public function logoutAction() {
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
          //Zend_Session::destroy();
         // $this->_helper->redirector('index', 'index');
 
         Zend_Session::namespaceUnset('user');
         Zend_Session::namespaceUnset('facebook');
         Zend_Session::namespaceUnset('userType');
-<<<<<<< HEAD
         $auth=Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->redirect('/customer/login');
@@ -454,40 +277,17 @@ class CustomerController extends Zend_Controller_Action {
     {
         $wish_model = new Application_Model_Wishlist();
         $customer_id = 1;
-=======
-        $auth = Zend_Auth::getInstance();
-        $auth->clearIdentity();
-        $this->redirect('/customer/login');
-        // $userType->type = NULL;
-        // $this->redirect('/customer/login');
-    }
-
-    public function maiAction() {
-        // action body
-    }
-
-    public function addwishAction() {
-        $userData = Zend_Auth::getInstance()->getStorage()->read();
-        $person = (array) $userData;
-        $wish_model = new Application_Model_Wishlist();
-        $customer_id = $person['customerID'];
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         //$prod_id = 2;
         $product_id = $this->_request->getParam('pid');
         if ($wish_model->checkExistence($customer_id, $product_id)) {
 
             $this->view->form = "added before";
         } else {
-<<<<<<< HEAD
             $wish_model->addToWish($customer_id,$product_id);
-=======
-            $wish_model->addToWish($customer_id, $product_id);
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
             $this->redirect("/index/product/pid/$product_id");
         }
     }
 
-<<<<<<< HEAD
     public function fpAuthActionAction()
     {
         // define
@@ -496,20 +296,10 @@ class CustomerController extends Zend_Controller_Action {
         'app_id' => '1769107093406339', // Replace {app-id} with your app id
         'app_secret ' => '39eba50bb7e6bbcc985a87f47656e7d4',
         'default_graph_version ' => 'v2.2',
-=======
-    public function fpAuthActionAction() {
-        // define
-        //instance from facebook
-        $fb = new Facebook\Facebook([
-            'app_id' => '1769107093406339', // Replace {app-id} with your app id
-            'app_secret ' => '39eba50bb7e6bbcc985a87f47656e7d4',
-            'default_graph_version ' => 'v2.2',
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         ]);
         // use helper method of facebook for login
         $helper = $fb->getRedirectLoginHelper();
         try {
-<<<<<<< HEAD
         $accessToken = $helper->getAccessToken();
         }
         catch (Facebook\Exceptions\FacebookResponseException $e) {
@@ -553,52 +343,10 @@ class CustomerController extends Zend_Controller_Action {
         $helper->getMessage () . "</p>\n\n";
         Exit;
         }
-=======
-            $accessToken = $helper->getAccessToken();
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error (headers link)
-            echo 'Graph returned an error: ' . $e->getMessage();
-            Exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            Exit;
-        }
-        // handle access token & print full error message
-        if (!isset($accessToken)) {
-            if ($helper->getError()) {
-                header('HTTP/1.0 401 Unauthorized');
-                echo "Error: " . $helper->getError() . "\n";
-                echo "Error Code: " . $helper->getErrorCode() . "\n";
-                echo "Error Reason: " . $helper->getErrorReason() . "\n";
-                echo "Error Description: " . $helper->getErrorDescription() .
-                "\n";
-            } else {
-                header('HTTP/1.0 400 Bad Request');
-                echo 'Bad request';
-            }
-            Exit;
-        }
-        // Logged in
-        // The OAuth 2.0 client handler helps us manage access tokens
-        $oAuth2Client = $fb->getOAuth2Client();
-        //check if access token expired
-        if (!$accessToken->isLongLived()) {
-            // Exchanges a short-lived access token for a long-lived one
-            try {
-                // try to get another access token
-                $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
-            } catch (Facebook\Exceptions\FacebookSDKException $e) {
-                echo "<p>Error getting long-lived access token: " .
-                $helper->getMessage() . "</p>\n\n";
-                Exit;
-            }
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         }
         //Sets the default fallback access token so we don't have to pass it to each request
         $fb->setDefaultAccessToken($accessToken);
         try {
-<<<<<<< HEAD
         $response = $fb->get('/me');
         $userNode = $response->getGraphUser();
         }
@@ -615,21 +363,6 @@ class CustomerController extends Zend_Controller_Action {
 
         // //facebook session
 
-=======
-            $response = $fb->get('/me');
-            $userNode = $response->getGraphUser();
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            Exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            Exit;
-        }
-
-        // //facebook session
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         // $fpsession = new Zend_Session_Namespace('facebook');
         // write in session email & id & first_name
         $fpsession->first_name = $userNode->getName();
@@ -639,26 +372,16 @@ class CustomerController extends Zend_Controller_Action {
         $this->redirect('/index');
     }
 
-<<<<<<< HEAD
     public function fblogoutActionAction()
     {
-=======
-    public function fblogoutActionAction() {
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
         Zend_Session::namespaceUnset('facebook');
         $this->redirect("/index");
     }
 
-<<<<<<< HEAD
     public function fbloginAction()
     {
         //Facebook button
             $fb = new Facebook\Facebook([
-=======
-    public function fbloginAction() {
-        //Facebook button
-        $fb = new Facebook\Facebook([
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
             'app_id' => '1769107093406339', // Replace {app-id} with your app id
             'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
             'default_graph_version' => 'v2.2',
@@ -674,7 +397,6 @@ class CustomerController extends Zend_Controller_Action {
 
     public function addrateAction()
     {
-<<<<<<< HEAD
         header('Access-Control-Allow-Origin: *');
         explode($_POST);
         $product_model = new Application_Model_Product();
@@ -684,30 +406,4 @@ class CustomerController extends Zend_Controller_Action {
     }
 
 
-=======
-        //header('Access-Control-Allow-Origin: *');
-        $ajaxContext = $this->_helper->getHelper('AjaxContext');
-        $ajaxContext->addActionContext('addrate', 'json')
-            ->initContext();
-        $this->_helper->viewRenderer->setNoRender(true);
-        $this->_helper->layout->disableLayout();
-        // $rate = 50;
-        // $product_id = 1;
-        //explode($_POST);
-        $rate = $this->getRequest()->getParam('rate');
-        $product_id = $this->getRequest()->getParam('product_id');
-
-        // var_dump($product_id);
-        // var_dump($rate);
-        // die();
-        $product_model = new Application_Model_Product();
-        $product_model->addRate($product_id,$rate);
-    }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> a76fb4a3e32f0c1e00e67ce79db63d9be761838c
->>>>>>> eee5feb2386457ad65d46bdcc04a9e8688c5de5d
 }

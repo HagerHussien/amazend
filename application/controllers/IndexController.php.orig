@@ -39,8 +39,13 @@ class IndexController extends Zend_Controller_Action {
         $this->view->language = $this->language->type;
     }
 
-    public function productAction() {
+<<<<<<< HEAD
+    public function productAction()
+    {
 
+=======
+    public function productAction() {
+>>>>>>> a76fb4a3e32f0c1e00e67ce79db63d9be761838c
 //        $product_model = new Application_Model_Product();
         $prod_id = $this->_request->getParam("pid");
         if ($prod_id == NULL) {
