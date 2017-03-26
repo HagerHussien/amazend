@@ -12,17 +12,40 @@ class CustomerController extends Zend_Controller_Action {
 
         $fpsession = new Zend_Session_Namespace('facebook');
 
-        // $auth = Zend_Auth::getInstance();
-        // $requestActionName = $this->getRequest()->getActionName();
+        $auth = Zend_Auth::getInstance();
+        $requestActionName = $this->getRequest()->getActionName();
+
+        // var_dump($this->getRequest()->getActionName() );
+        // die();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         // {
         //     $this->redirect("customer/login");
         // }
+        
         // if ($auth->hasIdentity() && $requestActionName= 'login' )
         // {
         //     $this->redirect("/index");
         // }
 
+        // if ($auth->hasIdentity() && $requestActionName= 'logout' )
+        // {
+        //     $this->redirect("/customer/logout");
+        // }
+
+        
+        if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
+        ($this->getRequest()->getActionName() != 'add'))
+        {
+            $this->redirect("customer/login");
+        }
+
+        
+        if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
+        {
+            $this->redirect("/index");
+        }
+
+        
 
         $request = $this->getRequest()->getParam('ln');
         //echo $request;
@@ -54,6 +77,18 @@ class CustomerController extends Zend_Controller_Action {
 
     public function loginAction() {
         //authentiation to be done
+        $auth=Zend_Auth::getInstance();
+        $request=$this->getRequest();
+        $actionName = $request->getActionName();
+
+        if($auth->hasIdentity()&& $actionName=='login'){
+          $this->redirect('/index');
+        }
+        if(! $auth->hasIdentity()&& $actionName !='login'){
+          $this->redirect('/customer/login');
+        }
+
+        //login
 
         $form = new Application_Form_CustomerLogin();
         $request = $this->getRequest();
@@ -206,12 +241,15 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function logoutAction() {
+         //Zend_Session::destroy();
+        // $this->_helper->redirector('index', 'index');
+
         Zend_Session::namespaceUnset('user');
         Zend_Session::namespaceUnset('facebook');
         Zend_Session::namespaceUnset('userType');
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
-        $this->redirect('/index');
+        $this->redirect('/customer/login');
         // $userType->type = NULL;
         // $this->redirect('/customer/login');
     }

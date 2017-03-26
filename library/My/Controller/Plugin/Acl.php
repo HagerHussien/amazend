@@ -11,28 +11,29 @@
  *
  * @author mohamed
  */
-// class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
-//     public function preDispatch(\Zend_Controller_Request_Abstract $request) {
-//         $acl = Zend_Registry::get("acl");
-//         $userSession = new Zend_Session_Namespace("user");
-//         $userSessionFacebook = new Zend_Session_Namespace("facebook");
-//         //var_dump($userSession->user->privilege);
-//         //die();
-//         if($userSession->user == "" && $userSessionFacebook->facebook == "") {
-//             $roleName = "guest";
-//         }
-//         else {
-//             $roleName = $userSession->user->privilege;
-//             $roleName = $userSessionFacebook->facebook->privilege;
-//         }
+class My_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
+    // public function preDispatch(\Zend_Controller_Request_Abstract $request) {
+    //     $acl = Zend_Registry::get("acl");
+    //     $userSession = new Zend_Session_Namespace("user");
+    //     $userSessionFacebook = new Zend_Session_Namespace("facebook");
+    //     //var_dump($userSession->user->privilege);
+    //     //die();
+    //     if($userSession->user == "" && $userSessionFacebook->facebook == "") {
+    //         $roleName = "guest";
+    //     }
         
-//         $controller = $request->getControllerName();
-//         $action = $request->getActionName();
+    //     else {
+    //         $roleName = $userSession->user->privilege;
+    //         $roleName = $userSessionFacebook->facebook->privilege;
+    //     }
+        
+    //     $controller = $request->getControllerName();
+    //     $action = $request->getActionName();
         
         
-//         if(! $acl->isAllowed($roleName, $controller, $action)) {
-//             $request->setControllerName("Index");
-//             $request->setActionName("index");
-//         }
-//     }
-// }
+    //     if(! $acl->isAllowed($roleName, $controller, $action)) {
+    //         $request->setControllerName("Index");
+    //         $request->setActionName("index");
+    //     }
+    // }
+}

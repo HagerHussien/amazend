@@ -7,16 +7,28 @@ class ShopperController extends Zend_Controller_Action
     {
         //Session to be opened
             $loginSession = new Zend_Session_Namespace('user');
-$auth = Zend_Auth::getInstance();
-$requestActionName = $this->getRequest()->getActionName();
-if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        $auth = Zend_Auth::getInstance();
+        $requestActionName = $this->getRequest()->getActionName();
+        // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
+        // {
+        //     $this->redirect("shopper/login");
+        // }
+        // if ($auth->hasIdentity() && $requestActionName= 'login' )
+        // {
+        //     $this->redirect("/index");
+
+        // }
+
+         if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
+        ($this->getRequest()->getActionName() != 'add'))
         {
             $this->redirect("shopper/login");
         }
-        if ($auth->hasIdentity() && $requestActionName= 'login' )
+
+        
+        if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
         {
             $this->redirect("/index");
-
         }
 
             
@@ -53,6 +65,18 @@ if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!
     public function loginAction()
     {
         //authentiation to be done
+        $auth=Zend_Auth::getInstance();
+        $request=$this->getRequest();
+        $actionName = $request->getActionName();
+
+        if($auth->hasIdentity()&& $actionName=='login'){
+          $this->redirect('/index');
+        }
+        if(! $auth->hasIdentity()&& $actionName !='login'){
+          $this->redirect('/shopper/login');
+        }
+
+        //login
 
         $form = new Application_Form_ShopperLogin();
         $request = $this->getRequest();
@@ -95,8 +119,11 @@ if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!
 
             $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
 
+            
+
             // redirect to root index/index
             return $this->redirect('/index');
+            
         }
         else {
             // if user is not valid send error message to view

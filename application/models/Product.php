@@ -32,6 +32,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract {
         //$cat = $catobj->getCat($userData['categoryID']);
         //$row->categoryID = $cat['categoryID'];
 
+        
         $row->categoryID = $userData['categoryID'];
 
         //from session
