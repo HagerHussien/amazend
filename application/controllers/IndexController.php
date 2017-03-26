@@ -108,8 +108,9 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function categoryAction() {
+        $cid=$this->_request->getParam('cid');
+        $category_id = !empty($cid)?$cid:1;
         $product_model = new Application_Model_Product();
-        $category_id = $this->_request->getParam('cid');
         $this->view->cat_top = $product_model->topProduct($category_id);
         $this->view->cat_details = $product_model->category_products($category_id);
     }
