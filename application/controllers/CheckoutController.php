@@ -165,7 +165,12 @@ class CheckoutController extends Zend_Controller_Action
         $request = $this->getRequest();
         $del_id = $request->getParam('pid');
         $cart_product = new Application_Model_CartProduct();
-        $where[]="cartID=2";
+        $userData = Zend_Auth::getInstance()->getStorage()->read();
+        $person = (array) $userData;
+        $customer_id = $person['customerID'];
+        $cart_model = new Application_Model_Cart();
+        $cart_id = $cart_model->getCartID($customer_id)[0]['cartID'];
+        $where[]="cartID=$cart_id";
         $where[]="productID=$del_id";
         $cart_product->delete($where);
         $this->redirect("/checkout/cart");
