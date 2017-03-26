@@ -1,11 +1,5 @@
 <?php
 
-
-// require_once 'Zend/Mail.php';
- 
-// Create transport
-//require_once 'Zend/Mail/Transport/Smtp.php';
-
 class AdminController extends Zend_Controller_Action
 {
 
@@ -274,7 +268,7 @@ class AdminController extends Zend_Controller_Action
             $loginSession ->user = $authAdapter->getResultRowObject(array('adminID', 'email','EnName'));
 
             // redirect to root index/index
-            return $this->redirect('/index');
+            return $this->redirect('/admin');
         }
         else {
             // if user is not valid send error message to view
