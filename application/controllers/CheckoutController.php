@@ -73,7 +73,8 @@ class CheckoutController extends Zend_Controller_Action
         $this->_helper->getHelper('layout')->disableLayout();
 
 //need to get user email and name using session
-        $cart_id = 2;
+        $cart_model = new Application_Model_Cart();
+        $cart_id = $cart_model->getCartID($cust_id)[0]['cartID'];
         $requet = $this->getRequest();
         if ($requet->isPost()) {
             $data = $requet->getParams();

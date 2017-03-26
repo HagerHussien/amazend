@@ -225,6 +225,8 @@ _________________________________________________________ -->
                         <ul class="dropdown-menu">
                             <?php if($personKey=="shopperID"): ?>
                             <li class="modified"><a href="/product">My Products</a></li>
+                            <?php elseif($personKey=="customerID"): ?>
+                            <li class="modified"><a href="/customer/my-wish-list">My WishList</a></li>
                             <?php  endif; ?>
                             <li class="modified"><a href="/customer/logout">Logout</a></li>
 

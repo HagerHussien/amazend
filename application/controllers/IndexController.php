@@ -116,7 +116,8 @@ class IndexController extends Zend_Controller_Action {
         $category_name=$category_model->find($category_id)->toArray()[0];
         $this->view->category_name =$category_name;
         $this->view->cat_top = $product_model->topProduct($category_id);
-        $this->view->cat_details = $product_model->category_products($category_id);
+        $this->view->cat_details = $product_model->fetchAll("categoryID=$category_id")->toArray();
+        $this->view->language = $this->language->type;
     }
 
     public function searchAction() {
