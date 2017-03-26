@@ -29,6 +29,9 @@ class CheckoutController extends Zend_Controller_Action
         $userData = Zend_Auth::getInstance()->getStorage()->read();
         $person = (array) $userData;
         $cust_id = $person['customerID'];
+        if (empty($cust_id)){
+            $this->redirect('/customer/login');
+        }
 //        $cart_model = new Application_Model_Cart();
 //        $cart = $cart_model;
 

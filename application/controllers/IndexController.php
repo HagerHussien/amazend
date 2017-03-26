@@ -23,7 +23,8 @@ class IndexController extends Zend_Controller_Action {
         $person = (array) $userData;
         //either shopperID or customerID
         $personKey = key($person);
-        $userType = new Zend_Session_Namespace('userType');
+//        $userType = new Zend_Session_Namespace('userType');
+        $userType = new Zend_Session_Namespace('user');
         $userType->type = $personKey;
     }
 
@@ -44,9 +45,9 @@ class IndexController extends Zend_Controller_Action {
         if ($prod_id == NULL) {
             return $this->redirect('index');
         }
-//        $product = $product_model->productDetails($prod_id);
-//        $this->view->product = $product;
-
+        $product_model = new Application_Model_Product();
+        $rate = $product_model->getRate($prod_id);
+        echo $rate;
         $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
         $select = new Zend_Db_Select($db);
 //        $select->from('product', array('id', 'title')) //the array specifies which columns I want returned in my result set

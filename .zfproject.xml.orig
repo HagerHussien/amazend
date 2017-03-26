@@ -50,6 +50,7 @@
           <actionMethod actionName="fpAuthAction"/>
           <actionMethod actionName="fblogoutAction"/>
           <actionMethod actionName="fblogin"/>
+          <actionMethod actionName="addrate"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -66,6 +67,8 @@
         <controllerFile controllerName="Product">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -98,11 +101,8 @@
         <modelFile modelName="Cart"/>
         <modelFile modelName="CartProduct"/>
         <modelFile modelName="Comment"/>
-<<<<<<< HEAD
         <modelFile modelName="Orderhistory"/>
-=======
         <modelFile modelName="Offer"/>
->>>>>>> da5d7530b398acdde63ace163aafe0e5735289ab
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -261,6 +261,17 @@
           <viewControllerScriptsDirectory forControllerName="Checkout">
             <viewScriptFile forActionName="removeitem"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addrate"/>
+=======
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="delete"/>
+>>>>>>> 820c702ff59d632e7a82f3e75fa07e2145ebd995
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -335,6 +346,7 @@
             <testApplicationActionMethod forActionName="logout"/>
             <testApplicationActionMethod forActionName="mai"/>
             <testApplicationActionMethod forActionName="addwish"/>
+            <testApplicationActionMethod forActionName="addrate"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Checkout">
             <testApplicationActionMethod forActionName="index"/>
@@ -346,6 +358,8 @@
           <testApplicationControllerFile forControllerName="Product">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="delete"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

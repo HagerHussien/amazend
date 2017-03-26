@@ -50,6 +50,7 @@
           <actionMethod actionName="fpAuthAction"/>
           <actionMethod actionName="fblogoutAction"/>
           <actionMethod actionName="fblogin"/>
+          <actionMethod actionName="addrate"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -260,6 +261,9 @@
           <viewControllerScriptsDirectory forControllerName="Checkout">
             <viewScriptFile forActionName="removeitem"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addrate"/>
+           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="edit"/>
           </viewControllerScriptsDirectory>
@@ -340,6 +344,7 @@
             <testApplicationActionMethod forActionName="logout"/>
             <testApplicationActionMethod forActionName="mai"/>
             <testApplicationActionMethod forActionName="addwish"/>
+            <testApplicationActionMethod forActionName="addrate"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Checkout">
             <testApplicationActionMethod forActionName="index"/>

@@ -185,17 +185,16 @@ class CustomerController extends Zend_Controller_Action {
         $cart_model = new Application_Model_Cart();
         $cart_product_model = new Application_Model_CartProduct();
         $product_model = new Application_Model_Product();
-        if (null ==($this->_request->getParam('pid'))) {
+        if (!isset($this->_request->getParam('pid'))) {
             $this->redirect('/checkout/cart');
         } 
      
         $product_id = $this->_request->getParam('pid');
         $cart_id = $cart_model->getCartID($customer_id);
-        if (empty($cart_id)) {
+        $cartID = $cart_id[0]['cartID'];
+        if (empty($cartID)) {
             $cart_model->newCart($customer_id, $customer_email);
-            $cart_id = $cart_model->getCartID($customer_id);
         }
-     $cartID = $cart_id[0]['cartID'];
         $check = $cart_product_model->checkExistence($cartID, $product_id);
         if ($check) {
             $product_price = $product_model->prouduct_price($product_id);
@@ -213,7 +212,7 @@ class CustomerController extends Zend_Controller_Action {
         $auth->clearIdentity();
         $this->redirect('/index');
         // $userType->type = NULL;
-        // $this->redirect('/customer/login');
+        // $this->redirect('/Customer/login');
     }
 
     public function maiAction() {
@@ -323,23 +322,13 @@ class CustomerController extends Zend_Controller_Action {
             'app_id' => '1769107093406339', // Replace {app-id} with your app id
             'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
             'default_graph_version' => 'v2.2',
-            ]);
-            $helper = $fb->getRedirectLoginHelper();
-            $loginUrl = $helper->getLoginUrl($this->view->serverUrl().
-            '/customer/fp-auth-action');
-            $this->view->facebook_url = $loginUrl;
-            // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
-            $this->view->facebookUrl =  '<a href="' . htmlspecialchars( $loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
-
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        $loginUrl = $helper->getLoginUrl($this->view->serverUrl() .
+                '/customer/fp-auth-action');
+        $this->view->facebook_url = $loginUrl;
+        // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+        $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
     }
 
-    public function addrateAction()
-    {
-        header('Access-Control-Allow-Origin: *');
-        explode($_POST);
-        $product_model = new Application_Model_Product();
-        $product_model->addRate($product_id,$rate);
-        // var_dump($r[0]['rate']);
-        // die();
-    }
 }
