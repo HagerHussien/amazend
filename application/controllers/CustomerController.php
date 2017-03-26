@@ -15,10 +15,10 @@ class CustomerController extends Zend_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $storage = $auth->getStorage();
         $userData = $storage->read();
-        $person = (array)$userData;
+        $person = (array) $userData;
         //either shopperID or customerID
-        $personKey=key($person);
-        if($personKey != "customerID" && $personKey !=""){
+        $personKey = key($person);
+        if ($personKey != "customerID" && $personKey != "") {
             $this->redirect("/index");
         }
         // var_dump($personKey);
@@ -33,12 +33,10 @@ class CustomerController extends Zend_Controller_Action {
         // {
         //     $this->redirect("customer/login");
         // }
-
         // if ($auth->hasIdentity() && $requestActionName= 'login' )
         // {
         //     $this->redirect("/index");
         // }
-
         // if ($auth->hasIdentity() && $requestActionName= 'logout' )
         // {
         //     $this->redirect("/customer/logout");
@@ -46,15 +44,13 @@ class CustomerController extends Zend_Controller_Action {
 
 
         if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
-        ($this->getRequest()->getActionName() != 'add'))
-        {
+                ($this->getRequest()->getActionName() != 'add')) {
             $this->redirect("customer/login");
         }
 
 
-        
-        if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
-        {
+
+        if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add')))) {
             $this->redirect("/index");
         }
 
@@ -90,15 +86,15 @@ class CustomerController extends Zend_Controller_Action {
 
     public function loginAction() {
         //authentiation to be done
-        $auth=Zend_Auth::getInstance();
-        $request=$this->getRequest();
+        $auth = Zend_Auth::getInstance();
+        $request = $this->getRequest();
         $actionName = $request->getActionName();
 
-        if($auth->hasIdentity()&& $actionName=='login'){
-          $this->redirect('/index');
+        if ($auth->hasIdentity() && $actionName == 'login') {
+            $this->redirect('/index');
         }
-        if(! $auth->hasIdentity()&& $actionName !='login'){
-          $this->redirect('/customer/login');
+        if (!$auth->hasIdentity() && $actionName != 'login') {
+            $this->redirect('/customer/login');
         }
 
         //login
@@ -130,7 +126,15 @@ class CustomerController extends Zend_Controller_Action {
                 // check if authentication is valid
                 if ($result->isValid()) {
                     /*                     * ******* Session Steps ***** */
-                    //session step 1
+
+
+//check if blocked
+                    $user_status = (array) $authAdapter->getResultRowObject(array('customerID', 'email', 'EnName', 'status'));
+                    if ($user_status['status'] == "blocked") {
+                        $blocked_status = "You are Blocked. Contact the adminstrator";
+// $this->view->blocked_status=$blocked_status;
+                        $this->redirect('/customer/login');
+                    }//session step 1
                     // get object from ZendAuth Class
                     $auth = Zend_Auth::getInstance();
                     //session step 2
@@ -142,8 +146,7 @@ class CustomerController extends Zend_Controller_Action {
 
                     // //Session to be opened
                     // $loginSession = new Zend_Session_Namespace('user');
-                    $loginSession->user = $authAdapter->getResultRowObject(array('customerID', 'email', 'EnName'));
-
+//                    $loginSession->user = $authAdapter->getResultRowObject(array('customerID', 'email', 'EnName'));
                     // redirect to root index/index
                     return $this->redirect('/index');
                 } else {
@@ -218,7 +221,7 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function addToCartAction() {
-
+        
     }
 
     public function addPtoductToCartAction() {
@@ -233,7 +236,7 @@ class CustomerController extends Zend_Controller_Action {
         $cart_model = new Application_Model_Cart();
         $cart_product_model = new Application_Model_CartProduct();
         $product_model = new Application_Model_Product();
-        if (null ==($this->_request->getParam('pid'))) {
+        if (null == ($this->_request->getParam('pid'))) {
             $this->redirect('/checkout/cart');
         }
 
@@ -243,7 +246,7 @@ class CustomerController extends Zend_Controller_Action {
             $cart_model->newCart($customer_id, $customer_email);
             $cart_id = $cart_model->getCartID($customer_id);
         }
-     $cartID = $cart_id[0]['cartID'];
+        $cartID = $cart_id[0]['cartID'];
         $check = $cart_product_model->checkExistence($cartID, $product_id);
         if ($check) {
             $product_price = $product_model->prouduct_price($product_id);
@@ -254,7 +257,7 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function logoutAction() {
-         //Zend_Session::destroy();
+        //Zend_Session::destroy();
         // $this->_helper->redirector('index', 'index');
 
         Zend_Session::namespaceUnset('user');
@@ -377,18 +380,16 @@ class CustomerController extends Zend_Controller_Action {
             'app_id' => '1769107093406339', // Replace {app-id} with your app id
             'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
             'default_graph_version' => 'v2.2',
-            ]);
-            $helper = $fb->getRedirectLoginHelper();
-            $loginUrl = $helper->getLoginUrl($this->view->serverUrl().
-            '/customer/fp-auth-action');
-            $this->view->facebook_url = $loginUrl;
-            // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
-            $this->view->facebookUrl =  '<a href="' . htmlspecialchars( $loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
-
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        $loginUrl = $helper->getLoginUrl($this->view->serverUrl() .
+                '/customer/fp-auth-action');
+        $this->view->facebook_url = $loginUrl;
+        // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+        $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
     }
 
-    public function addrateAction()
-    {
+    public function addrateAction() {
 //        if($this->getRequest()->)
         //header('Access-Control-Allow-Origin: *');
         // $ajaxContext = $this->_helper->getHelper('AjaxContext');
@@ -404,9 +405,9 @@ class CustomerController extends Zend_Controller_Action {
         // var_dump($product_id);
         // var_dump($rate);
         // die();
-        echo $rate."and prod id=".$product_id;
+        echo $rate . "and prod id=" . $product_id;
         $product_model = new Application_Model_Product();
-        $product_model->addRate($product_id,$rate);
+        $product_model->addRate($product_id, $rate);
     }
 
 }

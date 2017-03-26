@@ -17,6 +17,10 @@ class Application_Model_Offer extends Zend_Db_Table_Abstract
 		$row->save();
 		 
 	}
+        function editOffer($userData,$prod_Id){
+		$this->update($userData, "productID=".$prod_Id);
+		 
+	}
 
 }
 
