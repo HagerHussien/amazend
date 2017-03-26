@@ -26,7 +26,9 @@ class CheckoutController extends Zend_Controller_Action
 
     public function cartAction()
     {
-        $cust_id = 2;
+        $userData = Zend_Auth::getInstance()->getStorage()->read();
+        $person = (array) $userData;
+        $cust_id = $person['customerID'];
 //        $cart_model = new Application_Model_Cart();
 //        $cart = $cart_model;
 
@@ -56,6 +58,11 @@ class CheckoutController extends Zend_Controller_Action
 
     public function placeorderAction()
     {
+        $userData = Zend_Auth::getInstance()->getStorage()->read();
+        $person = (array) $userData;
+        $cust_id = $person['customerID'];
+        $user_email=$person['email'];
+        $username = $person['EnName'];
         // makes disable renderer
         $this->_helper->viewRenderer->setNoRender();
 
@@ -63,8 +70,6 @@ class CheckoutController extends Zend_Controller_Action
         $this->_helper->getHelper('layout')->disableLayout();
 
 //need to get user email and name using session
-        $username = "Mohamed";
-        $user_email="mido_matrix6000@yahoo.com";
         $cart_id = 2;
         $requet = $this->getRequest();
         if ($requet->isPost()) {
