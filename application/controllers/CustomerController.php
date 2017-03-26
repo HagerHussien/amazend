@@ -388,6 +388,7 @@ class CustomerController extends Zend_Controller_Action {
         // var_dump($product_id);
         // var_dump($rate);
         // die();
+        echo $rate."and prod id=".$product_id;
         $product_model = new Application_Model_Product();
         $product_model->addRate($product_id,$rate);
     }

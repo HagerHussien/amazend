@@ -1,8 +1,8 @@
   var rate = 0;
 $(document).ready(function(){
     $('.star-1').click(function(e){
-        rate = 1 ;
-        productID = e.target.id;
+        var rate = 1 ;
+        var productID = e.target.id;
         console.log(e.target.id);
         console.log(productID);
         $.ajax({
@@ -29,8 +29,8 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('.star-2').click(function(e){
-        rate = 2 ;
-        productID = e.target.id;
+        var rate = 2 ;
+        var productID = e.target.id;
         console.log(e.target.id);
         console.log(productID);
         $.ajax({
@@ -40,7 +40,7 @@ $(document).ready(function(){
                 'product_id': productID,
                 'rate':rate
              },
-             dataType:'JSON',
+             dataType:'text',
              success: (function( data ) {
             console.log( data[0] );
           }
@@ -57,8 +57,8 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('.star-3').click(function(e){
-        rate = 3 ;
-        productID = e.target.id;
+        var rate = 3 ;
+        var productID = e.target.id;
         console.log(e.target.id);
         console.log(productID);
         $.ajax({
@@ -68,7 +68,7 @@ $(document).ready(function(){
                 'product_id': productID,
                 'rate':rate
              },
-             dataType:'JSON',
+             dataType:'text',
              success: (function( data ) {
             console.log( data[0] );
           }
@@ -85,8 +85,8 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('.star-4').click(function(e){
-        rate = 4 ;
-        productID = e.target.id;
+        var rate = 4 ;
+        var productID = e.target.id;
         console.log(e.target.id);
         console.log(productID);
         $.ajax({
@@ -96,7 +96,7 @@ $(document).ready(function(){
                 'product_id': productID,
                 'rate':rate
              },
-             dataType:'JSON',
+             dataType:'text',
              success: (function( data ) {
             console.log( data[0] );
           }
@@ -125,9 +125,9 @@ $(document).ready(function(){
                 'product_id': productID,
                 'rate':rate
              },
-             dataType:'JSON',
+             dataType:'text',
              success: (function( data ) {
-            console.log( data[0] );
+            console.log( data);
           }
         ),
         error: function(xhr, ajaxOptions, thrownErrors) {
