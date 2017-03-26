@@ -50,6 +50,7 @@
           <actionMethod actionName="fpAuthAction"/>
           <actionMethod actionName="fblogoutAction"/>
           <actionMethod actionName="fblogin"/>
+          <actionMethod actionName="addrate"/>
         </controllerFile>
         <controllerFile controllerName="Shopper">
           <actionMethod actionName="index"/>
@@ -59,10 +60,15 @@
         <controllerFile controllerName="Checkout">
           <actionMethod actionName="index"/>
           <actionMethod actionName="cart"/>
+          <actionMethod actionName="placeorder"/>
+          <actionMethod actionName="updatebasket"/>
+          <actionMethod actionName="removeitem"/>
         </controllerFile>
         <controllerFile controllerName="Product">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -95,6 +101,7 @@
         <modelFile modelName="Cart"/>
         <modelFile modelName="CartProduct"/>
         <modelFile modelName="Comment"/>
+        <modelFile modelName="Orderhistory"/>
         <modelFile modelName="Offer"/>
         <modelFile modelName="UserAcl"/>
       </modelsDirectory>
@@ -246,6 +253,24 @@
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="search"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="placeorder"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="updatebasket"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Checkout">
+            <viewScriptFile forActionName="removeitem"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Customer">
+            <viewScriptFile forActionName="addrate"/>
+           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Product">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -320,14 +345,20 @@
             <testApplicationActionMethod forActionName="logout"/>
             <testApplicationActionMethod forActionName="mai"/>
             <testApplicationActionMethod forActionName="addwish"/>
+            <testApplicationActionMethod forActionName="addrate"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Checkout">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="cart"/>
+            <testApplicationActionMethod forActionName="placeorder"/>
+            <testApplicationActionMethod forActionName="updatebasket"/>
+            <testApplicationActionMethod forActionName="removeitem"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Product">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="delete"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

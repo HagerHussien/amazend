@@ -1,17 +1,33 @@
 <head>
-    <!-- Latest compiled and minified CSS -->
-   
+
+
     <!-- jQuery library -->
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<script src="/js/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-hover-dropdown.js"></script>
 
+
+    <!-- styles -->
+    <link href="/css/font-awesome.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/owl.theme.css" rel="stylesheet">
 
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- theme stylesheet -->
+    <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+    <!-- your stylesheet with modifications -->
+    <link href="/css/custom.css" rel="stylesheet">
+
+      <link rel="shortcut icon" href="favicon.png">
+
+    <!-- <link href="/css/bootstrap-theme.min.css" rel="stylesheet"> -->
     <link href="/css/modified.css" rel="stylesheet">
-
+<script src="/js/respond.min.js"></script>
 </head>
 <!-- nav header -->
 <?php
@@ -20,8 +36,15 @@ $cat_model = new Application_Model_Category();
 $cats = $cat_model->fetchAll()->toArray();
 
 //Getting cart items
-$cartitems_model = new Application_Model_CartProduct();
-$cart_items = $cartitems_model->fetchAll('cartID=1')->toArray();
+$db = Zend_Db_Table::getDefaultAdapter(); //set in config file
+$select = new Zend_Db_Select($db);
+$select->from('cart', array('cartID', 'customerID')) //the array specifies which columns I want returned in my result set
+        //by specifying an empty array, I am saying that I don't care about the columns from this table
+        ->joinInner('cart_product', 'cart.cartID = cart_product.cartID', array())
+        ->joinLeft('order_history', 'order_history.order_id=cart.cartID', array())
+        ->where("customerID = 2")
+        ->where('order_history.order_status_id IS NULL');
+$cart_items = $db->fetchAll($select);
 
 $auth = Zend_Auth::getInstance();
 $storage = $auth->getStorage();
@@ -37,64 +60,61 @@ $personKey=key($person);
 ?>
 
 <!-- *************************************************************************************************** -->
-<!-- *** TOPBAR ***
-_________________________________________________________ -->
-<div id="top">
-    <div class="container">
-        <div class="col-md-6 offer" data-animate="fadeInDown">
-            <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+<!--<div id="top">
+        <div class="container">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                    </li>
+                    <li><a href="register.html">Register</a>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    </li>
+                    <li><a href="#">Recently viewed</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="col-md-6" data-animate="fadeInDown">
-            <ul class="menu">
-                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                </li>
-                <li><a href="register.html">Register</a>
-                </li>
-                <li><a href="contact.html">Contact</a>
-                </li>
-                <li><a href="#">Recently viewed</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="Login">Customer login</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="customer-orders.html" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="email-modal" placeholder="email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password-modal" placeholder="password">
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Customer login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="customer-orders.html" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="password">
+                            </div>
 
-                        <p class="text-center">
-                            <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
-                        </p>
+                            <p class="text-center">
+                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            </p>
 
-                    </form>
+                        </form>
 
-                    <p class="text-center text-muted">Not registered yet?</p>
-                    <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+                        <p class="text-center text-muted">Not registered yet?</p>
+                        <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>-->
 
-<!-- *** TOP BAR END *** -->
+    <!-- *** TOP BAR END *** -->
 
 <!-- *** NAVBAR ***
 _________________________________________________________ -->
-
 <div class="navbar navbar-default yamm" role="navigation" id="navbar">
     <div class="container">
         <div class="navbar-header">
@@ -112,7 +132,7 @@ _________________________________________________________ -->
                     <span class="sr-only">Toggle search</span>
                     <i class="fa fa-search"></i>
                 </button>
-                <a class="btn btn-default navbar-toggle" href="basket.html">
+                <a class="btn btn-default navbar-toggle" href="/checkout/cart">
                     <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"><?= count($cart_items); ?> items in cart</span>
                 </a>
             </div>
@@ -122,7 +142,7 @@ _________________________________________________________ -->
         <div class="navbar-collapse collapse" id="navigation">
 
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="index.html">Home</a>
+                <li class="active"><a href="/index">Home</a>
                 </li>
                 <li class="dropdown yamm-fw">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Departments <b class="caret"></b></a>
@@ -134,8 +154,8 @@ _________________________________________________________ -->
                                         <h5>All Categories (<?= count($cats) ?>)</h5>
                                         <ul>
                                             <!--<?php foreach ($categories->cat as $category): ?>
-                                                        <li><a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
-                                                        </li>
+                                                                <li><a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
+                                                                </li>
                                             <?php endforeach; ?>-->
                                             <?php foreach ($cats as $category): ?>
                                                 <li>
@@ -165,85 +185,8 @@ _________________________________________________________ -->
                         </li>
                     </ul>
                 </li>
-                
-                <li class="dropdown yamm-fw">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Ladies <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="yamm-content">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5>Clothing</h5>
-                                        <ul>
-                                            <li><a href="category.html">T-shirts</a>
-                                            </li>
-                                            <li><a href="category.html">Shirts</a>
-                                            </li>
-                                            <li><a href="category.html">Pants</a>
-                                            </li>
-                                            <li><a href="category.html">Accessories</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Shoes</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Accessories</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                        </ul>
-                                        <h5>Looks and trends</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="banner">
-                                            <a href="#">
-                                                <img src="/img/banner.jpg" class="/img img-responsive" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="banner">
-                                            <a href="#">
-                                                <img src="/img/banner2.jpg" class="/img img-responsive" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.yamm-content -->
-                        </li>
-                    </ul>
-                </li>
 
-               <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
                 <?php if (empty($userData)) { ?>
 
                     <li class="dropdown">
@@ -266,8 +209,8 @@ _________________________________________________________ -->
 
                     <li><a href="/customer/logout">Logout</a></li>
                 <?php } ?>
-                    <!-- Language -->
-                  <li class="dropdown">
+                <!-- Language -->
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Language <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="modified"><a href="?ln=En">En</a></li>
@@ -275,6 +218,10 @@ _________________________________________________________ -->
                     </ul>
                 </li>
                 <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+            <li class="yamm-fw"><a href="/product">My products</a>
+                </li>
+
             </ul>
 
         </div>
@@ -283,7 +230,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm"><?= count($cart_items); ?> items in cart</span></a>
+                <a href="/checkout/cart" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm"><?= count($cart_items); ?> items in cart</span></a>
             </div>
             <!--/.nav-collapse -->
 
@@ -322,13 +269,27 @@ _________________________________________________________ -->
 
 <?php echo $this->layout()->content; ?>
 
+                <!-- *** COPYRIGHT ***
+         _________________________________________________________ -->
+                <div id="copyright">
+                    <div class="container">
+                        <div class="col-md-6">
+                            <p class="pull-left">© 2017 AmaZend.Com</p>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- *** COPYRIGHT END *** -->
+
+
+
+
 <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
-<script src="/js/jquery-1.11.0.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.cookie.js"></script>
+ 
+<!--<script src="/js/jquery.cookie.js"></script>
 <script src="/js/waypoints.min.js"></script>
 <script src="/js/modernizr.js"></script>
-<script src="/js/bootstrap-hover-dropdown.js"></script>
+
 <script src="/js/owl.carousel.min.js"></script>
-<script src="/js/front.js"></script>
+<script src="/js/front.js"></script>-->
