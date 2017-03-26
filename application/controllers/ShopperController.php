@@ -36,13 +36,13 @@ class ShopperController extends Zend_Controller_Action
             $this->redirect("shopper/login");
         }
 
-        
+
         if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
         {
             $this->redirect("/index");
         }
 
-            
+
       $request= $this->getRequest()->getParam('ln');
 
       //echo $request;
@@ -130,11 +130,11 @@ class ShopperController extends Zend_Controller_Action
 
 //            $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
 
-            
+
 
             // redirect to root index/index
             return $this->redirect('/index');
-            
+
         }
         else {
             // if user is not valid send error message to view

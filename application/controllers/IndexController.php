@@ -1,10 +1,12 @@
 <?php
 
-class IndexController extends Zend_Controller_Action {
+class IndexController extends Zend_Controller_Action
+{
 
     public $language = null;
 
-    public function init() {
+    public function init()
+    {
         $request = $this->getRequest()->getParam('ln');
         //echo $request;
         if (empty($request)) {
@@ -28,7 +30,8 @@ class IndexController extends Zend_Controller_Action {
         $userType->type = $personKey;
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
 // display all products at home page
         $product_model = new Application_Model_Product();
         $category_model = new Application_Model_Category();
@@ -39,7 +42,8 @@ class IndexController extends Zend_Controller_Action {
         $this->view->language = $this->language->type;
     }
 
-    public function productAction() {
+    public function productAction()
+    {
 
 //        $product_model = new Application_Model_Product();
         $prod_id = $this->_request->getParam("pid");
@@ -66,8 +70,11 @@ class IndexController extends Zend_Controller_Action {
         $comment_model = new Application_Model_Comment();
 
         $this->view->comment_form = $comment_form;
-        $comment_customerID = 1;
-        $comment_productID = 1;
+        $userData = Zend_Auth::getInstance()->getStorage()->read();
+        $person = (array) $userData;
+        $comment_customerID = $person['customerID'];
+
+        $comment_productID = $prod_id;
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -84,7 +91,8 @@ class IndexController extends Zend_Controller_Action {
         $this->view->comments = $comment_model->listComments();
     }
 
-    public function displayCommentAction() {
+    public function displayCommentAction()
+    {
         $comment_form = new Application_Form_CommentForm();
         $comment_model = new Application_Model_Comment();
 
@@ -107,7 +115,7 @@ class IndexController extends Zend_Controller_Action {
         $this->view->comments = $comment_model->listComments();
     }
 
-    public function categoryAction() {
+    public function categoryAction()
         $cid=$this->_request->getParam('cid');
         $category_id = !empty($cid)?$cid:5;
         $product_model = new Application_Model_Product();
@@ -115,12 +123,14 @@ class IndexController extends Zend_Controller_Action {
 
         $category_name=$category_model->find($category_id)->toArray()[0];
         $this->view->category_name =$category_name;
+        $category_id = $this->_request->getParam('cid');
         $this->view->cat_top = $product_model->topProduct($category_id);
         $this->view->cat_details = $product_model->fetchAll("categoryID=$category_id")->toArray();
         $this->view->language = $this->language->type;
     }
 
-    public function searchAction() {
+    public function searchAction()
+    {
         // action body
         $product_model = new Application_Model_Product();
         $product_name = $this->_request->getParam('name');
@@ -129,4 +139,13 @@ class IndexController extends Zend_Controller_Action {
         return $this->redirect("/index/product/pid/$page");
     }
 
+    public function deletecommentAction()
+    {
+        $comment_model = new Application_Model_Comment();
+        $comment_id = $this->_request->getParam('commentid');
+        $product_id = $this->_request->getParam('pid');
+
+        $comment_model->deleteComment($comment_id);
+        return $this->redirect("/index/product/pid/$product_id");
+}
 }

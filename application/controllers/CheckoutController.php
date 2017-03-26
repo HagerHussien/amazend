@@ -75,10 +75,13 @@ class CheckoutController extends Zend_Controller_Action
 //need to get user email and name using session
         $cart_model = new Application_Model_Cart();
         $cart_id = $cart_model->getCartID($cust_id)[0]['cartID'];
+        // $this->view->cust = $cust_id;
+        // $this->view->cart = $cart_id;
+        $cart_id = $cart_id[0]['cartID'];
         $requet = $this->getRequest();
         if ($requet->isPost()) {
             $data = $requet->getParams();
-            
+
             $orderhist_model= new Application_Model_Orderhistory();
             $order_data = array('id'=>NULL,'order_id'=>$cart_id,'order_status_id'=>1);
             $orderhist_model->insert($order_data);
@@ -170,5 +173,3 @@ class CheckoutController extends Zend_Controller_Action
 
 
 }
-
-
