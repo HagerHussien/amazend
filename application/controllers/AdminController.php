@@ -1,8 +1,10 @@
 <?php
 
-class AdminController extends Zend_Controller_Action {
+class AdminController extends Zend_Controller_Action
+{
 
-    public function init() {
+    public function init()
+    {
         // //Session to be opened
         $loginSession = new Zend_Session_Namespace('user');
          $layout = $this->_helper->layout();
@@ -32,7 +34,8 @@ class AdminController extends Zend_Controller_Action {
 
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
@@ -41,7 +44,8 @@ class AdminController extends Zend_Controller_Action {
         // action body
     }
 
-    public function addCategoryAction() {
+    public function addCategoryAction()
+    {
         // action body
         $form = new Application_Form_AddCat();
         $form->submit->setLabel('Add');
@@ -62,7 +66,8 @@ class AdminController extends Zend_Controller_Action {
         }
     }
 
-    public function deleteCategoryAction() {
+    public function deleteCategoryAction()
+    {
         // action body
         $cat_model = new Application_Model_Category();
         $cat_id = $this->_request->getParam("cid");
@@ -99,7 +104,8 @@ class AdminController extends Zend_Controller_Action {
         }
     }
 
-    public function createCouponAction() {
+    public function createCouponAction()
+    {
         // action body
 
         $form = new Application_Form_CreateCoupon();
@@ -122,7 +128,8 @@ class AdminController extends Zend_Controller_Action {
 
     }
 
-    public function sendCouponAction() {
+    public function sendCouponAction()
+    {
 
         $coupon_model = new Application_Model_Coupon();
         $coupon_user = new Application_Model_Customer ();
@@ -130,7 +137,8 @@ class AdminController extends Zend_Controller_Action {
         $this->view->coupon = $coupon_id;
     }
 
-    public function sendEmailAction() {
+    public function sendEmailAction()
+    {
         // action body
 
         $coupon_model = new Application_Model_Coupon();
@@ -162,7 +170,8 @@ class AdminController extends Zend_Controller_Action {
         $this->redirect('admin/send-coupon/id/' . $coupon_id);
     }
 
-    public function blockAction() {
+    public function blockAction()
+    {
         // action body
 
         $cast_model = new Application_Model_Customer();
@@ -183,14 +192,15 @@ class AdminController extends Zend_Controller_Action {
 
     }
 
-    public function deletecouponAction() {
+    public function deletecouponAction()
+    {
         // action body
 
         $coupon_model = new Application_Model_Coupon();
         $coupon_id = $this->_request->getParam("id");
         $coupon_model->deleteCoupon($coupon_id);
         $this->_helper->redirector('index');
-    }   
+    }
 
     public function addAction()
     {
@@ -270,8 +280,18 @@ class AdminController extends Zend_Controller_Action {
             $this->view->form = $form;
     }
 
+    public function logoutAction()
+    {
+        Zend_Session::namespaceUnset('user');
+        $auth = Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->redirect('/index');
+    }
+
 
 }
+
+
 
 
 

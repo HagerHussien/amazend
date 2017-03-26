@@ -29,6 +29,7 @@
           <actionMethod actionName="deletecoupon"/>
           <actionMethod actionName="add"/>
           <actionMethod actionName="login"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="Wishlist">
           <actionMethod actionName="index"/>
@@ -264,12 +265,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addrate"/>
-           </viewControllerScriptsDirectory>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="edit"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Product">
             <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -322,6 +326,7 @@
             <testApplicationActionMethod forActionName="sendEmail"/>
             <testApplicationActionMethod forActionName="block"/>
             <testApplicationActionMethod forActionName="deletecoupon"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>
