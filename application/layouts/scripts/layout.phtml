@@ -217,6 +217,15 @@ _________________________________________________________ -->
                     <li><a href="/admin/logout">Logout</a></li>
                <?php else: ?>
                     <li><a href="/customer/logout">Logout</a></li>
+                    <?php if($personKey=="shopperID"): ?>
+                    <li class="yamm-fw"><a href="/product">My products</a>
+                </li>
+            <?php  endif; ?>
+            <?php if($personKey=="adminID"): ?>
+                    <li class="yamm-fw"><a href="/admin">DashBoard</a>
+                </li>
+            <?php  endif; ?>
+
                 <?php endif; ?>
                 <!-- Language -->
                 <li class="dropdown">
@@ -228,8 +237,7 @@ _________________________________________________________ -->
                 </li>
                 <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 
-            <li class="yamm-fw"><a href="/product">My products</a>
-                </li>
+            
 
             </ul>
 
