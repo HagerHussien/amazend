@@ -161,10 +161,6 @@ _________________________________________________________ -->
                                     <div class="col-sm-3">
                                         <h5>All Categories (<?= count($cats) ?>)</h5>
                                         <ul>
-                                            <!--<?php foreach ($categories->cat as $category): ?>
-                                                                <li><a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
-                                                                </li>
-                                            <?php endforeach; ?>-->
                                             <?php foreach ($cats as $category): ?>
                                                 <li>
                                                     <a href="/index/category/cid/<?= $category['categoryID'] ?>"><?= $category['cat_EnName'] ?></a>
