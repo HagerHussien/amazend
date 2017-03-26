@@ -9,6 +9,17 @@ class ShopperController extends Zend_Controller_Action
             $loginSession = new Zend_Session_Namespace('user');
         $auth = Zend_Auth::getInstance();
         $requestActionName = $this->getRequest()->getActionName();
+        $auth = Zend_Auth::getInstance();
+        $storage = $auth->getStorage();
+        $userData = $storage->read();
+        $person = (array)$userData;
+        //either shopperID or customerID
+        $personKey=key($person);
+        if($personKey != "shopperID" && $personKey !=""){
+            $this->redirect("/index");
+        }
+
+
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         // {
         //     $this->redirect("shopper/login");

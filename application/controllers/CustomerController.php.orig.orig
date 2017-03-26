@@ -13,24 +13,18 @@ class CustomerController extends Zend_Controller_Action
         //facebook session
 
         $fpsession = new Zend_Session_Namespace('facebook');
-
+<<<<<<< HEAD
+        
         $auth = Zend_Auth::getInstance();
-        $storage = $auth->getStorage();
-        $userData = $storage->read();
-        $person = (array)$userData;
-        //either shopperID or customerID
-        $personKey=key($person);
-        if($personKey != "customerID" && $personKey !=""){
-            $this->redirect("/index");
-        }
-        // var_dump($personKey);
-        // die();
-
-
         $requestActionName = $this->getRequest()->getActionName();
 
         // var_dump($this->getRequest()->getActionName() );
         // die();
+=======
+
+        // $auth = Zend_Auth::getInstance();
+        // $requestActionName = $this->getRequest()->getActionName();
+>>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         // {
         //     $this->redirect("customer/login");
@@ -53,7 +47,6 @@ class CustomerController extends Zend_Controller_Action
         {
             $this->redirect("customer/login");
         }
-
 
         
         if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
@@ -297,8 +290,6 @@ class CustomerController extends Zend_Controller_Action
 
     public function fpAuthActionAction()
     {
-        var_dump("Hello");
-        die();
         // define
         //instance from facebook
         $fb = new Facebook\Facebook ([
@@ -375,8 +366,7 @@ class CustomerController extends Zend_Controller_Action
         // $fpsession = new Zend_Session_Namespace('facebook');
         // write in session email & id & first_name
         $fpsession->first_name = $userNode->getName();
-        // var_dump($userNode->getName());
-        // die();
+
 
 
         $this->redirect('/index');
