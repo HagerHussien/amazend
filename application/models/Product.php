@@ -32,7 +32,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract {
         //$cat = $catobj->getCat($userData['categoryID']);
         //$row->categoryID = $cat['categoryID'];
 
-        
+
         $row->categoryID = $userData['categoryID'];
 
         //from session
@@ -48,22 +48,12 @@ class Application_Model_Product extends Zend_Db_Table_Abstract {
     }
 
     function editProduct($userData) {
-        //$row = $this->createRow();
-        $row->productID = $userData['productID'];
-        $row->EnName = $userData['EnName'];
-        $row->ArName = $userData['ArName'];
-        $row->EnDescription = $userData['EnDescription'];
-        $row->ArDescription = $userData['ArDescription'];
-        $row->price = $userData['price'];
-        $row->photo = $userData['photo'];
-        $row->categoryID = $userData['categoryID'];
-        $auth = Zend_Auth::getInstance();
-        $storage = $auth->getStorage();
-        $userData = $storage->read();
-        $person = $storage->read()->shopperID;
-        $row->shopperID = $person;
-
-        return $row->save();
+        $shopper = (array) Zend_Auth::getInstance()->getStorage()->read();
+        $shopper_id = $shopper['shopperID'];
+        $userData['shopperID'] = $shopper_id;
+        $this->update($userData, "productID=" . $userData['productID']);
+    
+        return $userData['productID'];
     }
 
     function maxPurchased() {
@@ -125,7 +115,7 @@ class Application_Model_Product extends Zend_Db_Table_Abstract {
         $res = $stmt->fetchAll();
         $res_rate = $res[0]['rate'];
         $res_no_rate = $res[0]['no_rate'];
-        $rate=$res_no_rate!=0?(int) ($res_rate / $res_no_rate):$res_rate;
+        $rate = $res_no_rate != 0 ? (int) ($res_rate / $res_no_rate) : $res_rate;
 //        $rate = (int) ($res_rate / $res_no_rate);
         return $rate;
     }

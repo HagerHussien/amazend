@@ -128,7 +128,7 @@ class ShopperController extends Zend_Controller_Action
             // //Session to be opened
             // $loginSession = new Zend_Session_Namespace('user');
 
-            $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
+//            $loginSession ->user = $authAdapter->getResultRowObject(array('shopperID', 'email','EnName'));
 
             
 
