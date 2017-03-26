@@ -136,7 +136,7 @@ public function topProduct($catID)
 function deleteProd($id)
 {
   $this->delete("productID=$id");
-  
+
 }
 
 

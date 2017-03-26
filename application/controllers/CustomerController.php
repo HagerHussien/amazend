@@ -353,13 +353,25 @@ class CustomerController extends Zend_Controller_Action
 
     public function addrateAction()
     {
-        header('Access-Control-Allow-Origin: *');
-        explode($_POST);
+        //header('Access-Control-Allow-Origin: *');
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('addrate', 'json')
+            ->initContext();
+        $this->_helper->viewRenderer->setNoRender(true);
+        $this->_helper->layout->disableLayout();
+        // $rate = 50;
+        // $product_id = 1;
+        //explode($_POST);
+        $rate = $this->getRequest()->getParam('rate');
+        $product_id = $this->getRequest()->getParam('product_id');
+
+        // var_dump($product_id);
+        // var_dump($rate);
+        // die();
         $product_model = new Application_Model_Product();
         $product_model->addRate($product_id,$rate);
-        // var_dump($r[0]['rate']);
-        // die();
     }
+
 
 
 }

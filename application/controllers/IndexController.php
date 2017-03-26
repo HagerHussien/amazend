@@ -44,6 +44,7 @@ class IndexController extends Zend_Controller_Action
 
     public function productAction()
     {
+
 //        $product_model = new Application_Model_Product();
         $prod_id = $this->_request->getParam("pid");
         if ($prod_id == NULL) {
@@ -51,7 +52,7 @@ class IndexController extends Zend_Controller_Action
         }
         $product_model = new Application_Model_Product();
         $rate = $product_model->getRate($prod_id);
-        echo $rate;
+        $this->view->rate = $rate;
         $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
         $select = new Zend_Db_Select($db);
 //        $select->from('product', array('id', 'title')) //the array specifies which columns I want returned in my result set
