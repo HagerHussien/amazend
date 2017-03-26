@@ -221,7 +221,7 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function addToCartAction() {
-        
+
     }
 
     public function addPtoductToCartAction() {
@@ -268,10 +268,6 @@ class CustomerController extends Zend_Controller_Action {
         $this->redirect('/customer/login');
         // $userType->type = NULL;
         // $this->redirect('/customer/login');
-    }
-
-    public function maiAction() {
-        // action body
     }
 
     public function addwishAction() {

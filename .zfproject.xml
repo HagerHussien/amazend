@@ -14,6 +14,7 @@
           <actionMethod actionName="displayComment"/>
           <actionMethod actionName="category"/>
           <actionMethod actionName="search"/>
+          <actionMethod actionName="deletecomment"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Admin">
@@ -42,11 +43,8 @@
           <actionMethod actionName="add"/>
           <actionMethod actionName="deleteItem"/>
           <actionMethod actionName="myWishList"/>
-          <actionMethod actionName="addToCart"/>
-          <actionMethod actionName="addPtoductToCart"/>
           <actionMethod actionName="addcart"/>
           <actionMethod actionName="logout"/>
-          <actionMethod actionName="mai"/>
           <actionMethod actionName="addwish"/>
           <actionMethod actionName="fpAuthAction"/>
           <actionMethod actionName="fblogoutAction"/>
@@ -206,12 +204,6 @@
           <viewControllerScriptsDirectory forControllerName="Checkout">
             <viewScriptFile forActionName="cart"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Customer">
-            <viewScriptFile forActionName="addToCart"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Customer">
-            <viewScriptFile forActionName="addPtoductToCart"/>
-          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="displayComment"/>
           </viewControllerScriptsDirectory>
@@ -243,9 +235,6 @@
             <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Customer">
-            <viewScriptFile forActionName="mai"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Customer">
             <viewScriptFile forActionName="addwish"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
@@ -274,6 +263,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="deletecomment"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -316,6 +308,7 @@
             <testApplicationActionMethod forActionName="displayComment"/>
             <testApplicationActionMethod forActionName="category"/>
             <testApplicationActionMethod forActionName="search"/>
+            <testApplicationActionMethod forActionName="deletecomment"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="addCategory"/>
@@ -344,11 +337,8 @@
             <testApplicationActionMethod forActionName="addToWish"/>
             <testApplicationActionMethod forActionName="deleteItem"/>
             <testApplicationActionMethod forActionName="myWishList"/>
-            <testApplicationActionMethod forActionName="addToCart"/>
-            <testApplicationActionMethod forActionName="addPtoductToCart"/>
             <testApplicationActionMethod forActionName="addcart"/>
             <testApplicationActionMethod forActionName="logout"/>
-            <testApplicationActionMethod forActionName="mai"/>
             <testApplicationActionMethod forActionName="addwish"/>
             <testApplicationActionMethod forActionName="addrate"/>
           </testApplicationControllerFile>

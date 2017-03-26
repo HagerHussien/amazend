@@ -10,7 +10,7 @@ class Application_Model_Comment extends Zend_Db_Table_Abstract
   }
 
   function deleteComment($comment_id){
-      $this->delete("id =$comment_id");
+          $this->delete("commentID =$comment_id");
   }
 
   function addNewComment($commentData)
