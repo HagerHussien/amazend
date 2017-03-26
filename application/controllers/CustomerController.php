@@ -13,6 +13,18 @@ class CustomerController extends Zend_Controller_Action {
         $fpsession = new Zend_Session_Namespace('facebook');
 
         $auth = Zend_Auth::getInstance();
+        $storage = $auth->getStorage();
+        $userData = $storage->read();
+        $person = (array)$userData;
+        //either shopperID or customerID
+        $personKey=key($person);
+        if($personKey != "customerID" && $personKey !=""){
+            $this->redirect("/index");
+        }
+        // var_dump($personKey);
+        // die();
+
+
         $requestActionName = $this->getRequest()->getActionName();
 
         // var_dump($this->getRequest()->getActionName() );
@@ -40,6 +52,7 @@ class CustomerController extends Zend_Controller_Action {
         }
 
 
+        
         if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
         {
             $this->redirect("/index");
@@ -275,6 +288,8 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function fpAuthActionAction() {
+        var_dump("Hello");
+        die();
         // define
         //instance from facebook
         $fb = new Facebook\Facebook([
@@ -344,7 +359,8 @@ class CustomerController extends Zend_Controller_Action {
         // $fpsession = new Zend_Session_Namespace('facebook');
         // write in session email & id & first_name
         $fpsession->first_name = $userNode->getName();
-
+        // var_dump($userNode->getName());
+        // die();
 
 
         $this->redirect('/index');

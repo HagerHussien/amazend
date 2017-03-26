@@ -14,6 +14,15 @@ class AdminController extends Zend_Controller_Action {
          $layout = $this->_helper->layout();
         $layout->setLayout('admlayout');
 
+        $auth = Zend_Auth::getInstance();
+        $storage = $auth->getStorage();
+        $userData = $storage->read();
+        $person = (array)$userData;
+        //either shopperID or customerID
+        $personKey=key($person);
+        if($personKey != "adminID" && $personKey !="" ){
+            $this->redirect("/index");
+        }
         if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
         ($this->getRequest()->getActionName() != 'add'))
         {
