@@ -73,7 +73,7 @@ class ProductController extends Zend_Controller_Action {
                 $offerModel = new Application_Model_Offer();
                 $offerModel->editOffer($offer_data, $prodID);
                 //to be changed
-                $this->redirect('index');
+                $this->redirect('/product');
             } else {
                 $form->populate($formData);
             }
