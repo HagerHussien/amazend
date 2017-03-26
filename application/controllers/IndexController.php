@@ -115,7 +115,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->comments = $comment_model->listComments();
     }
 
-    public function categoryAction()
+    public function categoryAction(){
         $cid=$this->_request->getParam('cid');
         $category_id = !empty($cid)?$cid:5;
         $product_model = new Application_Model_Product();

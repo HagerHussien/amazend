@@ -44,10 +44,54 @@
 
                 <div class="col-md-12">
                     <div class="box">
-                        <h1><?php $c=$this->category_name; if($this->language=="En"){echo $c['cat_EnName'];}else{echo $c['cat_ArName'];} ?></h1>
+                        <h1>Top Product</h1>
                         <!--<p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>-->
                     </div>
 
+                    <?php $top_prod=$this->cat_details ?>
+                    <!-- top product Start -->
+                    <div class="row products">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="/index/product/pid/<?=$top_prod[0]['productID'] ?>">
+                                                <img src="/img/<?=$top_prod[0]['photo'] ?>" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="/index/product/pid/<?=$top_prod[0]['productID'] ?>">
+                                                <img src="/img/<?=$top_prod[0]['photo'] ?>" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/index/product/pid/<?=$top_prod[0]['productID'] ?>" class="invisible">
+                                    <img src="/img/<?=$value['photo'] ?>" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="/index/product/pid/<?=$top_prod[0]['productID'] ?>">
+                                            <?php if($this->language=="En"){echo $top_prod[0]['EnName'];}else{echo $top_prod[0]['ArName'];} ?>
+                                        </a></h3>
+                                    <p class="price">$<?= $top_prod[0]['price'] ?></p>
+                                    <p class="buttons">
+                                        <a href="/index/product/pid/<?=$top_prod[0]['productID'] ?>" class="btn btn-default">View detail</a>
+                                        <a href="/customer/addcart/pid/<?=$top_prod[0]['productID'] ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>
+
+                    </div>
+                    <!-- /.top product end -->
+                    
+                    <div class="box">
+                        <h1><?php $c=$this->category_name; if($this->language=="En"){echo $c['cat_EnName'];}else{echo $c['cat_ArName'];} ?></h1>
+                        <!--<p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>-->
+                    </div>
                     <div class="row products">
                         
 <?php 
