@@ -373,6 +373,7 @@ class CustomerController extends Zend_Controller_Action {
 
     public function addrateAction()
     {
+//        if($this->getRequest()->)
         //header('Access-Control-Allow-Origin: *');
         $ajaxContext = $this->_helper->getHelper('AjaxContext');
         $ajaxContext->addActionContext('addrate', 'json')
