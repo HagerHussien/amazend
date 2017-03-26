@@ -220,13 +220,6 @@ class CustomerController extends Zend_Controller_Action {
 //        $this->view->user_wishlist = $user_wishlist;
     }
 
-    public function addToCartAction() {
-
-    }
-
-    public function addPtoductToCartAction() {
-        echo "hassssssssssssan";
-    }
 
     public function addcartAction() {
         $userData = Zend_Auth::getInstance()->getStorage()->read();

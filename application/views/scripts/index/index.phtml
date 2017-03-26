@@ -101,15 +101,15 @@
                                             <div class="flip-container">
                                                 <div class="flipper">
                                                     <div class="front">
-                                                        <a href="detail.html">
+                                                        <a href="<?= "/index/product/pid/" . $product['productID'] ?>">
                                                             <img src="/img/<?= $product['photo']?>" alt="" class="img-responsive">
                                                         </a>
                                                     </div>
-                                                    <!-- <div class="back">
-                                                        <a href="detail.html">
-                                                            <img src="/img/product2_2.jpg" alt="" class="img-responsive">
+                                                    <div class="back">
+                                                        <a href="<?= "/index/product/pid/" . $product['productID'] ?>">
+                                                            <img src="/img/<?= $product['photo']?>" alt="" class="img-responsive">
                                                         </a>
-                                                    </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <a href="<?= "/index/product/pid/" . $product['productID'] ?>" class="invisible">
@@ -136,12 +136,7 @@
                                                 <div class="theribbon">NEW</div>
                                                 <div class="ribbon-background"></div>
                                             </div>
-                                            <!-- /.ribbon -->
 
-                                            <div class="ribbon gift">
-                                                <div class="theribbon">GIFT</div>
-                                                <div class="ribbon-background"></div>
-                                            </div>
                                             <!-- /.ribbon -->
                                         </div>
                                         <!-- /.product -->
