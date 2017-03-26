@@ -12,7 +12,7 @@ $(document).ready(function(){
                 'product_id': productID,
                 'rate':rate
              },
-             dataType:'JSON',
+             dataType:'text',
              success: (function( data ) {
             console.log( data[0] );
           }

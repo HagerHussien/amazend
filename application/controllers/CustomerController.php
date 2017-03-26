@@ -21,7 +21,7 @@ class CustomerController extends Zend_Controller_Action {
         // {
         //     $this->redirect("customer/login");
         // }
-        
+
         // if ($auth->hasIdentity() && $requestActionName= 'login' )
         // {
         //     $this->redirect("/index");
@@ -32,20 +32,20 @@ class CustomerController extends Zend_Controller_Action {
         //     $this->redirect("/customer/logout");
         // }
 
-        
+
         if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
         ($this->getRequest()->getActionName() != 'add'))
         {
             $this->redirect("customer/login");
         }
 
-        
+
         if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
         {
             $this->redirect("/index");
         }
 
-        
+
 
         $request = $this->getRequest()->getParam('ln');
         //echo $request;
@@ -205,7 +205,7 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function addToCartAction() {
-        
+
     }
 
     public function addPtoductToCartAction() {
@@ -222,8 +222,8 @@ class CustomerController extends Zend_Controller_Action {
         $product_model = new Application_Model_Product();
         if (null ==($this->_request->getParam('pid'))) {
             $this->redirect('/checkout/cart');
-        } 
-     
+        }
+
         $product_id = $this->_request->getParam('pid');
         $cart_id = $cart_model->getCartID($customer_id);
         if (empty($cart_id)) {
@@ -374,9 +374,9 @@ class CustomerController extends Zend_Controller_Action {
     public function addrateAction()
     {
         //header('Access-Control-Allow-Origin: *');
-        $ajaxContext = $this->_helper->getHelper('AjaxContext');
-        $ajaxContext->addActionContext('addrate', 'json')
-            ->initContext();
+        // $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        // $ajaxContext->addActionContext('addrate', 'json')
+        //     ->initContext();
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_helper->layout->disableLayout();
         // $rate = 50;
@@ -384,7 +384,6 @@ class CustomerController extends Zend_Controller_Action {
         //explode($_POST);
         $rate = $this->getRequest()->getParam('rate');
         $product_id = $this->getRequest()->getParam('product_id');
-
         // var_dump($product_id);
         // var_dump($rate);
         // die();
