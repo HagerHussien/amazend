@@ -68,7 +68,7 @@ $('#updatebasket').click(function (e) {
         data: obj,
         dataType: 'text',
         success: function (result) {
-//            console.log(result);
+            console.log(result);
         }
     });
 });
@@ -98,8 +98,13 @@ $('#placeorder').click(function (e) {
         data: {data:obj,'order_subtotal':order_subtotal,'coupon_value':coupon_value,'order_total':order_total},
         dataType: 'text',
         success: function (result) {
-//            console.log(result);
-            window.location.href="/index";
+            console.log(result);
+//            window.location.href="/index";
+        },
+          error: function(xhr, ajaxOptions, thrownErrors) {
+          console.log(xhr);
+          console.log(ajaxOptions);
+          console.log(thrownErrors);
         }
     })
 //    console.log(obj);
