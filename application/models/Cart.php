@@ -20,8 +20,9 @@ class Application_Model_Cart extends Zend_Db_Table_Abstract {
         return FALSE;
     }
 
-    function newCart($customer_id){
-        $data = array('customerID' => $customer_id);
+    function newCart($customer_id,$customer_email){
+        $data = array('customerID' => $customer_id,
+            'customer_email'=>$customer_email);
 
         $this->insert($data);
     }

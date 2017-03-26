@@ -103,6 +103,7 @@
         <modelFile modelName="Comment"/>
         <modelFile modelName="Orderhistory"/>
         <modelFile modelName="Offer"/>
+        <modelFile modelName="UserAcl"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

@@ -1,37 +1,34 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
-{
+class IndexController extends Zend_Controller_Action {
 
     public $language = null;
 
-    public function init()
-    {
-      $request= $this->getRequest()->getParam('ln');
-      //echo $request;
-      if(empty($request)){
-           $this->language = new Zend_Session_Namespace('language');
-           $this->language->type= isset($this->language->type)?$this->language->type:"En";
-      }
-      else{
-          $this->language= new Zend_Session_Namespace('language');
-          $this->language->type = $request ;
-          // echo $this->language->type;
-      }
+    public function init() {
+        $request = $this->getRequest()->getParam('ln');
+        //echo $request;
+        if (empty($request)) {
+            $this->language = new Zend_Session_Namespace('language');
+            $this->language->type = isset($this->language->type) ? $this->language->type : "En";
+        } else {
+            $this->language = new Zend_Session_Namespace('language');
+            $this->language->type = $request;
+            // echo $this->language->type;
+        }
 
         $auth = Zend_Auth::getInstance();
-       $storage= $auth->getStorage();
-       $userData=$storage->read();
+        $storage = $auth->getStorage();
+        $userData = $storage->read();
 
-       $person = (array)$userData;
-       //either shopperID or customerID
-       $personKey=key($person);
-       $userType = new Zend_Session_Namespace('userType');
+        $person = (array) $userData;
+        //either shopperID or customerID
+        $personKey = key($person);
+//        $userType = new Zend_Session_Namespace('userType');
+        $userType = new Zend_Session_Namespace('user');
         $userType->type = $personKey;
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
 // display all products at home page
         $product_model = new Application_Model_Product();
         $category_model = new Application_Model_Category();
@@ -42,8 +39,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->language = $this->language->type;
     }
 
-    public function productAction()
-    {
+    public function productAction() {
 
 //        $product_model = new Application_Model_Product();
         $prod_id = $this->_request->getParam("pid");
@@ -88,8 +84,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->comments = $comment_model->listComments();
     }
 
-    public function displayCommentAction()
-    {
+    public function displayCommentAction() {
         $comment_form = new Application_Form_CommentForm();
         $comment_model = new Application_Model_Comment();
 
@@ -111,22 +106,21 @@ class IndexController extends Zend_Controller_Action
 //$comment_model = new Application_Model_Comment();
         $this->view->comments = $comment_model->listComments();
     }
-    public function categoryAction()
-    {
+
+    public function categoryAction() {
         $product_model = new Application_Model_Product();
         $category_id = $this->_request->getParam('cid');
         $this->view->cat_top = $product_model->topProduct($category_id);
         $this->view->cat_details = $product_model->category_products($category_id);
-
-
     }
-    public function searchAction()
-    {
+
+    public function searchAction() {
         // action body
         $product_model = new Application_Model_Product();
-        $product_name= $this->_request->getParam('name');
+        $product_name = $this->_request->getParam('name');
         $search_details = $product_model->productSearch($product_name);
-        $page=$search_details[0]['productID'];
-       return $this->redirect("/index/product/pid/$page");
+        $page = $search_details[0]['productID'];
+        return $this->redirect("/index/product/pid/$page");
     }
+
 }

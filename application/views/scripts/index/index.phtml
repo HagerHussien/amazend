@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
-    $userType = new Zend_Session_Namespace('userType');
+    $userType = new Zend_Session_Namespace('user');
     $personKey = $userType->type;
-    echo $personKey;
+//    echo $personKey;
     ?>
     <head>
 
@@ -11,7 +11,7 @@
         <meta name="robots" content="all,follow">
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Obaju e-commerce template">
+        <meta name="description" content="AmaZend">
         <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
         <meta name="keywords" content="">
 
@@ -156,7 +156,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="detail.html" class="invisible">
+                                            <a href="<?= "/index/product/pid/" . $product['productID'] ?>" class="invisible">
                                                 <img src="/img/product2.jpg" alt="" class="img-responsive">
                                             </a>
                                             <div class="text">

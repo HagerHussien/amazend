@@ -8,6 +8,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	// autoloaderNamespaces[] = "My_"
 	// resources.frontController.plugins.Acl = "My_Controller_Plugin_Acl"
 
+	//autoloadernamespaces[] = "Plugin_"
+	//
 
 
 	// protected function _initACL(){
@@ -16,6 +18,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	// 	$helper->setResources();
 	// 	$helper->setPrivileges();
 	// 	$helper->setAcl();
+	// }
+	
+	// protected function _initAutoload(){
+	// 	$fc = Zend_Controller_Front::getInstance();
+	// 	$fc->registerPlugin(new Plugin_AccessCheck());
+
+
 	// }
 
 }

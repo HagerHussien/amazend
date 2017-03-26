@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
-    //$userType = new Zend_Session_Namespace('userType');
-    //$userType = new Zend_Session_Namespace('userType');
-//$personKey= $userType->type ;
-    $personKey = "adminID";
+    $userType = new Zend_Session_Namespace('user');
+////    $userType = new Zend_Session_Namespace('userType');
+$personKey= $userType->type ;
+var_dump($personKey);
     ?>
     <head>
 
@@ -13,7 +13,7 @@
         <meta name="googlebot" content="index,follow,snippet,archive">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Amazend">
-        <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+        <meta name="author" content="">
         <meta name="keywords" content="">
 
         <title>
@@ -168,12 +168,17 @@
                                     <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
                                     </p>
                                     <p class="price">$<?= $this->product["price"] ?></p>
-
+<?php if($personKey== "customerID"): ?>
                                     <p class="text-center buttons">
                                         <a href="/Customer/addcart/pid/<?= $this->product['productID'] ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart </a>
                                         <a href="/Customer/addwish/pid/<?= $this->product['productID'] ?>" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
                                     </p>
-
+                                    <?php else: ?>
+                                    <p class="text-center buttons">
+                                        <a href="/customer/login" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart </a>
+                                        <a href="/customer/login" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                    </p>
+<?php endif; ?>
 
                                 </div>
 

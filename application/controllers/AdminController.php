@@ -13,6 +13,20 @@ class AdminController extends Zend_Controller_Action {
         $loginSession = new Zend_Session_Namespace('user');
          $layout = $this->_helper->layout();
         $layout->setLayout('admlayout');
+
+        if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
+        ($this->getRequest()->getActionName() != 'add'))
+        {
+            $this->redirect("admin/login");
+        }
+
+        
+        if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
+        {
+            $this->redirect("/index");
+        }
+
+
     }
 
     public function indexAction() {

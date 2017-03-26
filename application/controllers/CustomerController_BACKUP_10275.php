@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 class CustomerController extends Zend_Controller_Action {
 
     public $language;
@@ -7,46 +8,35 @@ class CustomerController extends Zend_Controller_Action {
     public function init() {
         //Session to be opened
         $loginSession = new Zend_Session_Namespace('user');
+=======
+class CustomerController extends Zend_Controller_Action
+{
+
+    public $language = null;
+
+    public function init()
+    {
+       //Session to be opened
+            $loginSession = new Zend_Session_Namespace('user');
+>>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
 
         //facebook session
 
         $fpsession = new Zend_Session_Namespace('facebook');
 
-        $auth = Zend_Auth::getInstance();
-        $requestActionName = $this->getRequest()->getActionName();
-
-        // var_dump($this->getRequest()->getActionName() );
-        // die();
+        // $auth = Zend_Auth::getInstance();
+        // $requestActionName = $this->getRequest()->getActionName();
         // if (!$auth->hasIdentity() && $requestActionName!= 'login' && $requestActionName!= 'add')
         // {
         //     $this->redirect("customer/login");
         // }
-        
         // if ($auth->hasIdentity() && $requestActionName= 'login' )
         // {
         //     $this->redirect("/index");
         // }
 
-        // if ($auth->hasIdentity() && $requestActionName= 'logout' )
-        // {
-        //     $this->redirect("/customer/logout");
-        // }
 
-        
-        if (!$auth->hasIdentity() && ($this->getRequest()->getActionName() != 'login') &&
-        ($this->getRequest()->getActionName() != 'add'))
-        {
-            $this->redirect("customer/login");
-        }
-
-        
-        if ($auth->hasIdentity() && ((($this->getRequest()->getActionName() == 'login')) || (($this->getRequest()->getActionName() == 'add'))) )
-        {
-            $this->redirect("/index");
-        }
-
-        
-
+<<<<<<< HEAD
         $request = $this->getRequest()->getParam('ln');
         //echo $request;
         if (empty($request)) {
@@ -57,6 +47,19 @@ class CustomerController extends Zend_Controller_Action {
             $this->language->type = $request;
             // echo $this->language->type;
         }
+=======
+      $request= $this->getRequest()->getParam('ln');
+      //echo $request;
+      if(empty($request)){
+           $this->language = new Zend_Session_Namespace('language');
+           $this->language->type= isset($this->language->type)?$this->language->type:"En";
+      }
+      else{
+          $this->language= new Zend_Session_Namespace('language');
+          $this->language->type = $request ;
+          // echo $this->language->type;
+      }
+>>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
 
         // $auth = Zend_Auth::getInstance();
         // $requestActionName = $this->getRequest()->getActionName();
@@ -77,18 +80,6 @@ class CustomerController extends Zend_Controller_Action {
 
     public function loginAction() {
         //authentiation to be done
-        $auth=Zend_Auth::getInstance();
-        $request=$this->getRequest();
-        $actionName = $request->getActionName();
-
-        if($auth->hasIdentity()&& $actionName=='login'){
-          $this->redirect('/index');
-        }
-        if(! $auth->hasIdentity()&& $actionName !='login'){
-          $this->redirect('/customer/login');
-        }
-
-        //login
 
         $form = new Application_Form_CustomerLogin();
         $request = $this->getRequest();
@@ -220,17 +211,16 @@ class CustomerController extends Zend_Controller_Action {
         $cart_model = new Application_Model_Cart();
         $cart_product_model = new Application_Model_CartProduct();
         $product_model = new Application_Model_Product();
-        if (null ==($this->_request->getParam('pid'))) {
+        if (!isset($this->_request->getParam('pid'))) {
             $this->redirect('/checkout/cart');
         } 
      
         $product_id = $this->_request->getParam('pid');
         $cart_id = $cart_model->getCartID($customer_id);
-        if (empty($cart_id)) {
+        $cartID = $cart_id[0]['cartID'];
+        if (empty($cartID)) {
             $cart_model->newCart($customer_id, $customer_email);
-            $cart_id = $cart_model->getCartID($customer_id);
         }
-     $cartID = $cart_id[0]['cartID'];
         $check = $cart_product_model->checkExistence($cartID, $product_id);
         if ($check) {
             $product_price = $product_model->prouduct_price($product_id);
@@ -241,17 +231,20 @@ class CustomerController extends Zend_Controller_Action {
     }
 
     public function logoutAction() {
-         //Zend_Session::destroy();
-        // $this->_helper->redirector('index', 'index');
-
         Zend_Session::namespaceUnset('user');
         Zend_Session::namespaceUnset('facebook');
         Zend_Session::namespaceUnset('userType');
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
-        $this->redirect('/customer/login');
+        $this->redirect('/index');
         // $userType->type = NULL;
-        // $this->redirect('/customer/login');
+<<<<<<< HEAD
+        // $this->redirect('/Customer/login');
+=======
+
+         // $this->redirect('/Customer/login');
+
+>>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
     }
 
     public function maiAction() {
@@ -361,6 +354,17 @@ class CustomerController extends Zend_Controller_Action {
             'app_id' => '1769107093406339', // Replace {app-id} with your app id
             'app_secret' => '39eba50bb7e6bbcc985a87f47656e7d4',
             'default_graph_version' => 'v2.2',
+<<<<<<< HEAD
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        $loginUrl = $helper->getLoginUrl($this->view->serverUrl() .
+                '/customer/fp-auth-action');
+        $this->view->facebook_url = $loginUrl;
+        // $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+        $this->view->facebookUrl = '<a href="' . htmlspecialchars($loginUrl) . '"> <img src="/img/fblogin-btn.png"></img></a>';
+    }
+
+=======
             ]);
             $helper = $fb->getRedirectLoginHelper();
             $loginUrl = $helper->getLoginUrl($this->view->serverUrl().
@@ -373,23 +377,14 @@ class CustomerController extends Zend_Controller_Action {
 
     public function addrateAction()
     {
-        //header('Access-Control-Allow-Origin: *');
-        $ajaxContext = $this->_helper->getHelper('AjaxContext');
-        $ajaxContext->addActionContext('addrate', 'json')
-            ->initContext();
-        $this->_helper->viewRenderer->setNoRender(true);
-        $this->_helper->layout->disableLayout();
-        // $rate = 50;
-        // $product_id = 1;
-        //explode($_POST);
-        $rate = $this->getRequest()->getParam('rate');
-        $product_id = $this->getRequest()->getParam('product_id');
-
-        // var_dump($product_id);
-        // var_dump($rate);
-        // die();
+        header('Access-Control-Allow-Origin: *');
+        explode($_POST);
         $product_model = new Application_Model_Product();
         $product_model->addRate($product_id,$rate);
+        // var_dump($r[0]['rate']);
+        // die();
     }
 
+
+>>>>>>> 6d8840b9ad81c0580e29165c98ff2255c63c5602
 }
