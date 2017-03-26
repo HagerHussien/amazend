@@ -213,8 +213,9 @@ _________________________________________________________ -->
                             <li></li>
                         </ul>
                     </li>
-                <?php else: ?>
-
+                <?php elseif($personKey=="adminID"): ?>
+                    <li><a href="/admin/logout">Logout</a></li>
+               <?php else: ?>
                     <li><a href="/customer/logout">Logout</a></li>
                 <?php endif; ?>
                 <!-- Language -->
