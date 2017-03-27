@@ -138,5 +138,9 @@ $(document).ready(function(){
 
         })
 });
+
+$('#ratingsForm>span')
+
+
 })
 // console.log(rate);

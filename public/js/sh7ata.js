@@ -99,7 +99,7 @@ $('#placeorder').click(function (e) {
         dataType: 'text',
         success: function (result) {
             console.log(result);
-//            window.location.href="/index";
+            window.location.href="/index";
         },
           error: function(xhr, ajaxOptions, thrownErrors) {
           console.log(xhr);
