@@ -3,11 +3,11 @@
 
     <!-- jQuery library -->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-<script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-1.11.0.min.js"></script>
     <link rel="stylesheet" href="/css/jquery-ui.css">
-<script src="/js/jquery-ui.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-hover-dropdown.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-hover-dropdown.js"></script>
 
 
     <!-- styles -->
@@ -23,11 +23,11 @@
     <!-- your stylesheet with modifications -->
     <link href="/css/custom.css" rel="stylesheet">
 
-      <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
 
     <!-- <link href="/css/bootstrap-theme.min.css" rel="stylesheet"> -->
     <link href="/css/modified.css" rel="stylesheet">
-<script src="/js/respond.min.js"></script>
+    <script src="/js/respond.min.js"></script>
 </head>
 <!-- nav header -->
 <?php
@@ -35,7 +35,7 @@
 $userData = Zend_Auth::getInstance()->getStorage()->read();
 $person = (array) $userData;
 $userType = new Zend_Session_Namespace('user');
-$personKey= $userType->type ;
+$personKey = $userType->type;
 //var_dump($person);
 $categories = new Zend_Session_Namespace('category');
 
@@ -44,82 +44,22 @@ $cat_model = new Application_Model_Category();
 $cats = $cat_model->fetchAll()->toArray();
 
 //Getting cart items
-if($personKey=="customerID"){
-$db = Zend_Db_Table::getDefaultAdapter(); //set in config file
-$select = new Zend_Db_Select($db);
-$select->from('cart', array('cartID', 'customerID')) //the array specifies which columns I want returned in my result set
-        //by specifying an empty array, I am saying that I don't care about the columns from this table
-        ->joinInner('cart_product', 'cart.cartID = cart_product.cartID', array())
-        ->joinLeft('order_history', 'order_history.order_id=cart.cartID', array())
-        ->where("customerID = 2")
-        ->where('order_history.order_status_id IS NULL');
-$cart_items = $db->fetchAll($select);
-}
- else {
-    $cart_items=array();
+if ($personKey == "customerID") {
+    $customerID = $person['customerID'];
+    $db = Zend_Db_Table::getDefaultAdapter(); //set in config file
+    $select = new Zend_Db_Select($db);
+    $select->from('cart', array('cartID', 'customerID')) //the array specifies which columns I want returned in my result set
+            //by specifying an empty array, I am saying that I don't care about the columns from this table
+            ->joinInner('cart_product', 'cart.cartID = cart_product.cartID', array())
+            ->joinLeft('order_history', 'order_history.order_id=cart.cartID', array())
+            ->where("customerID = $customerID")
+            ->where('order_history.order_status_id IS NULL');
+    $cart_items = $db->fetchAll($select);
+} else {
+    $cart_items = array();
 }
 
-
-// //either shopperID or customerID
-// $personKey=key($person);
-// $userType = new Zend_Session_Namespace('userType');
-//  $userType->type = $personKey;
-//$userType->type =NULL;
 ?>
-
-<!-- *************************************************************************************************** -->
-<!--<div id="top">
-        <div class="container">
-            <div class="col-md-6 offer" data-animate="fadeInDown">
-                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
-            </div>
-            <div class="col-md-6" data-animate="fadeInDown">
-                <ul class="menu">
-                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                    </li>
-                    <li><a href="register.html">Register</a>
-                    </li>
-                    <li><a href="contact.html">Contact</a>
-                    </li>
-                    <li><a href="#">Recently viewed</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="Login">Customer login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="customer-orders.html" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email-modal" placeholder="email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password-modal" placeholder="password">
-                            </div>
-
-                            <p class="text-center">
-                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
-                            </p>
-
-                        </form>
-
-                        <p class="text-center text-muted">Not registered yet?</p>
-                        <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>-->
-
-    <!-- *** TOP BAR END *** -->
 
 <!-- *** NAVBAR ***
 _________________________________________________________ -->
@@ -168,21 +108,6 @@ _________________________________________________________ -->
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
-                                    <!-- <div class="col-sm-3">
-                                        <h5>Shoes</h5>
-                                        <ul>
-                                            <li><a href="category.html">Trainers</a>
-                                            </li>
-                                            <li><a href="category.html">Sandals</a>
-                                            </li>
-                                            <li><a href="category.html">Hiking shoes</a>
-                                            </li>
-                                            <li><a href="category.html">Casual</a>
-                                            </li>
-                                        </ul>
-                                    </div> -->
-
-
                                 </div>
                             </div>
                             <!-- /.yamm-content -->
@@ -209,7 +134,7 @@ _________________________________________________________ -->
                             <li></li>
                         </ul>
                     </li>
-                <?php elseif($personKey=="adminID"): ?>
+                <?php elseif ($personKey == "adminID"): ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Dashboard <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -219,15 +144,15 @@ _________________________________________________________ -->
                             <li></li>
                         </ul>
                     </li>
-               <?php else: ?>
+                <?php else: ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Logout <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if($personKey=="shopperID"): ?>
-                            <li class="modified"><a href="/product">My Products</a></li>
-                            <?php elseif($personKey=="customerID"): ?>
-                            <li class="modified"><a href="/customer/my-wish-list">My WishList</a></li>
-                            <?php  endif; ?>
+                            <?php if ($personKey == "shopperID"): ?>
+                                <li class="modified"><a href="/product">My Products</a></li>
+                            <?php elseif ($personKey == "customerID"): ?>
+                                <li class="modified"><a href="/customer/my-wish-list">My WishList</a></li>
+                            <?php endif; ?>
                             <li class="modified"><a href="/customer/logout">Logout</a></li>
 
                             <li></li>
@@ -245,7 +170,7 @@ _________________________________________________________ -->
                 </li>
                 <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 
-            
+
 
             </ul>
 
@@ -294,27 +219,14 @@ _________________________________________________________ -->
 
 <?php echo $this->layout()->content; ?>
 
-                <!-- *** COPYRIGHT ***
-         _________________________________________________________ -->
-                <div id="copyright">
-                    <div class="container">
-                        <div class="col-md-6">
-                            <p class="pull-left">© 2017 AmaZend.Com</p>
+<!-- *** COPYRIGHT ***
+_________________________________________________________ -->
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-6">
+            <p class="pull-left">© 2017 AmaZend.Com</p>
 
-                        </div>
-                    </div>
-                </div>
-                <!-- *** COPYRIGHT END *** -->
-
-
-
-
-<!-- *** SCRIPTS TO INCLUDE ***
- _________________________________________________________ -->
- 
-<!--<script src="/js/jquery.cookie.js"></script>
-<script src="/js/waypoints.min.js"></script>
-<script src="/js/modernizr.js"></script>
-
-<script src="/js/owl.carousel.min.js"></script>
-<script src="/js/front.js"></script>-->
+        </div>
+    </div>
+</div>
+<!-- *** COPYRIGHT END *** -->
